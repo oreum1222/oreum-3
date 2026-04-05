@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0d0b08">
+<title>고전시가 주요 구절 및 고사 총정리</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0b08;
+  --bg-card:#16130e;
+  --bg-card-hover:#1c1812;
+  --hanji:#f0e8d4;
+  --hanji-dim:#c8bfa8;
+  --vermilion:#c4513a;
+  --vermilion-soft:rgba(196,81,58,.08);
+  --teal:#3a9a8a;
+  --teal-bright:#50c4b0;
+  --teal-soft:rgba(58,154,138,.08);
+  --indigo:#7a6aaa;
+  --indigo-bright:#a08cd4;
+  --indigo-soft:rgba(122,106,170,.08);
+  --gold:#b8943e;
+  --gold-bright:#d4ad4a;
+  --gold-dim:#8a7030;
+  --gold-ghost:rgba(184,148,62,.06);
+  --pine:#5a7a4a;
+  --pine-dim:#3a5a30;
+  --ink:#e8e0d0;
+  --ink-mid:#a09880;
+  --ink-soft:#706858;
+  --ink-ghost:#403828;
+  --divider:rgba(184,148,62,.12);
+}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--gold-dim) var(--bg)}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',sans-serif;
+  word-break:keep-all;line-height:1.8;overflow-x:hidden;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* ═══ Hero ═══ */
+.hero{
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;padding:40px 24px;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 45%,rgba(184,148,62,.06),transparent),
+    radial-gradient(ellipse 80% 60% at 50% 100%,rgba(13,11,8,.9),transparent);
+  pointer-events:none;
+}
+.hero-orn{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:40px;opacity:0;animation:fu .8s .3s forwards}
+.hero-badge{font-family:'Noto Serif KR',serif;font-size:11px;letter-spacing:6px;color:var(--gold-dim);margin-bottom:28px;opacity:0;animation:fu .8s .5s forwards}
+.hero-title{
+  font-family:'Noto Serif KR',serif;font-size:clamp(40px,9vw,72px);font-weight:900;
+  color:var(--hanji);letter-spacing:10px;line-height:1.3;opacity:0;animation:fu 1s .7s forwards;
+}
+.hero-title .hl{
+  display:inline;
+  background:linear-gradient(180deg,var(--hanji) 40%,var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-family:'Noto Serif KR',serif;font-size:clamp(13px,2vw,16px);font-weight:300;color:var(--ink-mid);letter-spacing:3px;margin-top:14px;opacity:0;animation:fu .8s .9s forwards}
+.hero-works{
+  display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:40px;opacity:0;animation:fu .8s 1.1s forwards;
+}
+.hero-chip{
+  font-family:'Noto Serif KR',serif;font-size:13px;letter-spacing:2px;
+  color:var(--ink-soft);padding:8px 20px;
+  border:1px solid var(--divider);border-radius:2px;
+  cursor:pointer;transition:.3s;text-decoration:none;
+}
+.hero-chip:hover{color:var(--gold-bright);border-color:var(--gold)}
+.hero-brand{font-size:11px;letter-spacing:5px;color:var(--ink-soft);margin-top:36px;opacity:0;animation:fu .8s 1.3s forwards}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fu .8s 1.5s forwards}
+.hero-scroll span{font-size:10px;letter-spacing:3px;color:var(--ink-soft)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(180deg,var(--gold-dim),transparent);animation:pulse 2s infinite}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ═══ Work divider ═══ */
+.work-divider{
+  position:relative;padding:100px 24px 60px;text-align:center;
+  max-width:720px;margin:0 auto;
+}
+.work-divider::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:60px;
+  background:linear-gradient(180deg,transparent,var(--gold-dim));
+}
+.wd-num{
+  font-family:'Noto Serif KR',serif;font-size:12px;letter-spacing:8px;
+  color:var(--gold-dim);margin-bottom:20px;
+}
+.wd-title{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(30px,7vw,52px);font-weight:900;
+  letter-spacing:8px;line-height:1.3;
+  background:linear-gradient(180deg,var(--hanji) 30%,var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:12px;
+}
+.wd-meta{
+  font-size:12px;letter-spacing:3px;color:var(--ink-soft);margin-bottom:8px;
+}
+.wd-desc{
+  font-family:'Noto Serif KR',serif;font-size:14px;font-weight:300;
+  color:var(--ink-mid);max-width:480px;margin:16px auto 0;line-height:1.9;
+}
+.wd-line{width:40px;height:1px;margin:28px auto 0;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
+
+/* ═══ TOC ═══ */
+.toc{max-width:680px;margin:0 auto;padding:40px 24px 50px;border-bottom:1px solid var(--divider)}
+.toc-label{font-size:10px;letter-spacing:5px;color:var(--gold-dim);margin-bottom:20px}
+.toc-item{
+  display:flex;align-items:baseline;gap:14px;padding:10px 0;
+  border-bottom:1px solid rgba(184,148,62,.05);
+  cursor:pointer;transition:.3s;text-decoration:none;color:inherit;
+}
+.toc-item:last-child{border-bottom:none}
+.toc-item:hover{padding-left:8px}
+.toc-item:hover .toc-num{color:var(--gold-bright)}
+.toc-item:hover .toc-name{color:var(--hanji)}
+.toc-num{font-family:'Noto Serif KR',serif;font-size:12px;font-weight:600;color:var(--ink-soft);min-width:18px;transition:color .3s}
+.toc-name{font-family:'Noto Serif KR',serif;font-size:14px;color:var(--ink-mid);transition:color .3s}
+.toc-dot{flex:1;border-bottom:1px dotted var(--ink-ghost);margin:0 8px;min-width:16px;align-self:center}
+
+/* ═══ Entries ═══ */
+.main{max-width:720px;margin:0 auto;padding:0 24px}
+.entry{
+  padding:72px 0;border-bottom:1px solid var(--divider);
+  opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s;
+}
+.entry.visible{opacity:1;transform:translateY(0)}
+.entry:last-child{border-bottom:none}
+
+.entry-head{margin-bottom:36px;position:relative}
+.entry-num{
+  font-family:'Noto Serif KR',serif;font-size:clamp(56px,11vw,88px);font-weight:200;
+  color:var(--ink-ghost);line-height:1;position:absolute;top:-16px;left:-6px;user-select:none;
+}
+.entry-title{
+  font-family:'Noto Serif KR',serif;font-size:clamp(20px,3.6vw,26px);font-weight:600;
+  color:var(--hanji);padding-left:clamp(40px,7vw,58px);padding-top:22px;line-height:1.5;
+}
+
+.quote{
+  position:relative;margin:0 0 32px;padding:28px 0 28px 24px;
+  border-left:2px solid var(--gold-dim);
+}
+.quote::before{
+  content:'';position:absolute;left:-1px;top:0;width:2px;height:0;
+  background:var(--gold-bright);transition:height 1.2s cubic-bezier(.23,1,.32,1);
+}
+.entry.visible .quote::before{height:100%}
+.quote-tag{
+  font-size:9px;letter-spacing:5px;color:var(--gold-dim);
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.quote-tag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--divider),transparent)}
+.quote p{
+  font-family:'Noto Serif KR',serif;font-size:clamp(15px,2.6vw,18px);font-weight:400;
+  color:var(--hanji);line-height:2.2;letter-spacing:.3px;
+}
+.quote .sl{display:inline-block;color:var(--gold-dim);margin:0 4px;font-weight:300}
+
+.point{margin-bottom:28px}
+.point-tag{
+  font-size:9px;letter-spacing:5px;color:var(--pine);
+  margin-bottom:10px;display:flex;align-items:center;gap:10px;
+}
+.point-tag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(90,122,74,.2),transparent)}
+.point p{font-size:14.5px;color:var(--ink-mid);line-height:2}
+.point em{font-style:normal;color:var(--hanji-dim);border-bottom:1px solid var(--gold-ghost)}
+
+.summary{
+  display:flex;gap:14px;padding:16px 20px;
+  background:var(--gold-ghost);border:1px solid var(--divider);border-radius:3px;
+  position:relative;overflow:hidden;
+}
+.summary::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--gold-dim))}
+.summary-badge{
+  font-family:'Noto Serif KR',serif;font-size:10px;letter-spacing:3px;
+  color:var(--gold);white-space:nowrap;padding-top:2px;
+}
+.summary p{font-size:13.5px;color:var(--gold-bright);line-height:1.8;font-weight:500}
+
+/* ═══ Vermilion accent for 속사미인곡 ═══ */
+.work-v .quote{border-left-color:var(--vermilion)}
+.work-v .quote::before{background:var(--vermilion)}
+.work-v .quote-tag{color:rgba(196,81,58,.5)}
+.work-v .quote-tag::after{background:linear-gradient(90deg,rgba(196,81,58,.15),transparent)}
+.work-v .summary{background:var(--vermilion-soft);border-color:rgba(196,81,58,.12)}
+.work-v .summary::before{background:linear-gradient(180deg,var(--vermilion),rgba(196,81,58,.4))}
+.work-v .summary-badge{color:var(--vermilion)}
+.work-v .summary p{color:rgba(220,120,100,1)}
+.work-v .point-tag{color:rgba(196,81,58,.5)}
+.work-v .point-tag::after{background:linear-gradient(90deg,rgba(196,81,58,.12),transparent)}
+
+/* ═══ Teal accent for 유산가 ═══ */
+.work-t .quote{border-left-color:var(--teal)}
+.work-t .quote::before{background:var(--teal-bright)}
+.work-t .quote-tag{color:rgba(58,154,138,.5)}
+.work-t .quote-tag::after{background:linear-gradient(90deg,rgba(58,154,138,.15),transparent)}
+.work-t .summary{background:var(--teal-soft);border-color:rgba(58,154,138,.12)}
+.work-t .summary::before{background:linear-gradient(180deg,var(--teal),rgba(58,154,138,.4))}
+.work-t .summary-badge{color:var(--teal)}
+.work-t .summary p{color:var(--teal-bright)}
+.work-t .point-tag{color:rgba(58,154,138,.6)}
+.work-t .point-tag::after{background:linear-gradient(90deg,rgba(58,154,138,.15),transparent)}
+
+/* ═══ Indigo accent for 백석정별곡 ═══ */
+.work-i .quote{border-left-color:var(--indigo)}
+.work-i .quote::before{background:var(--indigo-bright)}
+.work-i .quote-tag{color:rgba(122,106,170,.5)}
+.work-i .quote-tag::after{background:linear-gradient(90deg,rgba(122,106,170,.15),transparent)}
+.work-i .summary{background:var(--indigo-soft);border-color:rgba(122,106,170,.12)}
+.work-i .summary::before{background:linear-gradient(180deg,var(--indigo),rgba(122,106,170,.4))}
+.work-i .summary-badge{color:var(--indigo)}
+.work-i .summary p{color:var(--indigo-bright)}
+.work-i .point-tag{color:rgba(122,106,170,.6)}
+.work-i .point-tag::after{background:linear-gradient(90deg,rgba(122,106,170,.15),transparent)}
+
+/* ═══ Side nav ═══ */
+.side-nav{
+  position:fixed;right:22px;top:50%;transform:translateY(-50%);
+  z-index:100;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.sn-label{
+  font-size:8px;letter-spacing:2px;color:var(--ink-soft);
+  writing-mode:vertical-rl;margin-bottom:4px;
+  transform:rotate(180deg);
+}
+.sn-gap{height:12px;width:1px;background:var(--divider)}
+.sn-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.15);border:none;cursor:pointer;
+  transition:.4s cubic-bezier(.23,1,.32,1);position:relative;
+}
+.sn-dot.active{background:rgba(255,255,255,.85);transform:scale(1.5)}
+.sn-dot.active.v{background:rgba(196,81,58,.9)}
+.sn-dot.active.t{background:rgba(58,154,138,.9)}
+.sn-dot.active.i{background:rgba(122,106,170,.9)}
+.sn-dot::after{
+  content:attr(data-tip);position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.45);
+  white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.sn-dot:hover::after{opacity:1}
+
+/* ═══ Progress & BTT ═══ */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:200}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dim),var(--gold-bright));transition:width .15s}
+.btt{
+  position:fixed;bottom:28px;right:28px;z-index:100;
+  width:40px;height:40px;border:1px solid var(--divider);border-radius:50%;
+  background:var(--bg-card);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;opacity:0;transform:translateY(10px);transition:.4s;
+}
+.btt.show{opacity:1;transform:translateY(0)}
+.btt:hover{border-color:var(--gold);background:var(--bg-card-hover)}
+.btt svg{width:14px;height:14px;color:var(--ink-mid)}
+
+/* ═══ Footer ═══ */
+.foot{max-width:680px;margin:0 auto;padding:80px 24px 60px;text-align:center}
+.foot-line{width:40px;height:1px;margin:0 auto 32px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
+.foot-brand{font-family:'Noto Serif KR',serif;font-size:12px;letter-spacing:6px;color:var(--gold-dim);margin-bottom:20px}
+.foot-warn{font-size:11px;color:var(--ink-soft);line-height:2;max-width:480px;margin:0 auto}
+
+/* ═══ Responsive ═══ */
+@media(max-width:640px){
+  .side-nav{display:none}
+  .entry{padding:40px 0}
+  .entry-num{font-size:42px;top:-8px}
+  .entry-title{padding-left:32px;padding-top:14px}
+  .entry-title h3{font-size:1.05rem}
+  .quote{padding:16px 0 16px 16px}
+  .quote p{font-size:.92rem;line-height:1.9}
+  .summary{flex-direction:column;gap:6px}
+  .summary-item{font-size:.82rem}
+  .toc{padding:28px 20px 32px}
+  .toc-title{font-size:1rem}
+  .toc-list{gap:6px}
+  .toc-item{font-size:.82rem;padding:12px 14px;min-height:44px}
+  .hero-works{flex-direction:column;gap:12px;align-items:center}
+  .hero-title{font-size:clamp(1.6rem,6vw,2.4rem)}
+  .hero-sub{font-size:.85rem}
+  .work-divider{padding:60px 20px 36px}
+  .wd-title{letter-spacing:4px;font-size:1.4rem}
+  .wd-sub{font-size:.78rem}
+  .btt{bottom:16px;right:16px;width:36px;height:36px;font-size:14px}
+  .main{padding:0 18px}
+  .foot{padding:60px 18px 40px}
+  .foot-warn{font-size:10px}
+  .anno{font-size:.78rem;padding:10px 14px}
+  .hero{padding:60px 18px 36px;min-height:auto}
+}
+@media(max-width:380px){
+  .entry-num{font-size:36px}
+  .entry-title{padding-left:28px}
+  .quote p{font-size:.88rem}
+  .hero{padding:48px 14px 28px}
+  .main{padding:0 14px}
+}
+@media print{
+  .hero{min-height:auto;padding:40px 24px}
+  .side-nav,.progress,.btt,.hero-scroll{display:none}
+  .entry{opacity:1!important;transform:none!important;padding:28px 0;page-break-inside:avoid}
+  .work-divider{padding:48px 24px 28px;page-break-before:always}
+  body::after{display:none}
+  body{background:#fff;color:#1a1a1a}
+  .hero-title .hl,.wd-title{-webkit-text-fill-color:#1a1a1a;color:#1a1a1a}
+  .quote p,.entry-title{color:#1a1a1a}
+}
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="progress-bar" id="prog"></div></div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-orn"></div>
+  <div class="hero-badge">가사 · 잡가 · 정리 노트</div>
+  <h1 class="hero-title"><span class="hl">고전시가</span></h1>
+  <p class="hero-sub">주요 구절 및 고사 총정리</p>
+  <div class="hero-works">
+    <a class="hero-chip" href="#work1">一 사친가</a>
+    <a class="hero-chip" href="#work2">二 속사미인곡</a>
+    <a class="hero-chip" href="#work3">三 유산가</a>
+    <a class="hero-chip" href="#work4">四 백석정별곡</a>
+  </div>
+  <p class="hero-brand">[오름] 국어 · 가경T</p>
+  <div class="hero-scroll"><span>SCROLL</span><div class="scroll-line"></div></div>
+</section>
+
+<div id="content"></div>
+
+<footer class="foot">
+  <div class="foot-line"></div>
+  <div class="foot-brand">[오름] 국어</div>
+  <p class="foot-warn">
+    본 자료는 오직 [오름] 국어 학원 수강생들의 성적 향상을 위해 제작된 비매품입니다.<br>
+    무단 배포 적발 시 즉각적인 퇴원 조치 및 강력한 법적 조치를 취합니다.
+  </p>
+</footer>
+
+<nav class="side-nav" id="sideNav"></nav>
+<button class="btt" id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12V2m0 0L2 7m5-5l5 5"/></svg>
+</button>
+
+<script>
+const WORKS=[
+{
+  id:"work1",num:"一",title:"사친가",
+  genre:"가사",author:"정철 (미상설 있음)",
+  desc:"부모 잃은 자식의 사무치는 효심을 사계절의 세시풍속과 중국 고사에 빗대어 노래한 가사",
+  accent:"gold",
+  items:[
+    {n:"1",t:"한식(寒食)의 유래와 대조",
+    q:"원산(遠山)에 봄이 드니 불탄 풀에 속잎 난다 / 후인들이 슬퍼하여 한식을 지었도다",
+    p:"불에 타 죽은 개자추를 기리는 '한식'의 유래를 인용하며, <em>다시 살아나는 자연(속잎)</em>과 돌아오지 못하는 부모님을 대비시킵니다.",
+    s:"불탄 풀의 새잎 ↔ 부모님의 죽음 — 자연의 순환과 인간의 유한함 대비"},
+    {n:"2",t:"인생무상과 영웅의 허무함",
+    q:"당우삼대 성제들도 승피백운 하셨도다 / 여산 송백 무릉 춘초는 만고영웅 일과처라",
+    p:"요·순임금 같은 성군과 천하를 호령하던 영웅들도 결국 죽음을 피하지 못하고 무덤 속 한 줌 흙이 되었다는 <em>인생무상</em>을 노래합니다.",
+    s:"성군과 영웅의 죽음 = 아무리 위대한 존재도 죽음 앞에서는 평등함"},
+    {n:"3",t:"효자들의 고사와 그리움",
+    q:"무서산지 퇴일하니 이영백의 사정이오 / 태행산 외로운 구름 보니 적인걸의 생각이라",
+    p:"지는 해를 보며 할머니를 걱정했던 <em>이밀(이영백)</em>과 구름을 보며 부모를 그리워한 <em>적인걸</em>의 고사를 통해 화자의 깊은 효심을 투영합니다.",
+    s:"이밀과 적인걸 = 부모님을 향한 간절하고 절박한 화자의 마음"},
+    {n:"4",t:"삼월 삼짇날의 평화와 소외감",
+    q:"기수(沂水)에 목욕하고 무우(舞雩)에 바람 쏘이며 / 처처(處處)에 왕래하며 / 산화 작작(灼灼) 난만개라",
+    p:"공자가 찬양했던 자연 속의 풍류와 활기찬 농촌, 흐드러지게 핀 꽃들을 묘사하여 세상의 절정인 아름다움을 시각적으로 보여줍니다.",
+    s:"기수·무우와 만발한 꽃 ↔ 부모님 없는 슬픔 — 세상의 즐거움이 슬픔을 심화함"},
+    {n:"5",t:"세월의 덧없음과 한탄",
+    q:"애오생지가련(哀吾生之可憐)하니 탄광음지여류(嘆光陰之如流)로다",
+    p:"부모님께 효도할 시간도 없이 물 흐르듯(여류) 빠르게 지나가 버린 세월과 홀로 남겨진 자신의 가련한 처지를 직접적으로 한탄합니다.",
+    s:"여류하는 광음 = 쏜살같이 흐르는 세월에 대한 원망과 슬픔"},
+    {n:"6",t:"사월 초파일, 태평성대의 역설",
+    q:"남풍지훈혜(南風之薰兮)하고 / 한강수 깊은 물에 하도(河圖) 낙서(洛書) 나왔단 말인가 / 요지일월 순지건곤 태평성대 이 아닌가",
+    p:"순임금의 남풍가와 신비한 징조(하도낙서)를 인용해 현재가 최고의 <em>태평성대</em>임을 강조하지만, 이는 역설적으로 그 기쁨에 참여할 수 없는 화자의 비극을 극대화합니다.",
+    s:"요순시대의 태평성대 ↔ 관등절을 모르는 부모님 — 축제 분위기 속의 고립된 슬픔"},
+    {n:"7",t:"방해받은 꿈과 허망함",
+    q:"타기황앵 아이들은 막교지상 우지 마라 / 우레같이 소리 질러 겨우 든 잠 깨어 보니 / 산호만세 하는구나",
+    p:"꿈속에서라도 부모님을 만나려 하지만, 밖에서 들리는 <em>축제의 환호성(산호만세)</em>과 꾀꼬리 울음이 이를 방해하여 화자를 허망하게 만듭니다.",
+    s:"꿈속의 만남 ↔ 현실의 축제 소음 — 부모님을 향한 간절한 소망의 좌절"},
+    {n:"8",t:"여름날의 생동감과 한(恨)",
+    q:"하운은 다기봉(多奇峯)이라 기봉(奇峯)에 많구나 / 산양 자규 우는구나 / 광풍제월 넓은 곳에 솔개 날고 물고기 뛰노는구나",
+    p:"웅장한 구름과 활기찬 만물(연비어약)을 보여준 뒤, 슬픔의 상징인 <em>자규(두견새)</em>를 등장시켜 화자의 내면적 한을 시각과 청각으로 대비시킵니다.",
+    s:"연비어약의 생명력 ↔ 자규의 구슬픈 울음 — 자연의 활기와 화자의 한"},
+    {n:"9",t:"초여름의 풍요와 그리움",
+    q:"옥창 앵두 붉었으니 원정부지이별이오 / 남린 북사 보리타작 방방곡곡 농부가로다 / 그네 매고",
+    p:"붉은 앵두와 보리타작 노래, 단오 그네뛰기 등 생동감 넘치는 초여름 풍경을 제시하며, 이 좋은 시절을 보지 못하는 부모님에 대한 탄식으로 마무리합니다.",
+    s:"앵두와 보리타작 ↔ 화자의 그리움 — 계절감과 슬픔의 대비"}
+  ]
+},
+{
+  id:"work2",num:"二",title:"속사미인곡",
+  genre:"가사",author:"정철",
+  desc:"정치적 유배의 억울함을 여인의 목소리에 빗대어, 임(임금)을 향한 변치 않는 충심과 재회의 소망을 노래한 가사",
+  accent:"vermilion",
+  items:[
+    {n:"1",t:"유배의 원인과 억울함",
+    q:"내 얼굴 고왔던지 질투하는 건 뭇 여자로다 / 유한(幽閑)한 이내 몸을 선음(善淫)한다 이르로세",
+    p:"자신의 결백함을 <em>'정숙한 여인'</em>에, 자신을 모함한 정적들을 <em>'질투하는 여자들'</em>에 비유했습니다. 유배가 죄 때문이 아니라 타인의 시기 때문임을 강조합니다.",
+    s:"미인계와 질투 = 정치적 모함으로 인한 유배의 억울함 토로"},
+    {n:"2",t:"유배지의 비참한 생활상",
+    q:"양식도 핍절커늘 반찬이야 의논하며 / 설날 큰 명절에 솟국에 떡을 쑤어 / 갯물에 절인 배추 반찬으로 올랐으니",
+    p:"먹을 것이 없고 방조차 데우지 못하는 유배지의 고통을 사실적으로 묘사했습니다. 특히 명절에도 <em>갯물에 절인 배추</em>를 먹는 모습은 화자의 초라한 몰골을 극대화합니다.",
+    s:"핍절한 의식주 ↔ 과거의 영화로운 삶 — 현재의 비참함 강조"},
+    {n:"3",t:"유배지의 가혹한 자연환경",
+    q:"파리 떼와 모기떼는 백 가지로 쏘아 제치고 / 뱀과 전갈, 지네는 네 벽에 마구 기어다니니",
+    p:"관념적인 자연미가 아니라, 유배객을 괴롭히는 벌레와 짐승들을 나열하여 <em>'살기 힘든 척박한 땅'</em>으로서의 해도(海島)를 생생하게 그렸습니다.",
+    s:"백악(百惡)이 구비된 섬 = 화자가 겪는 육체적·정신적 고통의 장소"},
+    {n:"4",t:"버려진 가산(家産)에 대한 걱정",
+    q:"하사받은 천 권의 책 고각에 묵혀 있으니 / 좀벌레 다 먹은들 그 누구라서 포쇄하며",
+    p:"유배로 인해 돌볼 사람이 없어진 집과 임금님이 주신 책들이 망가져 가는 상황을 안타까워합니다. 이는 <em>자신의 충심이 잊혀가는 것</em>에 대한 두려움이기도 합니다.",
+    s:"좀먹는 천 권의 책 = 돌볼 이 없는 처지와 끊어진 소통에 대한 불안"},
+    {n:"5",t:"임을 향한 변치 않는 충심",
+    q:"일월 같은 우리 임이 거의 아니 굽어볼까 / 광주리의 가을 부채 어느 날 다시 날꼬",
+    p:"<em>'가을 부채(추선)'</em> 고사를 사용하여, 여름이 지나 버려진 부채처럼 신하인 자신도 임금에게 잊혔음을 한탄하면서도 다시 쓰이길 간절히 바랍니다.",
+    s:"가을 부채(秋扇) = 버림받은 처지에 대한 한탄과 재등용에 대한 소망"},
+    {n:"6",t:"여성적 화자의 단장과 거절",
+    q:"마름과 연으로 옷을 짓고 부용으로 치마 지어 / 상자 안에 두어신들 눌 위하여 단장할꼬",
+    p:"아름다운 옷을 지어도 보여줄 임(임금)이 곁에 없기에 단장할 이유가 없다는 <em>'여성적 어조'</em>를 통해 임을 향한 일편단심을 효과적으로 표현합니다.",
+    s:"치마와 단장 = 임 없이는 의미 없는 화자의 존재와 지조"},
+    {n:"7",t:"꿈속의 재회와 허무한 깨어남",
+    q:"옥루 높은 곳에 밤마다 임을 모셔 / 어촌의 먼 닭 소리에 긴 잠을 깨어나니",
+    p:"꿈속에서는 대궐(옥루)에서 임과 즐겁게 대화하지만, 닭 소리에 깨어나는 순간 다시 비참한 어촌 현실로 돌아옵니다. <em>꿈(재회)과 현실(유배)</em>의 강한 대비가 나타납니다.",
+    s:"꿈속의 옥루 ↔ 현실의 어촌 — 간절한 그리움과 재회의 소망"}
+  ]
+},
+{
+  id:"work3",num:"三",title:"유산가",
+  genre:"잡가(雜歌)",author:"작자 미상",
+  desc:"봄날 산천 유람의 흥겨움을 화려한 고사와 생생한 우리말 묘사로 노래한 12잡가의 대표작",
+  accent:"teal",
+  items:[
+    {n:"1",t:"화란 춘성 — 최고조의 봄 풍경",
+    q:"화란 춘성(花爛春城)하고 만화방창(萬化方暢)이라",
+    p:"<em>화란 춘성</em>은 꽃이 만발하여 성안이 찬란한 모습, <em>만화방창</em>은 따뜻한 봄에 만물이 피어나 자라는 것을 뜻합니다. 작품 도입부에서 온 세상이 생명력으로 가득 찬 봄의 절정을 제시합니다.",
+    s:"화란 춘성 + 만화방창 = 생명력이 폭발하는 봄의 도입부"},
+    {n:"2",t:"소박한 유람 차림 — 풍류객의 출발",
+    q:"죽장망혜(竹杖芒鞋) 단표자(單瓢子)",
+    p:"<em>죽장망혜</em>는 대지팡이와 짚신, <em>단표자</em>는 바가지 하나. 화려한 차림이 아닌 가벼운 유람 차림으로 자연 속에 훌쩍 떠나는 풍류객의 모습을 보여줍니다.",
+    s:"죽장망혜·단표자 = 검소하고 자유로운 자연 유람의 출발"},
+    {n:"3",t:"꾀꼬리와 나비 — 색채 대비의 명구절",
+    q:"유상 앵비(柳上鶯飛)는 편편금(片片金)이요 / 화간접무(花間蝶舞)는 분분설(紛紛雪)이라",
+    p:"버드나무 위 꾀꼬리를 <em>흩어지는 금 조각(편편금)</em>에, 꽃 사이 나비를 <em>흩날리는 눈송이(분분설)</em>에 비유합니다. <em>대구법과 색채 대비(황금색 vs 백색)</em>로 봄날의 아름다움을 시각적으로 극대화한 명구절입니다.",
+    s:"편편금(꾀꼬리) ↔ 분분설(나비) — 대구법 + 황·백 색채 대비의 절정"},
+    {n:"4",t:"이상향의 찬양 — 무릉도원과 도연명",
+    q:"무릉도원이 예 아니냐 / 연명오류(淵明五柳)가 예 아니냐",
+    p:"눈앞의 경치가 너무 아름다워 전설 속 낙원인 <em>무릉도원</em>이나 <em>도연명</em>의 고결한 은거지와 다를 바 없다고 찬양합니다. 현실의 자연을 이상향으로 격상시키는 표현입니다.",
+    s:"무릉도원·연명오류 = 현실의 자연을 이상향으로 격상시키는 찬양"},
+    {n:"5",t:"폭포의 역동성 — 잡가 특유의 리듬감",
+    q:"천방져 지방져 소쿠라지고 펑퍼져",
+    p:"폭포수가 떨어져 물결이 치는 모습을 <em>음성 상징어와 우리말 묘사</em>로 표현합니다. 정적인 풍경에 역동적 에너지를 부여하며, 잡가 특유의 거침없고 발랄한 리듬감을 살려줍니다.",
+    s:"천방져·펑퍼져 = 음성 상징어로 살린 잡가의 발랄한 역동성"}
+  ]
+},
+{
+  id:"work4",num:"四",title:"백석정별곡",
+  genre:"가사",author:"신교",
+  desc:"백석정 주변 자연 속에서 안빈낙도하며 살아가는 선비의 풍류와 자부심을 노래한 가사",
+  accent:"indigo",
+  items:[
+    {n:"1",t:"자연을 집처럼 — 물아일체의 비유",
+    q:"옥계산 밝은 달은 은촉(銀燭)이 되어 있고 / 석봉의 가는 구름 취장(翠帳)이 되었구나",
+    p:"달빛을 <em>은촛불(은촉)</em>에, 구름을 <em>비취색 휘장(취장)</em>에 비유했습니다. 대자연을 자신의 거처인 정자처럼 인식하는 <em>물아일체(物我一體)</em>의 경지가 돋보이며, 단풍을 '금병풍'에 비유하여 가을 산의 화려함을 시각적으로 극대화합니다.",
+    s:"은촉·취장·금병 = 자연물을 인공물에 비유하여 친근감을 드러내는 물아일체"},
+    {n:"2",t:"청각적 풍경 — 태평성대의 전원",
+    q:"사탄의 노랫소리 고기 낚는 늙은이오 / 화평에 피리 소리 소 먹이는 아이로다",
+    p:"<em>어부의 노래</em>와 <em>목동의 피리 소리</em>가 어우러지는 장면으로, 전형적인 태평성대의 풍경을 상징합니다. 화자가 머무는 공간이 근심 없는 평화로운 곳임을 청각적으로 보여줍니다.",
+    s:"어부가·목동의 피리 = 태평성대를 상징하는 청각적 전원 풍경"},
+    {n:"3",t:"풍류의 절정 — 안빈낙도의 실천",
+    q:"은린옥척(銀鱗玉尺)은 경면(鏡面)에 뛰노는고 / 연잎에 빚은 술을 표주박에 가득 부어 반취하여 누웠으니",
+    p:"<em>은린옥척</em>은 은빛 비늘의 큰 물고기. 거울 같은 물 위에서 뛰노는 고기를 잡아 회를 치고 연잎주를 마시는 모습은 세속을 완전히 잊은 풍류객의 전형입니다. '공명을 다 잊으니 부귀인들 부러우랴'라며 출세와 재물에 대한 미련을 직접적으로 버립니다.",
+    s:"은린옥척·연잎주 = 세속의 공명부귀를 잊은 안빈낙도의 절정"},
+    {n:"4",t:"이상향의 선포 — 백석정이 곧 무릉도원",
+    q:"공중에 떴는 소리 신선이 노니는 듯 / 삼신산 어디인가 무릉도원 여기로다",
+    p:"거문고를 타며 노래하는 자신의 모습이 마치 <em>신선</em> 같다고 느끼며, 멀리서 이상향을 찾는 것이 아니라 <em>백석정 주변을 무릉도원으로 선포</em>합니다. '세사(세상일)도 나 몰라라' 하며 자연 속에서 늙어가겠다는 탈속적 의지를 드러냅니다.",
+    s:"삼신산·무릉도원 여기로다 = 현재의 공간을 이상향으로 선포하는 자부심"}
+  ]
+}
+];
+
+const container=document.getElementById('content');
+const sideNav=document.getElementById('sideNav');
+let allEntries=[];
+let allDots=[];
+
+WORKS.forEach((w,wi)=>{
+  // Work divider
+  const div=document.createElement('div');
+  div.className='work-divider';div.id=w.id;
+  div.innerHTML=`
+    <div class="wd-num">${w.num}</div>
+    <div class="wd-title">${w.title}</div>
+    <div class="wd-meta">${w.genre} · ${w.author}</div>
+    <p class="wd-desc">${w.desc}</p>
+    <div class="wd-line"></div>`;
+  container.appendChild(div);
+
+  // TOC for this work
+  const toc=document.createElement('nav');
+  toc.className='toc';
+  let tocHTML=`<div class="toc-label">${w.title} 목차</div>`;
+  w.items.forEach(d=>{
+    tocHTML+=`<a class="toc-item" href="#${w.id}_${d.n}">
+      <span class="toc-num">${d.n}</span><span class="toc-name">${d.t}</span><span class="toc-dot"></span></a>`;
+  });
+  toc.innerHTML=tocHTML;
+  container.appendChild(toc);
+
+  // Side nav label
+  const label=document.createElement('div');
+  label.className='sn-label';label.textContent=w.title;
+  if(wi>0){const gap=document.createElement('div');gap.className='sn-gap';sideNav.appendChild(gap)}
+  sideNav.appendChild(label);
+
+  // Main section
+  const main=document.createElement('main');
+  const accentClass=w.accent==='vermilion'?' work-v':w.accent==='teal'?' work-t':w.accent==='indigo'?' work-i':'';
+  main.className='main'+accentClass;
+
+  w.items.forEach(d=>{
+    const qHTML=d.q.replace(/ \/ /g,' <span class="sl">/</span> ');
+    const el=document.createElement('article');
+    el.className='entry';el.id=`${w.id}_${d.n}`;
+    el.innerHTML=`
+      <div class="entry-head">
+        <div class="entry-num">${d.n}</div>
+        <h2 class="entry-title">${d.t}</h2>
+      </div>
+      <div class="quote">
+        <div class="quote-tag">구 절</div>
+        <p>${qHTML}</p>
+      </div>
+      <div class="point">
+        <div class="point-tag">핵심 포인트</div>
+        <p>${d.p}</p>
+      </div>
+      <div class="summary">
+        <span class="summary-badge">요약</span>
+        <p>${d.s}</p>
+      </div>`;
+    main.appendChild(el);
+    allEntries.push(el);
+
+    // Side dot
+    const dot=document.createElement('button');
+    dot.className='sn-dot'+(w.accent==='vermilion'?' v':w.accent==='teal'?' t':w.accent==='indigo'?' i':'');
+    dot.dataset.tip=d.t.length>8?d.t.slice(0,8)+'…':d.t;
+    dot.onclick=()=>el.scrollIntoView({behavior:'smooth',block:'start'});
+    sideNav.appendChild(dot);
+    allDots.push(dot);
+  });
+
+  container.appendChild(main);
+});
+
+// Observers
+const revealObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+allEntries.forEach(e=>revealObs.observe(e));
+
+const activeObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const idx=allEntries.indexOf(e.target);
+      allDots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    }
+  });
+},{rootMargin:'-35% 0px -55% 0px'});
+allEntries.forEach(e=>activeObs.observe(e));
+
+// Progress & BTT
+const prog=document.getElementById('prog');
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  prog.style.width=pct+'%';
+  btt.classList.toggle('show',h.scrollTop>600);
+},{passive:true});
+</script>
+</body>
+</html>
