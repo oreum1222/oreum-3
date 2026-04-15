@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0a10">
+<title>수능특강 고전소설 인물관계도</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#0a0a10;
+  min-height:100vh;
+  font-family:'Noto Sans KR',sans-serif;
+  color:#e8e4dc;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* ===== HEADER ===== */
+.hdr{text-align:center;padding:28px 10px 0;}
+.hdr h1{font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(20px,3.5vw,32px);color:#fff;}
+.hdr h1 em{font-style:normal;color:#ff6b4a;}
+.hdr .sub{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:4px;font-weight:300;margin-top:4px;}
+
+/* ===== TABS ===== */
+.tabs{
+  display:flex;gap:0;margin:20px auto 0;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;overflow:hidden;
+  background:rgba(255,255,255,0.03);
+}
+.tab{
+  padding:12px 28px;
+  font-family:'Noto Serif KR',serif;
+  font-weight:700;font-size:14px;
+  color:rgba(255,255,255,0.35);
+  cursor:pointer;
+  transition:all 0.25s;
+  border-right:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  white-space:nowrap;
+}
+.tab:last-child{border-right:none;}
+.tab:hover{color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.03);}
+.tab.on{
+  color:#ff6b4a;
+  background:rgba(255,107,74,0.08);
+}
+.tab.on::after{
+  content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;
+  background:#ff6b4a;border-radius:1px;
+  box-shadow:0 0 8px rgba(255,107,74,0.5);
+}
+
+/* ===== PANELS ===== */
+.panel{display:none;width:100%;max-width:1350px;padding:10px 10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.panel.on{display:block;}
+svg text{font-family:'Noto Sans KR',sans-serif;}
+
+/* ===== TOOLTIP ===== */
+.tip-bg{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.4);}
+.tip-bg.on{display:block;}
+.tip{
+  position:fixed;z-index:1000;
+  background:#16161e;color:#e0dcd4;
+  border:1px solid rgba(255,107,74,0.35);border-radius:10px;
+  padding:16px 18px;width:290px;
+  box-shadow:0 0 30px rgba(255,107,74,0.12),0 10px 40px rgba(0,0,0,0.5);
+  font-size:12.5px;line-height:1.8;font-weight:300;
+  pointer-events:none;
+}
+.tip b{display:block;font-family:'Noto Serif KR',serif;font-weight:700;font-size:14px;color:#ff6b4a;margin-bottom:6px;}
+
+/* ===== LEGEND ===== */
+.legend{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:14px 10px;}
+.legend i{display:inline-block;width:22px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px;}
+.legend span{font-size:11px;color:rgba(255,255,255,0.4);}
+
+.ft{text-align:center;padding:16px 10px 32px;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1px;font-weight:300;}
+.ft b{color:#ff6b4a;font-weight:600;}
+
+@media(max-width:600px){
+  .tab{padding:10px 16px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>수능특강 고전소설 <em>인물관계도</em></h1>
+  <div class="sub">인물 클릭 시 상세 설명 표시</div>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabs">
+  <div class="tab on" data-t="0">현몽쌍룡기</div>
+  <div class="tab" data-t="1">반씨전</div>
+  <div class="tab" data-t="2">인현왕후전</div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PANEL 0: 현몽쌍룡기 -->
+<!-- ================================================================ -->
+<div class="panel on" id="p0">
+<svg viewBox="0 0 1300 860" xmlns="http://www.w3.org/2000/svg" style="min-width:860px;width:100%;">
+<defs>
+  <filter id="gc0" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gr0" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gg0" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gd0" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gp0" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="a0r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ff4a6a"/></marker>
+  <marker id="a0g" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#4affa0"/></marker>
+  <marker id="a0b" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#4aafff"/></marker>
+  <marker id="a0p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#c084fc"/></marker>
+</defs>
+
+<!-- regions -->
+<rect x="20" y="68" width="280" height="540" rx="14" fill="rgba(74,255,160,0.03)" stroke="rgba(74,255,160,0.12)"/>
+<text x="34" y="92" font-size="11" font-weight="700" fill="#4affa0" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">석공 가문 (외가)</text>
+<rect x="330" y="68" width="400" height="540" rx="14" fill="rgba(255,74,106,0.03)" stroke="rgba(255,74,106,0.1)"/>
+<text x="344" y="92" font-size="11" font-weight="700" fill="#ff4a6a" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">정 참정 가문 (신부 측)</text>
+<rect x="760" y="68" width="520" height="540" rx="14" fill="rgba(74,175,255,0.03)" stroke="rgba(74,175,255,0.12)"/>
+<text x="774" y="92" font-size="11" font-weight="700" fill="#4aafff" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">조 상국 가문 (신랑 측)</text>
+
+<!-- row1 parents -->
+<g class="p" data-n="석공 (석 학사)" data-d="정 소저의 외조부. 엄격한 성품이나 손녀의 지혜와 절개를 높이 평가하며, 부모를 대신해 조 상국과 혼사를 성사시킨다."><circle cx="110" cy="190" r="22" fill="none" stroke="#4affa0" stroke-width="2.5" filter="url(#gg0)"/><circle cx="110" cy="190" r="7" fill="#4affa0" opacity="0.3"/><text x="110" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">석공</text><text x="110" y="244" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">석 학사 · 외조부</text></g>
+<g class="p" data-n="석공 부인" data-d="정 소저의 외조모. 고생한 손녀를 만나 오열하며 반긴다."><circle cx="230" cy="190" r="20" fill="none" stroke="#4affa0" stroke-width="2"/><circle cx="230" cy="190" r="6" fill="#4affa0" opacity="0.2"/><text x="230" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">석공 부인</text><text x="230" y="242" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">외조모</text></g>
+<line x1="133" y1="184" x2="209" y2="184" stroke="#ffe066" stroke-width="2" opacity="0.4"/><line x1="133" y1="190" x2="209" y2="190" stroke="#ffe066" stroke-width="2" opacity="0.4"/>
+<g class="p" data-n="정 참정 (정 공)" data-d="정 소저의 아버지. 성품이 완고하여 계모 박 씨의 모함에 휘둘려 친딸을 위기로 몰아넣는다."><circle cx="440" cy="190" r="22" fill="none" stroke="#ff4a6a" stroke-width="2" opacity="0.6"/><circle cx="440" cy="190" r="7" fill="#ff4a6a" opacity="0.15"/><text x="440" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">정 참정</text><text x="440" y="244" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">정 공 · 아버지</text></g>
+<g class="p" data-n="박 씨 (계모)" data-d="정 소저를 해치려는 악인. 소저를 사촌 박수관의 후실로 보내려 강요하여 사건의 원인을 제공한다. 계모형 악인의 전형."><circle cx="600" cy="190" r="22" fill="rgba(255,74,106,0.12)" stroke="#ff4a6a" stroke-width="3" filter="url(#gr0)"/><circle cx="600" cy="190" r="7" fill="#ff4a6a" opacity="0.4"/><text x="600" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">박 씨</text><text x="600" y="244" text-anchor="middle" font-size="10" fill="#ff4a6a" font-weight="500">계모 · 악인</text></g>
+<line x1="463" y1="184" x2="577" y2="184" stroke="#ffe066" stroke-width="2" opacity="0.35"/><line x1="463" y1="190" x2="577" y2="190" stroke="#ffe066" stroke-width="2" opacity="0.35"/>
+<g class="p" data-n="조 상국 (조숙)" data-d="송나라의 상국. 정 소저의 절행을 듣고 '여자 중에 군자'라 칭송하며 며느리로 맞이하기로 결심. 석공과 합의하여 혼사를 성사시킨다."><circle cx="880" cy="190" r="24" fill="none" stroke="#4aafff" stroke-width="2.5" filter="url(#gc0)"/><circle cx="880" cy="190" r="8" fill="#4aafff" opacity="0.3"/><text x="880" y="230" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">조 상국</text><text x="880" y="246" text-anchor="middle" font-size="10" fill="#4aafff" opacity="0.6">조숙 · 상국</text></g>
+<g class="p" data-n="위 씨 부인" data-d="조 상국의 부인. 신이한 꿈을 꾸고 두 아들(용홍·용창)을 얻었다. '현몽쌍룡'이라는 제목의 근거가 되는 인물."><circle cx="1060" cy="190" r="22" fill="none" stroke="#4aafff" stroke-width="2"/><circle cx="1060" cy="190" r="7" fill="#4aafff" opacity="0.2"/><text x="1060" y="228" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">위 씨 부인</text><text x="1060" y="244" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">현몽(現夢)</text></g>
+<line x1="905" y1="184" x2="1037" y2="184" stroke="#ffe066" stroke-width="2" opacity="0.4"/><line x1="905" y1="190" x2="1037" y2="190" stroke="#ffe066" stroke-width="2" opacity="0.4"/>
+
+<!-- brackets -->
+<line x1="170" y1="250" x2="170" y2="385" stroke="rgba(74,255,160,0.15)" stroke-width="1.5"/>
+<line x1="520" y1="250" x2="520" y2="300" stroke="rgba(255,74,106,0.12)" stroke-width="1.5"/><line x1="460" y1="300" x2="620" y2="300" stroke="rgba(255,74,106,0.12)" stroke-width="1.5"/><line x1="460" y1="300" x2="460" y2="385" stroke="rgba(255,74,106,0.12)" stroke-width="1.5"/><line x1="620" y1="300" x2="620" y2="385" stroke="rgba(255,74,106,0.12)" stroke-width="1.5"/>
+<line x1="970" y1="250" x2="970" y2="300" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="880" y1="300" x2="1100" y2="300" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="880" y1="300" x2="880" y2="385" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="1100" y1="300" x2="1100" y2="385" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/>
+
+<!-- row2 children -->
+<g class="p" data-n="석 학사 부인" data-d="석공의 며느리, 정 소저의 외숙모. 고생한 소저를 만나 오열하며 반긴다."><circle cx="170" cy="440" r="20" fill="none" stroke="#4affa0" stroke-width="1.5"/><circle cx="170" cy="440" r="6" fill="#4affa0" opacity="0.2"/><text x="170" y="476" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">석 학사 부인</text><text x="170" y="492" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">외숙모</text></g>
+<g class="p" data-n="정채임 (정 소저) ★ 주인공" data-d="작품의 주인공. 계모의 압박에도 절개를 지키려 투신하며, 구출 후에도 '아버지를 속이는 혼인은 할 수 없다'는 유교적 신념(효)을 굽히지 않는다. 열(烈)과 효(孝) 사이의 갈등이 핵심 서사."><circle cx="460" cy="440" r="30" fill="rgba(255,224,102,0.08)" stroke="#ffe066" stroke-width="3.5" filter="url(#gd0)"/><circle cx="460" cy="440" r="10" fill="#ffe066" opacity="0.35"/><text x="460" y="486" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">정채임</text><text x="460" y="504" text-anchor="middle" font-size="10" fill="#ffe066" font-weight="600">★ 정 소저 · 주인공</text></g>
+<g class="p" data-n="정 공자" data-d="정 소저의 남동생. 나중에 누나와 상봉하여 기쁨의 눈물을 흘린다."><circle cx="620" cy="440" r="18" fill="none" stroke="#ff4a6a" stroke-width="1.5" opacity="0.5"/><circle cx="620" cy="440" r="5" fill="#ff4a6a" opacity="0.15"/><text x="620" y="474" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">정 공자</text><text x="620" y="490" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">남동생</text></g>
+<g class="p" data-n="조용홍 (조무)" data-d="장남. 대원수 기질. 강물에 투신한 정 소저를 구출하고, 사연을 들은 뒤 지극정성으로 보호한다. 하늘이 정한 연분의 남자 주인공."><circle cx="880" cy="440" r="28" fill="none" stroke="#4aafff" stroke-width="3" filter="url(#gc0)"/><circle cx="880" cy="440" r="9" fill="#4aafff" opacity="0.3"/><text x="880" y="484" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">조용홍</text><text x="880" y="502" text-anchor="middle" font-size="10" fill="#4aafff" font-weight="600">조무 · 장남 · 대원수</text></g>
+<g class="p" data-n="조용창 (조성)" data-d="차남. 승상의 기품. 형 용홍과 함께 소저를 구출하고 일을 처리하는 데 조력한다."><circle cx="1100" cy="440" r="20" fill="none" stroke="#4aafff" stroke-width="2"/><circle cx="1100" cy="440" r="6" fill="#4aafff" opacity="0.2"/><text x="1100" y="476" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">조용창</text><text x="1100" y="492" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">조성 · 차남</text></g>
+
+<!-- relationships -->
+<polyline points="460,471 460,555 880,555 880,469" fill="none" stroke="#ffe066" stroke-width="3.5" opacity="0.7" filter="url(#gd0)"/><polyline points="460,471 460,560 880,560 880,469" fill="none" stroke="#ffe066" stroke-width="1.2" opacity="0.3"/>
+<rect x="594" y="541" width="120" height="24" rx="12" fill="#12121a" stroke="#ffe066" stroke-width="1.5"/><text x="654" y="558" text-anchor="middle" font-size="11" font-weight="700" fill="#ffe066">정혼 · 천정연분</text>
+<polyline points="623,190 680,190 680,440 491,440" fill="none" stroke="#ff4a6a" stroke-width="2.5" stroke-dasharray="7,4" marker-end="url(#a0r)" filter="url(#gr0)"/>
+<rect x="688" y="300" width="78" height="22" rx="11" fill="#12121a" stroke="#ff4a6a" stroke-width="1"/><text x="727" y="315" text-anchor="middle" font-size="10" font-weight="700" fill="#ff4a6a">대립 · 핍박</text>
+<polyline points="110,213 110,270 40,270 40,440 429,440" fill="none" stroke="#4affa0" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#a0g)" filter="url(#gg0)"/>
+<rect x="48" y="348" width="56" height="22" rx="11" fill="#12121a" stroke="#4affa0" stroke-width="1"/><text x="76" y="363" text-anchor="middle" font-size="10" font-weight="600" fill="#4affa0">외손녀</text>
+<polyline points="110,167 110,120 880,120 880,165" fill="none" stroke="#ffe066" stroke-width="1.8" stroke-dasharray="6,4" opacity="0.4"/>
+<rect x="430" y="108" width="90" height="20" rx="10" fill="#12121a" stroke="#ffe066" stroke-width="1" opacity="0.6"/><text x="475" y="122" text-anchor="middle" font-size="10" font-weight="600" fill="#ffe066" opacity="0.7">혼사 합의</text>
+<polyline points="880,469 880,585 460,585 460,471" fill="none" stroke="#4aafff" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#a0b)" opacity="0.5"/>
+<rect x="594" y="573" width="108" height="20" rx="10" fill="#12121a" stroke="#4aafff" stroke-width="1" opacity="0.6"/><text x="648" y="587" text-anchor="middle" font-size="10" font-weight="600" fill="#4aafff" opacity="0.7">투신 구출 · 보호</text>
+
+<!-- row3 helpers -->
+<rect x="220" y="640" width="520" height="190" rx="12" fill="none" stroke="rgba(192,132,252,0.1)" stroke-dasharray="4,3"/>
+<text x="234" y="662" font-size="10" font-weight="600" fill="#c084fc" opacity="0.35">조력자 · 기타</text>
+<g class="p" data-n="벽란 & 춘앵" data-d="정 소저의 시비. 소저의 명을 어기면서까지 조 공자에게 진실을 고해 소저의 앞날을 열어준다. '주인의 뜻에 반하는 충성'."><circle cx="370" cy="740" r="22" fill="none" stroke="#c084fc" stroke-width="2" filter="url(#gp0)"/><circle cx="370" cy="740" r="7" fill="#c084fc" opacity="0.25"/><text x="370" y="778" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">벽란 & 춘앵</text><text x="370" y="794" text-anchor="middle" font-size="10" fill="#c084fc" opacity="0.6">시비 · 능동적 조력자</text></g>
+<g class="p" data-n="이 평장 부인" data-d="정 소저의 고모. 소저가 의지하려 찾아갔으나 이미 이사를 간 상태. 부재(不在)를 통해 서사적 위기를 심화."><circle cx="580" cy="740" r="20" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><circle cx="580" cy="740" r="6" fill="rgba(255,255,255,0.1)"/><text x="580" y="776" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">이 평장 부인</text><text x="580" y="792" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.35)">고모 · 부재(不在)</text></g>
+<polyline points="370,717 370,620 310,620 310,450 429,450" fill="none" stroke="#c084fc" stroke-width="2" marker-end="url(#a0p)" filter="url(#gp0)"/>
+<rect x="250" y="530" width="116" height="20" rx="10" fill="#12121a" stroke="#c084fc" stroke-width="1" opacity="0.5"/><text x="308" y="544" text-anchor="middle" font-size="10" font-weight="600" fill="#c084fc" opacity="0.7">정체 폭로 → 구원</text>
+<polyline points="580,719 580,620 540,620 540,510 480,510 475,471" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.2" stroke-dasharray="3,4"/>
+<text x="554" y="613" font-size="9" fill="rgba(255,255,255,0.2)" text-anchor="end">의지하려 했으나 부재</text>
+</svg>
+</div>
+
+<!-- ================================================================ -->
+<!-- PANEL 1: 반씨전 -->
+<!-- ================================================================ -->
+<div class="panel" id="p1">
+<svg viewBox="0 0 1300 860" xmlns="http://www.w3.org/2000/svg" style="min-width:860px;width:100%;">
+<defs>
+  <filter id="gc1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gr1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gg1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gd1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="a1r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ff4a6a"/></marker>
+  <marker id="a1g" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#4affa0"/></marker>
+  <marker id="a1p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ffb74d"/></marker>
+  <marker id="a1b" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#4aafff"/></marker>
+  <radialGradient id="pg1"><stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#ff9f1c"/></radialGradient>
+</defs>
+
+<!-- regions -->
+<rect x="20" y="68" width="260" height="560" rx="14" fill="rgba(74,255,160,0.03)" stroke="rgba(74,255,160,0.12)"/>
+<text x="34" y="92" font-size="11" font-weight="700" fill="#4affa0" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">반씨 친정 (외가)</text>
+<rect x="310" y="68" width="700" height="560" rx="14" fill="rgba(74,175,255,0.03)" stroke="rgba(74,175,255,0.12)"/>
+<text x="324" y="92" font-size="11" font-weight="700" fill="#4aafff" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">위씨 가문 (본가)</text>
+<rect x="1040" y="68" width="240" height="560" rx="14" fill="rgba(255,74,106,0.03)" stroke="rgba(255,74,106,0.12)"/>
+<text x="1054" y="92" font-size="11" font-weight="700" fill="#ff4a6a" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">채영 가문 (대립 세력)</text>
+
+<!-- row1 -->
+<g class="p" data-n="유 부인" data-d="반 씨의 어머니. 고난을 겪고 돌아온 딸과 손자 위흥을 맞이한다."><circle cx="150" cy="190" r="22" fill="none" stroke="#4affa0" stroke-width="2.5" filter="url(#gg1)"/><circle cx="150" cy="190" r="7" fill="#4affa0" opacity="0.3"/><text x="150" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">유 부인</text><text x="150" y="244" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">반 씨의 어머니</text></g>
+<g class="p" data-n="양 부인" data-d="위윤·위진·위준 삼 형제의 어머니이자 반 씨의 시어머니. 반 씨의 어진 성품을 알고 두 동서를 꾸짖는 현명한 인물. 혼령으로 나타나 위험을 알려주기도 한다."><circle cx="660" cy="190" r="26" fill="none" stroke="#4aafff" stroke-width="2.5" filter="url(#gc1)"/><circle cx="660" cy="190" r="9" fill="#4aafff" opacity="0.3"/><text x="660" y="232" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">양 부인</text><text x="660" y="249" text-anchor="middle" font-size="10" fill="#4aafff" opacity="0.7">시어머니 · 현명한 가장</text></g>
+<g class="p" data-n="채영 (좌승상)" data-d="채 씨의 아버지이자 당대 최고의 권세가. 딸의 거짓말만 듣고 위윤과 반옥을 모함하여 유배 보낸다. 가정 내 갈등을 정치적 탄압으로 확대시키는 악인."><circle cx="1160" cy="190" r="24" fill="rgba(255,74,106,0.15)" stroke="#ff4a6a" stroke-width="3" filter="url(#gr1)"/><circle cx="1160" cy="190" r="8" fill="#ff4a6a" opacity="0.5"/><text x="1160" y="230" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">채영</text><text x="1160" y="246" text-anchor="middle" font-size="10" fill="#ff4a6a" font-weight="500">좌승상 · 악인</text></g>
+
+<!-- brackets -->
+<line x1="660" y1="258" x2="660" y2="310" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="440" y1="310" x2="880" y2="310" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="440" y1="310" x2="440" y2="380" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="660" y1="310" x2="660" y2="380" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/><line x1="880" y1="310" x2="880" y2="380" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/>
+<line x1="1160" y1="255" x2="1160" y2="380" stroke="rgba(255,74,106,0.15)" stroke-width="1.5"/>
+
+<!-- row2 -->
+<g class="p" data-n="반옥" data-d="반 씨의 친정 숙부. 채영 가문의 모함을 받아 '강동'으로 유배."><circle cx="80" cy="430" r="20" fill="none" stroke="#4affa0" stroke-width="2" filter="url(#gg1)"/><circle cx="80" cy="430" r="6" fill="#4affa0" opacity="0.3"/><text x="80" y="466" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">반옥</text><text x="80" y="482" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">친정 숙부</text></g>
+<g class="p" data-n="반희 (직금랑)" data-d="반 씨의 종형(사촌 오빠). 궐내 소식을 위윤에게 전해주는 역할."><circle cx="210" cy="430" r="20" fill="none" stroke="#4affa0" stroke-width="2"/><circle cx="210" cy="430" r="6" fill="#4affa0" opacity="0.25"/><text x="210" y="466" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">반희</text><text x="210" y="482" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">직금랑 · 종형</text></g>
+<g class="p" data-n="위윤 (위 상서)" data-d="반 씨의 남편이며 예부 상서. 채영 부자의 모함으로 '장사'로 유배."><circle cx="440" cy="430" r="22" fill="none" stroke="#4aafff" stroke-width="2.5"/><circle cx="440" cy="430" r="7" fill="#4aafff" opacity="0.3"/><text x="440" y="468" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">위윤</text><text x="440" y="484" text-anchor="middle" font-size="10" fill="#4aafff" opacity="0.7">위 상서 · 장남</text></g>
+<g class="p" data-n="반 씨 ★ 주인공" data-d="위윤의 아내이자 작품의 주인공. 동서들의 시기와 모함으로 고초를 겪다 양 부인 혼령·산신령의 도움으로 살아나 아들과 함께 외가로 피신한다."><circle cx="560" cy="430" r="28" fill="rgba(255,224,102,0.08)" stroke="#ffe066" stroke-width="3.5" filter="url(#gd1)"/><circle cx="560" cy="430" r="10" fill="#ffe066" opacity="0.35"/><text x="560" y="474" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">반 씨</text><text x="560" y="491" text-anchor="middle" font-size="10" fill="#ffe066" font-weight="600">★ 주인공</text></g>
+<line x1="463" y1="424" x2="531" y2="424" stroke="#ffe066" stroke-width="2.5" opacity="0.6"/><line x1="463" y1="430" x2="531" y2="430" stroke="#ffe066" stroke-width="2.5" opacity="0.6"/>
+<g class="p" data-n="위진" data-d="채 씨의 남편. 아내의 모함에 속아 반 씨 모자를 죽이려 창두를 보낸다."><circle cx="660" cy="430" r="20" fill="none" stroke="#4aafff" stroke-width="2"/><circle cx="660" cy="430" r="6" fill="#4aafff" opacity="0.25"/><text x="660" y="466" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">위진</text><text x="660" y="482" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">차남</text></g>
+<g class="p" data-n="채 씨" data-d="둘째 며느리. 반 씨를 시기하여 거짓 모함하고, 친정(채영)의 권세를 이용해 반 씨 가문을 몰락시키려 한다. 핵심 악인."><circle cx="775" cy="430" r="22" fill="rgba(255,74,106,0.12)" stroke="#ff4a6a" stroke-width="2.5" filter="url(#gr1)"/><circle cx="775" cy="430" r="7" fill="#ff4a6a" opacity="0.4"/><text x="775" y="468" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">채 씨</text><text x="775" y="484" text-anchor="middle" font-size="10" fill="#ff4a6a" font-weight="500">둘째 며느리 · 악인</text></g>
+<line x1="681" y1="424" x2="752" y2="424" stroke="#ffe066" stroke-width="2" opacity="0.4"/><line x1="681" y1="430" x2="752" y2="430" stroke="#ffe066" stroke-width="2" opacity="0.4"/>
+<g class="p" data-n="위준" data-d="맹 씨의 남편이자 삼남."><circle cx="880" cy="430" r="18" fill="none" stroke="#4aafff" stroke-width="1.5"/><circle cx="880" cy="430" r="5" fill="#4aafff" opacity="0.2"/><text x="880" y="464" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">위준</text><text x="880" y="480" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">삼남</text></g>
+<g class="p" data-n="맹 씨" data-d="셋째 며느리. 채 씨와 협력하여 반 씨를 모해."><circle cx="975" cy="430" r="18" fill="none" stroke="#ff4a6a" stroke-width="1.5"/><circle cx="975" cy="430" r="5" fill="#ff4a6a" opacity="0.25"/><text x="975" y="464" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">맹 씨</text><text x="975" y="480" text-anchor="middle" font-size="10" fill="#ff4a6a" opacity="0.7">셋째 며느리 · 공모</text></g>
+<line x1="899" y1="424" x2="956" y2="424" stroke="#ffe066" stroke-width="2" opacity="0.3"/><line x1="899" y1="430" x2="956" y2="430" stroke="#ffe066" stroke-width="2" opacity="0.3"/>
+<g class="p" data-n="채원" data-d="채영의 아들. 위윤과 반옥을 처형하라는 상소를 올려 직접적 위협."><circle cx="1160" cy="430" r="20" fill="none" stroke="#ff4a6a" stroke-width="2"/><circle cx="1160" cy="430" r="6" fill="#ff4a6a" opacity="0.3"/><text x="1160" y="466" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">채원</text><text x="1160" y="482" text-anchor="middle" font-size="10" fill="#ff4a6a" opacity="0.7">채영의 아들</text></g>
+
+<!-- 위흥 -->
+<g class="p" data-n="위흥" data-d="위윤과 반 씨의 아들. 어머니를 모시고 외가로 피신. 산신령의 도움을 받는 비범한 인물."><circle cx="500" cy="700" r="22" fill="none" stroke="#4aafff" stroke-width="2.5" filter="url(#gc1)"/><circle cx="500" cy="700" r="7" fill="#4aafff" opacity="0.3"/><text x="500" y="738" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">위흥</text><text x="500" y="754" text-anchor="middle" font-size="10" fill="#4aafff" opacity="0.7">아들 · 비범한 인물</text></g>
+<line x1="500" y1="500" x2="500" y2="677" stroke="rgba(74,175,255,0.15)" stroke-width="1.5"/>
+
+<!-- relationships -->
+<polyline points="775,453 775,540 560,540 560,459" fill="none" stroke="#ff4a6a" stroke-width="2.5" stroke-dasharray="7,4" marker-end="url(#a1r)" filter="url(#gr1)"/>
+<rect x="614" y="527" width="100" height="22" rx="11" fill="#12121a" stroke="#ff4a6a" stroke-width="1"/><text x="664" y="542" text-anchor="middle" font-size="10" font-weight="700" fill="#ff4a6a">시기 · 모함</text>
+<polyline points="975,449 975,565 560,565 560,459" fill="none" stroke="#ff4a6a" stroke-width="1.8" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#a1r)"/>
+<rect x="770" y="553" width="78" height="20" rx="10" fill="#12121a" stroke="#ff4a6a" stroke-width="1" opacity="0.6"/><text x="809" y="567" text-anchor="middle" font-size="10" font-weight="600" fill="#ff4a6a" opacity="0.8">협력 · 모해</text>
+<polyline points="1160,165 1160,120 440,120 440,407" fill="none" stroke="#ff4a6a" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#a1r)"/>
+<rect x="720" y="108" width="126" height="20" rx="10" fill="#12121a" stroke="#ff4a6a" stroke-width="1"/><text x="783" y="122" text-anchor="middle" font-size="10" font-weight="600" fill="#ff4a6a">모함 → 장사 유배</text>
+<polyline points="1135,190 1100,190 1100,140 80,140 80,409" fill="none" stroke="#ff4a6a" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.45" marker-end="url(#a1r)"/>
+<rect x="498" y="128" width="126" height="20" rx="10" fill="#12121a" stroke="#ff4a6a" stroke-width="1" opacity="0.7"/><text x="561" y="142" text-anchor="middle" font-size="10" font-weight="600" fill="#ff4a6a" opacity="0.8">모함 → 강동 유배</text>
+<polyline points="531,440 300,440 300,610 40,610 40,190 127,190" fill="none" stroke="#4affa0" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#a1g)" filter="url(#gg1)"/>
+<rect x="48" y="400" width="90" height="20" rx="10" fill="#12121a" stroke="#4affa0" stroke-width="1"/><text x="93" y="414" text-anchor="middle" font-size="10" font-weight="600" fill="#4affa0">모자 피신 →</text>
+<line x1="231" y1="430" x2="417" y2="430" stroke="#ffb74d" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5" marker-end="url(#a1p)"/>
+<rect x="278" y="416" width="82" height="18" rx="9" fill="#12121a" stroke="#ffb74d" stroke-width="1" opacity="0.5"/><text x="319" y="429" text-anchor="middle" font-size="9" font-weight="500" fill="#ffb74d" opacity="0.8">궐내 소식 전달</text>
+<polyline points="645,217 645,280 350,280 350,430 531,430" fill="none" stroke="#4aafff" stroke-width="1.8" stroke-dasharray="3,5" opacity="0.35" marker-end="url(#a1b)"/>
+<rect x="350" y="340" width="96" height="20" rx="10" fill="#12121a" stroke="#4aafff" stroke-width="1" opacity="0.4"/><text x="398" y="354" text-anchor="middle" font-size="10" font-weight="500" fill="#4aafff" opacity="0.6">혼령 · 위험 경고</text>
+</svg>
+</div>
+
+<!-- ================================================================ -->
+<!-- PANEL 2: 인현왕후전 -->
+<!-- ================================================================ -->
+<div class="panel" id="p2">
+<svg viewBox="0 0 1300 900" xmlns="http://www.w3.org/2000/svg" style="min-width:860px;width:100%;">
+<defs>
+  <filter id="gc2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gr2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gg2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gd2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gp2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="a2r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ff4a6a"/></marker>
+  <marker id="a2g" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#4affa0"/></marker>
+  <marker id="a2b" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#4aafff"/></marker>
+  <marker id="a2y" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ffe066"/></marker>
+  <marker id="a2p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#c084fc"/></marker>
+</defs>
+
+<!-- regions -->
+<rect x="20" y="68" width="360" height="540" rx="14" fill="rgba(74,255,160,0.03)" stroke="rgba(74,255,160,0.12)"/>
+<text x="34" y="92" font-size="11" font-weight="700" fill="#4affa0" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">민씨 가문 (폐비 측)</text>
+<rect x="410" y="68" width="440" height="540" rx="14" fill="rgba(255,224,102,0.03)" stroke="rgba(255,224,102,0.1)"/>
+<text x="424" y="92" font-size="11" font-weight="700" fill="#ffe066" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">왕실 (갈등의 중심축)</text>
+<rect x="880" y="68" width="400" height="540" rx="14" fill="rgba(255,74,106,0.03)" stroke="rgba(255,74,106,0.12)"/>
+<text x="894" y="92" font-size="11" font-weight="700" fill="#ff4a6a" opacity="0.5" font-family="Noto Serif KR,serif" letter-spacing="1">장씨 세력 (대립 측)</text>
+
+<!-- row1 -->
+<g class="p" data-n="부원군 (민유중)" data-d="인현왕후의 아버지. 지문 시점에서 이미 사망. 삼년상을 마친 뒤 민후가 더욱 애처로워한다."><circle cx="120" cy="190" r="20" fill="none" stroke="#4affa0" stroke-width="2" opacity="0.5"/><circle cx="120" cy="190" r="6" fill="#4affa0" opacity="0.15"/><line x1="100" y1="170" x2="140" y2="210" stroke="rgba(255,255,255,0.15)" stroke-width="1"/><text x="120" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">부원군</text><text x="120" y="242" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.3)">민유중 · 사망</text></g>
+<g class="p" data-n="판서 민 공" data-d="인현왕후의 큰 오라버니. 왕명에도 문을 열지 않는 민후를 간절히 설득하여 겨우 바깥문만 열게 하는 중재자."><circle cx="260" cy="190" r="20" fill="none" stroke="#4affa0" stroke-width="2" filter="url(#gg2)"/><circle cx="260" cy="190" r="6" fill="#4affa0" opacity="0.3"/><text x="260" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">판서 민 공</text><text x="260" y="242" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">큰 오라버니 · 중재</text></g>
+<g class="p" data-n="두 대비" data-d="민후가 송이를 보며 '두 대비 전에서 즐겨 진어하시던' 일을 회상. 정상적 궁중 질서를 상징."><circle cx="500" cy="190" r="20" fill="none" stroke="#ffe066" stroke-width="1.5" opacity="0.4"/><circle cx="500" cy="190" r="6" fill="#ffe066" opacity="0.15"/><text x="500" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">두 대비</text><text x="500" y="242" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.3)">궁중 질서의 상징</text></g>
+<g class="p" data-n="숙종 대왕 (상감)" data-d="'문무를 겸하신 어진 임금'이나 장씨에게 침혹하여 민후를 폐출. 그러나 천운이 순환하여 민후의 억울함을 깨닫고 비망기를 내려 복위를 추진. 서사의 전환축."><circle cx="700" cy="190" r="30" fill="rgba(255,224,102,0.08)" stroke="#ffe066" stroke-width="3.5" filter="url(#gd2)"/><circle cx="700" cy="190" r="10" fill="#ffe066" opacity="0.35"/><text x="700" y="236" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">숙종</text><text x="700" y="254" text-anchor="middle" font-size="10" fill="#ffe066" font-weight="600">상감 · 서사 전환축</text></g>
+<g class="p" data-n="옥산 부원군" data-d="장씨의 아비. 장씨 책봉과 함께 부원군에 봉해진다."><circle cx="1020" cy="190" r="18" fill="none" stroke="#ff4a6a" stroke-width="1.5" opacity="0.4"/><circle cx="1020" cy="190" r="5" fill="#ff4a6a" opacity="0.2"/><text x="1020" y="224" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">옥산 부원군</text><text x="1020" y="240" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.3)">장씨의 아비</text></g>
+
+<!-- brackets -->
+<line x1="1020" y1="250" x2="1020" y2="300" stroke="rgba(255,74,106,0.15)" stroke-width="1.5"/><line x1="1020" y1="300" x2="1180" y2="300" stroke="rgba(255,74,106,0.15)" stroke-width="1.5"/><line x1="1020" y1="300" x2="1020" y2="380" stroke="rgba(255,74,106,0.15)" stroke-width="1.5"/><line x1="1180" y1="300" x2="1180" y2="380" stroke="rgba(255,74,106,0.15)" stroke-width="1.5"/>
+
+<!-- row2 -->
+<g class="p" data-n="민정자" data-d="인현왕후의 오라버니. 그의 여덟 살 딸을 민후가 데려다 『소학』·『열녀전』을 가르치며 유폐 생활의 적적함을 달랜다."><circle cx="120" cy="430" r="18" fill="none" stroke="#4affa0" stroke-width="1.5"/><circle cx="120" cy="430" r="5" fill="#4affa0" opacity="0.2"/><text x="120" y="464" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">민정자</text><text x="120" y="480" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)">오라버니</text></g>
+<g class="p" data-n="인현왕후 민씨 ★ 주인공" data-d="폐출되어 감고당에 유폐되었으나, 사람을 탓하지 않고 천연자약한 태도를 유지. 무명옷만 입고, 복위 명령에도 문을 열지 않는 극도의 자기 절제. 유교적 열후(烈后)의 전형."><circle cx="340" cy="430" r="30" fill="rgba(255,224,102,0.08)" stroke="#ffe066" stroke-width="3.5" filter="url(#gd2)"/><circle cx="340" cy="430" r="10" fill="#ffe066" opacity="0.35"/><text x="340" y="476" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">인현왕후</text><text x="340" y="494" text-anchor="middle" font-size="10" fill="#ffe066" font-weight="600">★ 민후 · 주인공</text></g>
+<g class="p" data-n="희빈 장씨" data-d="핵심 악인. 민후를 참소하여 왕비에 오르고, 비빈 절제·궁녀 엄형 등 포학한 행실. 숙종의 마음이 돌아서자 장희재와 무고옥사를 다시 일으킨다."><circle cx="1020" cy="430" r="26" fill="rgba(255,74,106,0.12)" stroke="#ff4a6a" stroke-width="3" filter="url(#gr2)"/><circle cx="1020" cy="430" r="8" fill="#ff4a6a" opacity="0.4"/><text x="1020" y="472" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">희빈 장씨</text><text x="1020" y="489" text-anchor="middle" font-size="10" fill="#ff4a6a" font-weight="500">핵심 악인 · 찬탈자</text></g>
+<g class="p" data-n="장희재" data-d="장씨의 오라비. 훈련대장에 제수되어 '팔도에 장난'하는 음험한 권력자. 남매 공모로 무고옥사를 꾸민다."><circle cx="1180" cy="430" r="22" fill="none" stroke="#ff4a6a" stroke-width="2.5" filter="url(#gr2)"/><circle cx="1180" cy="430" r="7" fill="#ff4a6a" opacity="0.3"/><text x="1180" y="468" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">장희재</text><text x="1180" y="484" text-anchor="middle" font-size="10" fill="#ff4a6a" opacity="0.7">오라비 · 훈련대장</text></g>
+<line x1="1047" y1="424" x2="1157" y2="424" stroke="#ff4a6a" stroke-width="2" opacity="0.5"/><line x1="1047" y1="430" x2="1157" y2="430" stroke="#ff4a6a" stroke-width="1" opacity="0.3"/>
+<rect x="1072" y="410" width="62" height="18" rx="9" fill="#12121a" stroke="#ff4a6a" stroke-width="1" opacity="0.5"/><text x="1103" y="423" text-anchor="middle" font-size="9" font-weight="600" fill="#ff4a6a" opacity="0.8">남매 공모</text>
+
+<!-- relationships -->
+<polyline points="700,221 700,280 420,280 420,430 371,430" fill="none" stroke="#ffe066" stroke-width="3" opacity="0.7" marker-end="url(#a2y)"/>
+<rect x="430" y="330" width="118" height="24" rx="12" fill="#12121a" stroke="#ffe066" stroke-width="1.5"/><text x="489" y="347" text-anchor="middle" font-size="11" font-weight="700" fill="#ffe066">폐출 → 뉘우침 → 복위</text>
+<polyline points="731,190 850,190 850,430 993,430" fill="none" stroke="#ff4a6a" stroke-width="2" stroke-dasharray="8,5" opacity="0.4" marker-end="url(#a2r)"/>
+<rect x="812" y="290" width="76" height="22" rx="11" fill="#12121a" stroke="#ff4a6a" stroke-width="1" opacity="0.5"/><text x="850" y="305" text-anchor="middle" font-size="10" font-weight="600" fill="#ff4a6a" opacity="0.7">총애 → 각성</text>
+<polyline points="1020,457 1020,550 340,550 340,461" fill="none" stroke="#ff4a6a" stroke-width="2.5" stroke-dasharray="7,4" marker-end="url(#a2r)" filter="url(#gr2)"/>
+<rect x="610" y="537" width="110" height="22" rx="11" fill="#12121a" stroke="#ff4a6a" stroke-width="1"/><text x="665" y="552" text-anchor="middle" font-size="10" font-weight="700" fill="#ff4a6a">참소 · 핍박 · 폐출</text>
+<polyline points="1020,457 1020,575 340,575 340,461" fill="none" stroke="#ff4a6a" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3" marker-end="url(#a2r)"/>
+<rect x="610" y="563" width="118" height="20" rx="10" fill="#12121a" stroke="#ff4a6a" stroke-width="1" opacity="0.4"/><text x="669" y="577" text-anchor="middle" font-size="10" font-weight="500" fill="#ff4a6a" opacity="0.6">무고옥사 · 사약 도모</text>
+<polyline points="260,221 260,370 310,370 310,410" fill="none" stroke="#4affa0" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#a2g)" filter="url(#gg2)"/>
+<rect x="218" y="290" width="84" height="20" rx="10" fill="#12121a" stroke="#4affa0" stroke-width="1"/><text x="260" y="304" text-anchor="middle" font-size="10" font-weight="600" fill="#4affa0">간권 · 개문 설득</text>
+<line x1="139" y1="430" x2="309" y2="430" stroke="#4affa0" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.35" marker-end="url(#a2g)"/>
+<rect x="168" y="416" width="90" height="18" rx="9" fill="#12121a" stroke="#4affa0" stroke-width="1" opacity="0.4"/><text x="213" y="429" text-anchor="middle" font-size="9" font-weight="500" fill="#4affa0" opacity="0.7">딸(8세) → 소학 교육</text>
+<polyline points="500,211 500,360 370,360 354,399" fill="none" stroke="#ffe066" stroke-width="1.2" stroke-dasharray="3,5" opacity="0.2"/>
+<text x="468" y="350" font-size="9" fill="#ffe066" opacity="0.35">송이 → 회상 · 눈물</text>
+
+<!-- row3 helpers -->
+<rect x="80" y="630" width="700" height="230" rx="12" fill="none" stroke="rgba(74,175,255,0.1)" stroke-dasharray="4,3"/>
+<text x="94" y="652" font-size="10" font-weight="600" fill="#4aafff" opacity="0.35">조력자 · 기타</text>
+<g class="p" data-n="궁녀 (궁인)들" data-d="민후를 가까이 모시며 동정하는 충성스러운 존재. 민후의 눈물에 함께 흐느끼고, 복위 소식에 일희일비. 민심의 대리자."><circle cx="200" cy="740" r="22" fill="none" stroke="#4aafff" stroke-width="2" filter="url(#gc2)"/><circle cx="200" cy="740" r="7" fill="#4aafff" opacity="0.25"/><text x="200" y="778" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">궁녀들</text><text x="200" y="794" text-anchor="middle" font-size="10" fill="#4aafff" opacity="0.6">충성 · 민심 대리자</text></g>
+<g class="p" data-n="네 마리의 개" data-d="출처 없이 들어온 개가 새끼 셋을 낳아 네 마리가 됨. 밤마다 잡귀와 도깨비를 쫓아 민후의 집안을 편안하게 한다. 작가 논평: '무지한 짐승도 도움이 있거늘 하물며 신민이랴' — 소인배를 금수에 비유하는 풍자 장치."><circle cx="440" cy="740" r="22" fill="none" stroke="#c084fc" stroke-width="2" filter="url(#gp2)"/><circle cx="440" cy="740" r="7" fill="#c084fc" opacity="0.25"/><text x="440" y="778" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">네 마리의 개</text><text x="440" y="794" text-anchor="middle" font-size="10" fill="#c084fc" opacity="0.6">초현실 조력 · 풍자 장치</text></g>
+<g class="p" data-n="조정 소인 vs 옛 신하" data-d="소인배는 민후 폐출을 기뻐하고 민씨 일문 처벌을 날마다 아뢰는 세력(금수만도 못한 자들). 반대로 숙종 각성 후 불러 쓴 '옛 신하들'은 복위를 지지."><circle cx="650" cy="740" r="22" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><circle cx="650" cy="740" r="7" fill="rgba(255,255,255,0.1)"/><text x="650" y="778" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Noto Serif KR,serif">조정 신하</text><text x="650" y="794" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.35)">소인 vs 옛 신하</text></g>
+<polyline points="200,717 200,610 100,610 100,440 309,440" fill="none" stroke="#4aafff" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#a2b)" filter="url(#gc2)"/>
+<rect x="100" y="516" width="86" height="20" rx="10" fill="#12121a" stroke="#4aafff" stroke-width="1" opacity="0.5"/><text x="143" y="530" text-anchor="middle" font-size="10" font-weight="600" fill="#4aafff" opacity="0.7">충성 · 동정</text>
+<polyline points="440,717 440,610 380,610 380,461 340,461" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-dasharray="4,4" marker-end="url(#a2p)" filter="url(#gp2)"/>
+<rect x="382" y="520" width="100" height="20" rx="10" fill="#12121a" stroke="#c084fc" stroke-width="1" opacity="0.5"/><text x="432" y="534" text-anchor="middle" font-size="10" font-weight="600" fill="#c084fc" opacity="0.7">잡귀 퇴치 · 수호</text>
+<polyline points="673,740 780,740 780,600 850,600 850,457" fill="none" stroke="rgba(255,74,106,0.2)" stroke-width="1.2" stroke-dasharray="3,4"/>
+<text x="810" y="660" font-size="9" fill="#ff4a6a" opacity="0.3" text-anchor="middle">비위 맞추는 신하</text>
+</svg>
+</div>
+
+<!-- LEGEND (shared) -->
+<div class="legend">
+  <span><i style="background:#ffe066;"></i>주인공 / 혼인</span>
+  <span><i style="background:#ff4a6a;"></i>대립 / 모함</span>
+  <span><i style="background:#4affa0;"></i>외가 / 보호</span>
+  <span><i style="background:#4aafff;"></i>구출 / 충성</span>
+  <span><i style="background:#c084fc;"></i>조력 / 초현실</span>
+  <span><i style="background:rgba(255,255,255,0.15);"></i>부모→자녀</span>
+</div>
+<div class="ft"><b>가경T</b> · 가경 국어 연구소 · 오름 국어학원</div>
+
+<!-- TOOLTIP -->
+<div class="tip-bg" id="tBg"><div class="tip" id="tBox"></div></div>
+
+<script>
+// tabs
+const tabs=document.querySelectorAll('.tab');
+const panels=[document.getElementById('p0'),document.getElementById('p1'),document.getElementById('p2')];
+tabs.forEach(t=>{
+  t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('on'));
+    panels.forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    panels[+t.dataset.t].classList.add('on');
+    bg.classList.remove('on');
+  });
+});
+
+// tooltip
+const bg=document.getElementById('tBg'),box=document.getElementById('tBox');
+document.querySelectorAll('.p').forEach(g=>{
+  g.style.cursor='pointer';
+  g.addEventListener('click',e=>{
+    e.stopPropagation();
+    box.innerHTML=`<b>${g.dataset.n}</b>${g.dataset.d}`;
+    bg.classList.add('on');
+    const c=g.querySelector('circle'),r=c.getBoundingClientRect();
+    let l=r.left+r.width/2-145,t=r.top-12;
+    t=(t-160>0)?t-160:r.bottom+10;
+    if(l<6)l=6;if(l+290>innerWidth)l=innerWidth-296;
+    box.style.left=l+'px';box.style.top=t+'px';
+  });
+});
+bg.onclick=()=>bg.classList.remove('on');
+document.onkeydown=e=>{if(e.key==='Escape')bg.classList.remove('on');};
+</script>
+</body>
+</html>
