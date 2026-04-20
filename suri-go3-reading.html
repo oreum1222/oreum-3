@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>[오름] 독서 지문 분석 — 수리고3 1차고사 대비</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700&display=swap');
+:root{--bg:#0a0c10;--card:#12151c;--card2:#181c26;--accent:#1a1f2e;--bdr:#1e2536;--bdr2:#2a3350;--t1:#e8ecf4;--t2:#8b95ad;--t3:#5a6380;--mint:#4ae3c0;--mintD:#2a8b74;--mintG:rgba(74,227,192,.12);--coral:#ff6b8a;--coralD:#993f53;--coralG:rgba(255,107,138,.1);--amber:#f5c842;--amberD:#a18530;--amberG:rgba(245,200,66,.1);--blue:#5b9cf5;--blueD:#3a6399;--blueG:rgba(91,156,245,.1);--purple:#a78bfa;--purpleG:rgba(167,139,250,.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t1);font-family:'Noto Sans KR',sans-serif;font-weight:400;line-height:1.8;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+.hero{position:relative;padding:60px 20px 40px;text-align:center;border-bottom:1px solid var(--bdr);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--mintG) 0%,transparent 70%);pointer-events:none}
+.hero-label{display:inline-block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--mint);background:var(--mintG);border:1px solid rgba(74,227,192,.2);padding:5px 14px;border-radius:20px;margin-bottom:16px}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(22px,5vw,36px);font-weight:700;line-height:1.3;margin-bottom:8px}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero .sub{font-size:13px;color:var(--t2);max-width:500px;margin:0 auto}
+
+/* passage selector */
+.psel-wrap{position:sticky;top:0;z-index:200;background:rgba(10,12,16,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);padding:10px 16px}
+.psel{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.psel::-webkit-scrollbar{display:none}
+.pbtn{flex-shrink:0;padding:8px 14px;font-size:12px;font-weight:600;color:var(--t3);background:var(--card);border:1px solid var(--bdr);border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.pbtn:hover,.pbtn.active{color:var(--mint);border-color:rgba(74,227,192,.3);background:var(--mintG)}
+
+/* tabs */
+.tab-wrap{position:sticky;top:50px;z-index:190;background:rgba(10,12,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);padding:0 16px}
+.tabs{display:flex;gap:0;max-width:800px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:12px 16px;font-size:12px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.tab:hover{color:var(--t2)}
+.tab.active{color:var(--mint);border-bottom-color:var(--mint)}
+
+.container{max-width:800px;margin:0 auto;padding:0 16px}
+.passage{display:none}.passage.active{display:block}
+.section{display:none;padding:28px 0 40px;animation:fadeIn .3s ease}.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* passage header */
+.p-head{padding:28px 0 20px;border-bottom:1px solid var(--bdr);margin-bottom:4px}
+.p-head .p-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--mint);margin-bottom:6px}
+.p-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(18px,4vw,26px);font-weight:700;line-height:1.35;margin-bottom:6px}
+.p-head .p-sub{font-size:13px;color:var(--t2);line-height:1.6}
+.p-head .p-meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.p-head .p-meta span{font-size:11px;color:var(--t3);background:var(--card);border:1px solid var(--bdr);padding:3px 10px;border-radius:5px}
+
+/* section title */
+.s-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.s-title .ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.s-desc{font-size:13px;color:var(--t2);margin-bottom:24px;padding-left:36px}
+
+/* para cards */
+.pc{background:var(--card);border:1px solid var(--bdr);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+.pc:hover{border-color:var(--bdr2)}
+.pc-h{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.pc-n{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.n-mint{background:var(--mintG);color:var(--mint);border:1px solid rgba(74,227,192,.25)}
+.n-blue{background:var(--blueG);color:var(--blue);border:1px solid rgba(91,156,245,.25)}
+.n-amber{background:var(--amberG);color:var(--amber);border:1px solid rgba(245,200,66,.25)}
+.n-coral{background:var(--coralG);color:var(--coral);border:1px solid rgba(255,107,138,.25)}
+.n-purple{background:var(--purpleG);color:var(--purple);border:1px solid rgba(167,139,250,.25)}
+.pc-l{font-size:13px;font-weight:600;flex:1}
+.pc-t{font-size:16px;color:var(--t3);transition:transform .2s}
+.pc.open .pc-t{transform:rotate(180deg)}
+.pc-b{display:none;padding:0 16px 16px 52px}
+.pc.open .pc-b{display:block}
+.pc-b p{font-size:13px;color:var(--t2);line-height:1.85}
+.pc-b strong{color:var(--t1);font-weight:600}
+.kp{margin-top:10px;padding:8px 12px;background:var(--accent);border-left:3px solid var(--mintD);border-radius:0 7px 7px 0;font-size:12px;color:var(--mint);font-weight:500}
+
+/* title card */
+.tc{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:22px 18px;margin-bottom:14px}
+.tc .tl{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.tc .tl.main{color:var(--mint)}.tc .tl.sub{color:var(--blue)}
+.tc .tv{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;line-height:1.5}
+.tc .tv.sv{font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:400;color:var(--t2)}
+.tc .td{height:1px;background:var(--bdr);margin:16px 0}
+.tc.tip{border-left:3px solid var(--amber)}
+.tc.tip .tl{color:var(--amber)}
+
+/* vocab table */
+.vt{width:100%;border-collapse:separate;border-spacing:0}
+.vt thead th{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--t3);text-align:left;padding:8px 12px;border-bottom:1px solid var(--bdr)}
+.vt tbody td{padding:12px;font-size:13px;border-bottom:1px solid var(--bdr);vertical-align:top}
+.vt tbody tr:last-child td{border-bottom:none}
+.vt tbody tr{background:var(--card);transition:background .15s}
+.vt tbody tr:hover{background:var(--card2)}
+.vw{font-weight:600;color:var(--mint);white-space:nowrap}
+.vp{font-size:10px;color:var(--t3);background:var(--accent);padding:2px 6px;border-radius:3px;margin-left:4px;font-weight:500}
+.vd{color:var(--t2);line-height:1.7}
+.vc{font-size:11px;color:var(--t3);margin-top:3px;font-style:italic}
+
+/* deep cards */
+.dc{background:var(--card);border:1px solid var(--bdr);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.dc-h{padding:14px 16px;display:flex;align-items:flex-start;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dc-b-tag{flex-shrink:0;padding:3px 8px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.5px}
+.b-hard{background:var(--coralG);color:var(--coral);border:1px solid rgba(255,107,138,.2)}
+.b-concept{background:var(--amberG);color:var(--amber);border:1px solid rgba(245,200,66,.2)}
+.b-logic{background:var(--blueG);color:var(--blue);border:1px solid rgba(91,156,245,.2)}
+.dc-ti{font-size:14px;font-weight:600;flex:1}
+.dc-tg{color:var(--t3);font-size:16px;transition:transform .2s}
+.dc.open .dc-tg{transform:rotate(180deg)}
+.dc-bd{display:none;padding:0 16px 16px}
+.dc.open .dc-bd{display:block}
+.dq{background:var(--accent);border-left:3px solid var(--bdr2);padding:12px 14px;border-radius:0 7px 7px 0;margin-bottom:14px;font-size:12px;color:var(--t2);line-height:1.85;font-family:'Noto Serif KR',serif}
+.de{font-size:13px;color:var(--t2);line-height:1.9}
+.de strong{color:var(--t1);font-weight:600}
+.de .highlight{color:var(--mint);font-weight:500}
+.de table{margin:8px 0}
+
+.wm{text-align:center;padding:32px 16px 48px;border-top:1px solid var(--bdr);margin-top:32px}
+.wm .br{font-size:12px;color:var(--t3);letter-spacing:1px}
+.wm .br em{font-style:normal;color:var(--mintD)}
+
+@media(max-width:640px){
+  .pc-b{padding-left:16px}
+  .s-desc{padding-left:0}
+  .tab-wrap{top:48px}
+  .vt thead th{padding:6px 8px}
+  .vt tbody td{padding:8px}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="hero-label">2026학년도 1차고사 대비</div>
+<h1>[<em>오름</em>] 독서 지문 분석</h1>
+<p class="sub">수리고3 부교재 독서 지문 8개 — 문단별 요약 · 표제·부제 · 어휘 · 집중 설명</p>
+</div>
+<div class="psel-wrap"><div class="psel"><div class="pbtn active" data-p="p1">① 4차 산업 혁명과 O2O 경제</div><div class="pbtn" data-p="p2">② 면역계의 구조와 작동 원리</div><div class="pbtn" data-p="p3">③ 논증과 베이컨의 귀납법</div><div class="pbtn" data-p="p4">④ 데카르트의 명료·분명과 연역</div><div class="pbtn" data-p="p5">⑤ 국제 정치의 자유주의와 상호 의존론</div><div class="pbtn" data-p="p6">⑥ 질문하기 독서법</div><div class="pbtn" data-p="p7">⑦ 통정 허위 표시</div><div class="pbtn" data-p="p8">⑧ 동물의 자기 수용 메커니즘</div></div></div><div class="tab-wrap"><div class="tabs">
+<div class="tab active" data-t="summary">문단별 요약</div>
+<div class="tab" data-t="title">표제·부제</div>
+<div class="tab" data-t="vocab">어려운 어휘</div>
+<div class="tab" data-t="deep">집중 설명</div>
+</div></div>
+<div class="container">
+<div class="passage active" id="p1"><div class="p-head">
+<div class="p-tag">지문 분석 ①</div>
+<h2>4차 산업 혁명과 O2O 경제</h2>
+<p class="p-sub">기술 패러다임의 전환에서 O2O 경제의 명암, 그리고 대응 방안까지</p>
+<div class="p-meta"><span>📘 수능완성 출제</span><span>📄 5개 문단</span><span>🏷️ 기술 · 경제</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">4차 산업 혁명의 정의와 차별적 특성</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>4차 산업 혁명은 AI, IoT, 빅데이터가 이끄는 기술 패러다임의 전환이다. 1~3차와 달리 물리적 현실과 디지털 가상 세계가 <strong>융합</strong>되는 초연결 지능화 사회를 구현하며, 변화 속도가 기하급수적으로 가속화된다는 점이 핵심이다.</p>
+<div class="kp">💡 핵심 키워드: 융합, 초연결 지능화, 기하급수적 가속화</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">O2O 경제의 개념과 작동 방식</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>O2O(Online to Offline)는 온라인과 오프라인을 유기적으로 융합하는 사업 모형이다. 과거 '온라인→오프라인' 연결만 의미했지만, 현재는 양방향 연결 모두를 아우르는 광의의 개념으로 확장. 디지털 매개를 통해 소비자-공급자 직접 연결, 빅데이터+AI로 맞춤형 서비스, 프리랜서/파트타임 활용으로 인력 유연성 확보.</p>
+<div class="kp">💡 핵심 키워드: 협의→광의, 직접 연결, 맞춤형 서비스, 인력 유연성</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">O2O 경제의 긍정적 함의</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>첫째</strong>, 맞춤형 소비 → 프로슈머(prosumer) 문화 확산 → 소비-생산 경계 재구성. <strong>둘째</strong>, 노동 시장 유연성 증대 → 다양한 직업 도전 기회 확장 → 노동의 의미가 '생계 수단'에서 '자기실현의 장'으로 확장.</p>
+<div class="kp">💡 핵심 키워드: 프로슈머, 소비-생산 경계 재구성, 자기실현</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">O2O 경제의 부정적 측면 (3가지)</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>첫째</strong>, 자동화·AI 발전으로 단기적 일자리 감소. <strong>둘째</strong>, 기술 격차·숙련도 차이로 새 일자리로 즉시 이동 어려운 구조적 제약(일시적 실업·소득 감소·사회 불안). <strong>셋째</strong>, 정규직 고용 약화 → 고용 안정성·소득 안정성 저하, 사회 보험 보호 미비.</p>
+<div class="kp">💡 핵심 키워드: 일자리 감소, 기술 격차의 구조적 제약, 고용 불안정</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-purple">5</div>
+<div class="pc-l">체계적 대응 방안</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>핵심은 <strong>교육·훈련 체계의 재구조화</strong>. 학교 교육·직업 훈련을 기술 변화에 맞게 개편 + 평생 학습 체계 구축. <strong>정부</strong>: 실업자 재교육 강화 + 신산업 창업 기반 조성. <strong>기업</strong>: 재교육(reskilling) + 직무 전환 지원 시스템 마련.</p>
+<div class="kp">💡 핵심 키워드: 교육 재구조화, 평생 학습, 정부·기업 차원 지원</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">O2O 경제의 명암과 대응 방안</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">4차 산업 혁명이 촉발한 온오프라인 융합 경제의 긍정적 가치와 구조적 한계, 그리고 이에 대한 교육·제도적 대응의 필요성</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">표제는 지문 전체를 포괄하는 제목이어야 합니다. 이 지문은 4차 산업 혁명 '자체'보다 그 사례인 <strong>O2O 경제</strong>에 초점이 맞춰져 있으므로, 표제에 'O2O 경제'가 반드시 들어가야 합니다. 1문단은 도입부(깔때기)이며, 2~5문단이 본론입니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">견인하다</span><span class="vp">동사</span></td><td class="vd">끌어당기다. 앞에서 이끌어 나가다.<br><span class="vc">「기술이 견인하는 기술 패러다임의 전환」</span></td></tr><tr><td><span class="vw">일컫다</span><span class="vp">동사</span></td><td class="vd">어떤 대상을 가리켜 이름을 붙이거나 말하다.<br><span class="vc">「~을 일컫는 말이다」</span></td></tr><tr><td><span class="vw">총칭하다</span><span class="vp">동사</span></td><td class="vd">여러 가지를 한데 모아 하나의 이름으로 통틀어 이르다.<br><span class="vc">「사업 모형을 총칭하는 개념」</span></td></tr><tr><td><span class="vw">아우르다</span><span class="vp">동사</span></td><td class="vd">여러 가지를 한데 합치거나 한꺼번에 다루다. 포괄하다.<br><span class="vc">「연결 모두를 아우르는 광의의 관점」</span></td></tr><tr><td><span class="vw">획일적</span><span class="vp">관형사</span></td><td class="vd">하나의 일정한 틀에 맞추어져 개성이나 다양성이 없는.<br><span class="vc">「획일적인 제품 소비를 넘어」</span></td></tr><tr><td><span class="vw">이바지하다</span><span class="vp">동사</span></td><td class="vd">도움이 되도록 이로운 것을 바치다. = 기여하다.<br><span class="vc">「가치 체계를 형성하는 데 이바지하였다」</span></td></tr><tr><td><span class="vw">내재되다</span><span class="vp">동사</span></td><td class="vd">어떤 사물의 안에 들어 있거나 포함되어 있다.<br><span class="vc">「O2O 경제에 내재된 부정적인 측면」</span></td></tr><tr><td><span class="vw">야기되다</span><span class="vp">동사</span></td><td class="vd">어떤 일이 일어나게 되다. = 초래되다.<br><span class="vc">「사회 불안이 야기될 수 있다」</span></td></tr><tr><td><span class="vw">부합하다</span><span class="vp">동사</span></td><td class="vd">서로 꼭 들어맞다. 기준에 알맞다.<br><span class="vc">「기술 변화의 속도와 방향에 부합하도록」</span></td></tr><tr><td><span class="vw">조성하다</span><span class="vp">동사</span></td><td class="vd">환경이나 조건, 분위기를 만들어 이루다.<br><span class="vc">「제도적 기반을 조성해야 한다」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">'협의의 O2O'와 '광의의 O2O' 구분</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">과거에는 협의의 관점에서 O2O를 온라인으로 고객을 유치하여 오프라인 상업을 지원하는 것을 의미했으나, 현재는 … 광의의 관점으로 O2O를 이해하고 있다.</div><div class="de"><strong>협의(좁은 의미)</strong>: 온라인 → 오프라인, 한 방향만. 예) 앱 쿠폰 → 오프라인 매장 사용.<br><br><strong>광의(넓은 의미)</strong>: 온라인 ↔ 오프라인, 양방향 모두 포함. 예) 오프라인 QR → 온라인 결제.<br><br><span class='highlight'>내신 포인트:</span> '협의→광의 확장'이라는 개념 변화가 선지로 출제 가능. '과거에는/현재는' 시간 대비 구조 파악 필수.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">프로슈머(prosumer)와 인과 체인</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">맞춤형 소비 경향은 … 프로슈머(prosumer) 문화의 형성 및 확산으로 이어져 소비-생산의 경계를 재구성하는 새로운 경제적 가치 체계를 형성하는 데 이바지하였다.</div><div class="de"><strong>프로슈머 = Producer + Consumer</strong>. 소비자가 제품 기획·개선 과정에 직접 참여하는 것.<br><br>이 문장의 인과 체인:<br>① 맞춤형 소비 경향 → ② 프로슈머 문화 형성·확산 → ③ 소비-생산 경계 재구성 → ④ 새로운 경제적 가치 체계 형성</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">4문단 '구조적 제약' — 왜 즉시 이동 불가?</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">기술 격차와 숙련도의 차이 때문에 사람들이 곧바로 그 일자리로 이동하기 어렵다는 구조적인 제약이 존재한다.</div><div class="de">새 일자리 생김 → 기술 격차 존재 → 즉시 이동 불가 → 전환에 시간·비용 필요 → 일시적 실업·소득 감소 → 사회 불안<br><br>'구조적 제약' = 개인 의지와 무관한, 기술 수준 차이가 만드는 장벽.<br><br><span class='highlight'>내신 포인트:</span> 첫째(일자리 '수량' 문제)와 둘째(일자리 '전환' 문제) 혼동 주의.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">지문 전체의 논리 구조</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de">전형적인 <strong>「도입→개념→긍정→부정→대안」</strong> 구조.<br><br><strong>[1]</strong> 도입 — 4차 산업 혁명 (깔때기)<br><strong>[2]</strong> 개념 — O2O 경제 정의·작동<br><strong>[3]</strong> 긍정 — 경제적 가치·일자리 질적 전환<br><strong>[4]</strong> 부정 — 3가지 문제점<br><strong>[5]</strong> 대안 — 교육·정부·기업 대응<br><br><span class='highlight'>내신 포인트:</span> 3문단→4문단은 전환 표지 없이 '긍정→부정' 대비 구조가 숨어 있음.</div></div></div></div></div><div class="passage" id="p2"><div class="p-head">
+<div class="p-tag">지문 분석 ②</div>
+<h2>면역계의 구조와 작동 원리</h2>
+<p class="p-sub">1차 방어 체계, 선천적 면역, 후천적 면역의 단계적 방어 메커니즘</p>
+<div class="p-meta"><span>📘 수능완성 출제</span><span>📄 4개 문단</span><span>🏷️ 과학 · 생물</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">면역계의 정의와 3단계 구조</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>면역계는 병원체(pathogen)로부터 인체를 보호하기 위한 조직·세포 체계. <strong>1차 방어 체계</strong>(피부, 콧물, 위산 등 물리적·화학적 방어) → <strong>선천적 면역</strong>(침입한 병원체에 즉각 대응) → <strong>후천적 면역</strong>(병원체 분석·기억·능동 대응). '면역'이라 부르는 것은 선천적+후천적을 아우르는 것.</p>
+<div class="kp">💡 핵심 키워드: 1차 방어 체계, 선천적 면역, 후천적 면역</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">선천적 면역의 작동 과정</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>핵심은 침입 병원체에 <strong>즉각 대응</strong>. 선천 면역 세포는 <strong>톨 유사 수용체</strong>로 병원체를 순찰. 발견 시 <strong>사이토카인</strong> 분비 → 다른 면역 세포 호출. 감염 세포도 <strong>인터페론</strong>(사이토카인의 일종)을 분비해 경고. 모인 세포들이 병원체를 먹어 치우거나 죽임 → 대규모 반응 시 <strong>염증 반응</strong>(발열, 통증, 가려움) 발생.</p>
+<div class="kp">💡 핵심 키워드: 톨 유사 수용체, 사이토카인, 인터페론, 염증 반응</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">후천적 면역의 작동 과정</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>항원 제시 세포</strong>가 병원체를 먹고 잘게 분해 → <strong>항원</strong>을 세포 표면에 전시 → <strong>림프샘</strong>으로 이동 → <strong>헬퍼 T 세포</strong>가 항원 판별(외부 vs 자체). 외부 항원이면 두 가지 대응: ① <strong>킬러 T 세포</strong> 증식(해당 항원 가진 병원체·세포를 선택적 제거), ② <strong>B 세포</strong>가 <strong>항체</strong> 생산(병원체 이동 방해 + 선천 면역 세포 포식 도움 + <strong>보체</strong> 활성화).</p>
+<div class="kp">💡 핵심 키워드: 항원 제시 세포, 헬퍼 T 세포, 킬러 T 세포, B 세포, 항체, 보체</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">면역 기억과 영구적 면역</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>후천적 면역은 인식→판독→생산 과정 때문에 시간이 걸림. 이를 줄이기 위해 <strong>메모리 T 세포</strong>·<strong>메모리 B 세포</strong>로 항원을 기억. 동일 병원체 재침입 시 빠르게 반응. 홍역·수두 등은 평생 지속 → <strong>영구적 면역 획득</strong>.</p>
+<div class="kp">💡 핵심 키워드: 메모리 T 세포, 메모리 B 세포, 영구적 면역</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">면역계의 단계적 방어 메커니즘</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">1차 방어 체계, 선천적 면역, 후천적 면역의 작동 원리와 면역 기억을 통한 영구적 면역 획득 과정</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">이 지문은 면역계의 <strong>3단계 구조</strong>를 순서대로 설명하는 '과정 설명형' 지문입니다. 표제에는 '면역계'와 '방어'라는 핵심어가 들어가야 하고, 부제에는 3단계 + 면역 기억이라는 전체 논의 범위가 드러나야 합니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">순찰하다</span><span class="vp">동사</span></td><td class="vd">일정한 구역을 돌아다니며 살피다. 여기서는 면역 세포가 체내를 돌며 병원체를 탐색하는 것.<br><span class="vc">「인체에 침입한 병원체가 있는지 순찰한다」</span></td></tr><tr><td><span class="vw">분비하다</span><span class="vp">동사</span></td><td class="vd">세포나 샘에서 특정 물질을 만들어 몸 밖이나 체내로 내보내다.<br><span class="vc">「다양한 사이토카인들을 분비한다」</span></td></tr><tr><td><span class="vw">증식시키다</span><span class="vp">동사</span></td><td class="vd">세포 등이 불어나게 하다. 수를 늘리다.<br><span class="vc">「킬러 T 세포를 증식시키는 것이다」</span></td></tr><tr><td><span class="vw">유래하다</span><span class="vp">동사</span></td><td class="vd">사물이 어디에서 비롯되거나 생겨나다.<br><span class="vc">「외부에서 유래한 항원이라 판단되면」</span></td></tr><tr><td><span class="vw">판별하다</span><span class="vp">동사</span></td><td class="vd">살펴서 구별하다. 옳고 그름이나 종류를 가려내다.<br><span class="vc">「외부에서 온 것인지 … 판별한다」</span></td></tr><tr><td><span class="vw">활성화하다</span><span class="vp">동사</span></td><td class="vd">활발한 상태로 만들다. 기능이 작동하도록 하다.<br><span class="vc">「보체를 활성화하여 병원체를 죽이도록」</span></td></tr><tr><td><span class="vw">소급하다</span><span class="vp">동사</span></td><td class="vd">지나간 과거로 거슬러 올라가 적용하다. (이 지문에는 없지만 면역과 법 지문 비교용)</td></tr><tr><td><span class="vw">획득하다</span><span class="vp">동사</span></td><td class="vd">힘써 얻어 자기 것으로 만들다.<br><span class="vc">「영구적인 면역을 획득하는 것이다」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">사이토카인 vs 인터페론 — 헷갈리는 신호 물질</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">선천 면역 세포가 … 다양한 사이토카인들을 분비한다. 한편 병원체에 감염된 일반 세포들도 사이토카인의 일종인 인터페론을 분비함으로써 …</div><div class="de"><strong>사이토카인</strong>: 면역 세포가 분비하는 모든 신호 물질의 총칭(상위 개념).<br><strong>인터페론</strong>: 사이토카인의 한 종류. <strong>감염된 일반 세포</strong>가 분비하는 경고 신호.<br><br>즉, 인터페론 ⊂ 사이토카인. 포함 관계를 묻는 선지가 출제 가능.<br><br><span class='highlight'>내신 포인트:</span> '선천 면역 세포 → 사이토카인', '감염된 일반 세포 → 인터페론'으로 <strong>분비 주체</strong>가 다름을 구분.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">후천적 면역의 2가지 대응 방식 정리</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">헬퍼 T 세포는 이 항원에 대해 두 가지 방식으로 대응하도록 돕는다.</div><div class="de"><strong>대응 ①: 킬러 T 세포 증식</strong><br>→ 해당 항원만 인식 → 선택적으로 병원체·감염 세포 제거<br>→ <strong>직접 공격</strong> 방식<br><br><strong>대응 ②: B 세포 → 항체 생산</strong><br>→ 항체의 3가지 역할: ⓐ 병원체 이동 방해 + 다른 세포 부착 차단, ⓑ 항원과 덩어리 형성 → 선천 면역 세포 포식 보조, ⓒ 보체 활성화<br>→ <strong>간접 보조</strong> 방식<br><br><span class='highlight'>내신 포인트:</span> 킬러 T=직접 공격, 항체=간접 보조로 대비. 항체의 3가지 역할은 서술형 빈출.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">지문 전체 구조: 과정 설명형</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>[1]</strong> 면역계 정의 + 3단계 구조 제시 (개관)<br><strong>[2]</strong> 선천적 면역 과정 상세 설명<br><strong>[3]</strong> 후천적 면역 과정 상세 설명<br><strong>[4]</strong> 면역 기억 메커니즘 + 영구적 면역<br><br>전형적인 <strong>「개념 정의 → 하위 과정 순차 설명 → 결과/의의」</strong> 구조.<br>각 문단이 독립된 단계를 설명하므로, 문단 간 관계 = <strong>순서(선천→후천→기억)</strong>.</div></div></div></div></div><div class="passage" id="p3"><div class="p-head">
+<div class="p-tag">지문 분석 ③</div>
+<h2>논증과 베이컨의 귀납법</h2>
+<p class="p-sub">연역법과 귀납법의 차이, 베이컨의 새로운 귀납법과 존재표·부재표·정도표·배제표</p>
+<div class="p-meta"><span>📘 25학년도 수능완성</span><span>📄 5개 문단</span><span>🏷️ 인문 · 철학</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">논증의 정의: 연역법 vs 귀납법</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>논증 = 전제를 근거로 결론을 도출하는 과정. <strong>연역법</strong> = 전제→결론이 필연적(진리 보존적), <strong>귀납법</strong> = 결론이 확률적(진리 확장적). 연역: 일반→개별, 귀납: 개별→일반.</p>
+<div class="kp">💡 핵심 키워드: 진리 보존적(연역), 진리 확장적(귀납)</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">베이컨이 귀납법에 집중한 이유</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>연역법은 새로운 지식을 만들 수 없음 → 베이컨은 귀납법에 집중. 그러나 귀납법의 결론은 확률적(거짓 가능) → <strong>'귀납적 강도'</strong>를 높일 방법 탐색 → 새로운 귀납법 구상.</p>
+<div class="kp">💡 핵심 키워드: 귀납적 강도, 새로운 귀납법</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">존재표·부재표·정도표 — '열' 개념 도출</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>열의 개념 도출 과정: ① <strong>존재표</strong> = 열이 있는 긍정적 사례(햇빛, 번개 등), ② <strong>부재표</strong> = 각 사례에 대응하는 부정적 사례(달빛, 차가운 공기 등), ③ <strong>정도표</strong> = 열의 정도가 다른 사례(가만히 있는 동물 vs 움직이는 동물).</p>
+<div class="kp">💡 핵심 키워드: 존재표, 부재표, 정도표</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">배제표로 귀납적 강도 확보</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>존재표·부재표·정도표를 정리한 뒤, 열에 합당하지 않은 성질만 모아 <strong>배제표</strong> 작성. 예) 끓는 물은 열이 있지만 빛나지 않음 → '빛나는 성질' 배제. 이렇게 범위를 좁혀 현대적 열 개념과 거의 일치하는 결론 도출. 배제표로 <strong>귀납적 강도를 높여</strong> 논증의 우수성 확보.</p>
+<div class="kp">💡 핵심 키워드: 배제표, 귀납적 강도</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-purple">5</div>
+<div class="pc-l">개미·거미·꿀벌의 비유</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>개미의 방법</strong> = 경험만 모으기(맹목적 수집). <strong>거미의 방법</strong> = 자기 확신으로 독자적 사고(경험 무시). <strong>꿀벌의 방법</strong> = 경험에서 얻은 재료를 지성으로 변화·소화 → 참된 귀납법에 가장 부합.</p>
+<div class="kp">💡 핵심 키워드: 개미(경험 수집), 거미(독자적 사고), 꿀벌(경험+지성)</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">베이컨의 새로운 귀납법</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">연역법의 한계를 인식하고 귀납적 강도를 높이기 위해 존재표·부재표·정도표·배제표를 활용한 베이컨의 논증 방법</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">지문의 중심 인물은 <strong>베이컨</strong>이며, 1문단의 연역법/귀납법 비교는 도입부입니다. 표제에는 '베이컨'과 '귀납법'이 반드시 포함되어야 합니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">거론되다</span><span class="vp">동사</span></td><td class="vd">화제에 올라 논의되다. 이야기로 꺼내어지다.<br><span class="vc">「대표적인 논증의 방법으로는 … 거론된다」</span></td></tr><tr><td><span class="vw">도출하다</span><span class="vp">동사</span></td><td class="vd">판단이나 결론을 이끌어 내다.<br><span class="vc">「전제를 근거로 결론을 도출하는」</span></td></tr><tr><td><span class="vw">구상하다</span><span class="vp">동사</span></td><td class="vd">앞으로 할 일의 내용을 대강 생각해 내다. 계획하다.<br><span class="vc">「새로운 귀납법을 구상해 냈다」</span></td></tr><tr><td><span class="vw">합당하다</span><span class="vp">형용사</span></td><td class="vd">이치에 맞거나 알맞다. 적절하다.<br><span class="vc">「열에 대한 성질로 합당하지 않은 것들」</span></td></tr><tr><td><span class="vw">확보하다</span><span class="vp">동사</span></td><td class="vd">확실하게 보전하거나 가지다. 손에 넣다.<br><span class="vc">「논증의 우수성을 확보한 것이다」</span></td></tr><tr><td><span class="vw">현혹되다</span><span class="vp">동사</span></td><td class="vd">혹하여 정신을 차리지 못하다. 속아 넘어가다.<br><span class="vc">「환기성 문장에 현혹되지 말되」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">'진리 보존적' vs '진리 확장적' 정확한 의미</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">연역법은 … '진리 보존적 논증법'이고, 귀납법은 … '진리 확장적 논증법'이다.</div><div class="de"><strong>진리 보존적</strong>: 전제가 참이면 결론도 반드시 참. 새로운 내용을 추가하지 않고 전제 안의 진리를 '보존'만 함.<br><br><strong>진리 확장적</strong>: 전제 너머의 새로운 결론(일반화)을 '확장'함. 대신 결론이 거짓일 수도 있음(확률적).<br><br><span class='highlight'>내신 포인트:</span> '보존'='새로운 지식 불가', '확장'='새로운 지식 가능하나 확률적' — 이 대비가 선지의 핵심.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">4개의 표 관계 정리: 존재표→부재표→정도표→배제표</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">존재표를 통해 열이 있을 때의 성질을, 부재표를 통해 열이 없을 때의 성질을, 정도표를 통해 열이 증감하는 성질을 정리한 다음, … '배제표'를 만든다.</div><div class="de"><strong>존재표</strong>: 열 O인 사례 수집 → 열과 함께 나타나는 성질 파악<br><strong>부재표</strong>: 열 X인 사례 수집 → 열 없을 때의 성질 파악<br><strong>정도표</strong>: 열 강도 차이 비교 → 열과 함께 증감하는 성질 파악<br><strong>배제표</strong>: 위 3개 표에서 열의 성질로 불합당한 것을 제거<br><br>핵심 로직: <strong>수집→비교→제거→결론</strong><br><br><span class='highlight'>내신 포인트:</span> 4개 표의 역할과 순서가 서술형 빈출. 특히 배제표가 '귀납적 강도'를 높이는 핵심 도구.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">개미·거미·꿀벌 비유의 의미</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>개미</strong> = 경험주의의 극단. 재료만 모으고 가공 없음 → 단순 귀납<br><strong>거미</strong> = 합리주의의 극단. 경험 없이 머릿속 생각만 → 순수 연역<br><strong>꿀벌</strong> = 경험(재료) + 지성(가공) 결합 → 베이컨의 새 귀납법<br><br><span class='highlight'>내신 포인트:</span> 비유 대상과 학문 방법론을 정확히 연결하는 문제 출제 가능. 꿀벌=베이컨의 입장.</div></div></div></div></div><div class="passage" id="p4"><div class="p-head">
+<div class="p-tag">지문 분석 ④</div>
+<h2>데카르트의 명료·분명과 연역</h2>
+<p class="p-sub">자명한 전제에서 출발하여 지식을 확장하는 '데카르트적 연역'의 논증 구조</p>
+<div class="p-meta"><span>📘 24학년도 수능완성</span><span>📄 5개 문단</span><span>🏷️ 인문 · 철학</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">자명함, 명료함, 분명함의 정의</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>데카르트는 자신의 확실성을 스스로 드러내는 것을 <strong>'자명하다'</strong>고 정의. 철학도 수학처럼 <strong>명료(clear)</strong>하고 <strong>분명(distinct)</strong>해야 한다고 봄. 통증의 예시로 설명.</p>
+<div class="kp">💡 핵심 키워드: 자명, 명료(clear), 분명(distinct)</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">명료·분명의 구체적 구분 (통증 예시)</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>통증이 <strong>명료하지만 분명하지 않은</strong> 경우: 통증을 느끼지만 심리적인지 신체 어디인지 불확실 → 적용 범위 모호. 통증이 <strong>분명하지만 명료하지 않은</strong> 경우: 어느 부위인지는 알지만 가려운 건지 아픈 건지 혼동 → 감각 자체가 애매.</p>
+<div class="kp">💡 핵심 키워드: 명료 ≠ 분명, 모호(분명X), 애매(명료X)</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">절대적 지식 추구와 감각 부정</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>데카르트는 명료·분명한 절대적 지식을 추구. 자명하다고 믿던 것도 모두 의심. 착시 현상 등을 근거로 <strong>감각적 경험을 통해 얻은 모든 지식을 부정</strong>.</p>
+<div class="kp">💡 핵심 키워드: 방법적 회의, 감각 부정</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">데카르트적 연역의 시도</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>고전적 연역법은 새로운 지식 불가 → 불만. <strong>자명한 명제에서 출발하여 다른 명제를 하나씩 도출</strong>하는 '데카르트적 연역' 시도. 예) 삼각형 내각의 합 180° → 사각형·오각형 내각의 합 증명 → 다각형 공식으로 일반화.</p>
+<div class="kp">💡 핵심 키워드: 데카르트적 연역, 자명한 명제→도출→일반화</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-purple">5</div>
+<div class="pc-l">첨가 방식을 통한 지식 체계 완성</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>고전적 연역 대신 <strong>'생산적 연역'</strong>으로 지식 체계 전체를 구축. 순수 사고만으로 증명 가능하다고 믿음. 진흙을 바르고 청동을 붓는 <strong>'첨가 방식'</strong>으로 절대적 지식이라는 조각상 완성.</p>
+<div class="kp">💡 핵심 키워드: 생산적 연역, 첨가 방식</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">데카르트의 생산적 연역법</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">자명한 명제에서 출발하여 명료하고 분명한 지식을 하나씩 도출함으로써 지식 체계 전체를 구축하려 한 데카르트적 연역의 논증 구조</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">이 지문은 <strong>베이컨 지문(③)과 대비</strong>하여 출제될 가능성이 높습니다. 베이컨=귀납법(경험+지성), 데카르트=연역법(순수 사고). 두 지문을 나란히 정리하면 비교형 문항에 대비 가능합니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">자명하다</span><span class="vp">형용사</span></td><td class="vd">증명하지 않아도 저절로 분명하고 확실하다.<br><span class="vc">「자신의 확실성을 스스로 드러내는 것을 '자명하다'라고」</span></td></tr><tr><td><span class="vw">명료하다</span><span class="vp">형용사</span></td><td class="vd">분명하고 확실하다. 흐리지 않고 뚜렷하다.<br><span class="vc">「철학도 수학처럼 명료하고 분명해야」</span></td></tr><tr><td><span class="vw">모호하다</span><span class="vp">형용사</span></td><td class="vd">뜻이 흐리고 분명하지 않다. 범위가 불확실하다.<br><span class="vc">「적용 범위가 모호해져 분명하지 않게」</span></td></tr><tr><td><span class="vw">애매하다</span><span class="vp">형용사</span></td><td class="vd">분명하지 않고 이것도 아니고 저것도 아닌 상태.<br><span class="vc">「통증이 애매해져 … 명료하지 않게 된다」</span></td></tr><tr><td><span class="vw">반감</span><span class="vp">명사</span></td><td class="vd">반대하거나 반발하는 감정.<br><span class="vc">「새로운 지식을 만들어 낼 수 없다는 데 반감을」</span></td></tr><tr><td><span class="vw">불변</span><span class="vp">명사</span></td><td class="vd">변하지 아니함. 바뀌지 않는 상태.<br><span class="vc">「불변의 명제를 통해」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">명료(clear) vs 분명(distinct) — 가장 혼동하기 쉬운 개념</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">통증은 그에게 명료하더라도 분명하지는 않을 수 있다. … 통증이 어느 부위인지 분명하더라도 … 명료하지 않게 된다.</div><div class="de"><strong>명료(clear)</strong> = 감각·인식 자체가 뚜렷한지 → '이것이 무엇인지' 알 수 있는 정도<br>↔ 명료하지 않음 = <strong>애매</strong>(가려운 건지 아픈 건지 모름)<br><br><strong>분명(distinct)</strong> = 적용 범위가 확실한지 → '어디까지인지' 구분할 수 있는 정도<br>↔ 분명하지 않음 = <strong>모호</strong>(심리적인지 신체인지 구분 불가)<br><br><span class='highlight'>내신 포인트:</span> 명료=감각의 선명도, 분명=범위의 구분도. 이 대비를 통증 예시에 대입하는 문제 빈출.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">고전적 연역법 vs 데카르트적 연역</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>고전적 연역법</strong>: 전제 안의 내용만 결론으로 → 새로운 지식 불가(진리 보존적)<br><br><strong>데카르트적 연역</strong>: 자명한 명제에서 시작 → 다른 명제를 하나씩 도출 → 일반화까지 확장<br>= 수학 증명처럼 한 단계씩 지식을 쌓아 올리는 방식<br><br><span class='highlight'>핵심:</span> 데카르트는 연역법의 '보존성'이라는 한계를 극복하려 했음. 그의 해법은 자명한 출발점에서 한 단계씩 새 명제를 '첨가'하는 것.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">'첨가 방식' 비유의 의미</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">진흙을 바르고 청동을 붓는 '첨가 방식'을 통해 절대적인 지식이라는 하나의 조각상을 완성해 나가고자 하였다.</div><div class="de">조각에는 두 가지 방식이 있습니다:<br>① <strong>제거 방식</strong>: 돌덩이에서 불필요한 부분을 깎아 냄 → 베이컨의 '배제표'와 유사<br>② <strong>첨가 방식</strong>: 진흙·청동을 하나씩 쌓아 올림 → 데카르트의 '연역적 도출'<br><br><span class='highlight'>내신 포인트:</span> 이 비유는 데카르트의 방법론을 상징적으로 보여줌. 베이컨(제거/배제)과 대비됨.</div></div></div></div></div><div class="passage" id="p5"><div class="p-head">
+<div class="p-tag">지문 분석 ⑤</div>
+<h2>국제 정치의 자유주의와 상호 의존론</h2>
+<p class="p-sub">자유주의 상호 의존론의 논리, 현실주의의 반론, 코플랜드의 미래 기대론</p>
+<div class="p-meta"><span>📘 수능완성 출제</span><span>📄 4개 문단</span><span>🏷️ 사회 · 정치</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">자유주의 vs 현실주의 — 국제 정치의 두 시각</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>현실주의</strong>: 국가를 단일 행위자로 보고, 자국 이익을 배타적으로 추구하는 힘의 정치. <strong>자유주의</strong>: 국가와 다양한 행위자 관계 속에서 외교 정책 결정. 현실주의의 '국가=주요 행위자' 가정은 수용하되, 경제적 이익·국제 제도 강조. <strong>상호 의존론</strong> = 경제 협력으로 국가 간 협력·평화 설명.</p>
+<div class="kp">💡 핵심 키워드: 현실주의(힘의 정치), 자유주의(협력), 상호 의존론</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">상호 의존 관계가 형성되는 4가지 이유</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>① <strong>장기적 협력이 배신보다 유리</strong>(반복 상호작용). ② <strong>이슈 연계</strong>: 한 이슈에서 대립해도 다른 이슈를 연계하면 양보·협력 가능. ③ <strong>국제 제도</strong>(규범·기구)로 감시·처벌 → 불신 완화 + 거래 비용 감소. ④ <strong>국내 세력</strong>: 해외 시장 이익 집단이 지도자를 지지 → 상호 의존 강화 전략 추진.</p>
+<div class="kp">💡 핵심 키워드: 장기적 이익, 이슈 연계, 국제 제도, 국내 세력</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">현실주의의 3가지 반론</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>① <strong>안보 우선</strong>: 생존 위협 시 경제 이익은 부차적. 경제 협력은 안보 협력의 원인이 아니라 결과. ② <strong>상대적 이익</strong>: 절대적 이익보다 상대와의 이익 비교 중시 → 수입 규제·보조금으로 상대적 이익 확보 → 협력 제한. ③ <strong>비대칭적 상호 의존</strong>: 경제 대국은 무역 중단에 큰 영향 없지만 경제 소국에는 위기.</p>
+<div class="kp">💡 핵심 키워드: 안보 우선, 상대적 이익, 비대칭적 상호 의존</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">코플랜드의 '미래 기대' 이론</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>상호 의존의 '현재 수준'보다 <strong>'미래에 대한 기대'</strong>가 중요. 미래 전망이 부정적이면 현재 높은 상호 의존 관계여도 공격 감행(일본 진주만 공습). 반대로 현재 이해 공유 없어도 미래 긍정적 기대 → 동반자 관계 구축 가능.</p>
+<div class="kp">💡 핵심 키워드: 미래 기대, 진주만 사례</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">자유주의 상호 의존론과 그 비판</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">경제 협력을 통해 국가 간 협력과 평화를 설명하는 상호 의존론의 논리, 현실주의의 반론, 그리고 미래 기대의 중요성</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">이 지문은 <strong>「주장(자유주의)→반론(현실주의)→보완(코플랜드)」</strong> 구조입니다. 표제에는 '상호 의존론'이 핵심이며, 부제에서 '비판/반론'까지 포괄해야 합니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">간주하다</span><span class="vp">동사</span></td><td class="vd">주관적으로 판단하여 그렇다고 보다. = ~로 여기다.<br><span class="vc">「국가를 단일한 행위자로 간주하고」</span></td></tr><tr><td><span class="vw">배타적</span><span class="vp">관형사</span></td><td class="vd">남을 배척하거나 물리치는 성질의. 다른 것을 받아들이지 않는.<br><span class="vc">「자국의 이익을 배타적으로 추구하는」</span></td></tr><tr><td><span class="vw">부차적</span><span class="vp">관형사</span></td><td class="vd">으뜸 다음의. 중심이 아닌 부수적인.<br><span class="vc">「이익은 부차적 목표에 불과하다」</span></td></tr><tr><td><span class="vw">완화하다</span><span class="vp">동사</span></td><td class="vd">느슨하게 하다. 긴장이나 어려움을 덜어 주다.<br><span class="vc">「국가 간 상호 불신을 완화하는 데」</span></td></tr><tr><td><span class="vw">감행하다</span><span class="vp">동사</span></td><td class="vd">어려움을 무릅쓰고 과감하게 하다.<br><span class="vc">「공격을 감행하게 되지만」</span></td></tr><tr><td><span class="vw">비대칭적</span><span class="vp">관형사</span></td><td class="vd">대칭이 되지 않는. 양쪽의 형태·규모가 균등하지 않은.<br><span class="vc">「비대칭적 상호 의존 역시」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">'절대적 이익' vs '상대적 이익' 구분</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">국가는 절대적 이익보다 상대적 이익을 중시한다고 본다.</div><div class="de"><strong>절대적 이익</strong>: 내가 얻는 이익 자체의 크기. 예) 무역으로 100억 벌었다 → 만족.<br><strong>상대적 이익</strong>: 상대와 비교한 이익. 예) 나는 100억인데 상대는 200억 → 불만족.<br><br>현실주의는 국가가 상대적 이익에 민감하다고 봄 → 자기가 이득을 봐도 상대가 더 이득이면 불안 → 수입 규제·보조금 등 → 협력 제한.<br><br><span class='highlight'>내신 포인트:</span> 절대/상대 이익 구분은 사례 적용 문제로 출제 가능.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">'비대칭적 상호 의존'의 위험성</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">경제 대국은 … 큰 영향을 받지 않지만, 경제 소국에 경제 대국과의 무역 중단은 경제 위기를 의미한다.</div><div class="de">상호 의존이 <strong>균등하지 않은</strong> 상태 = 비대칭적 상호 의존.<br>경제 대국 A와 소국 B가 무역할 때:<br>→ A에게 B와의 무역은 전체의 2% → 중단해도 타격 미미<br>→ B에게 A와의 무역은 전체의 60% → 중단 시 경제 위기<br><br>이런 비대칭은 대국이 소국에 영향력을 행사하는 수단이 될 수 있음.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">지문 전체 구조: 주장-반론-보완</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>[1]</strong> 자유주의 vs 현실주의 대비 + 상호 의존론 소개<br><strong>[2]</strong> 상호 의존론의 논거 4가지 (주장)<br><strong>[3]</strong> 현실주의의 반론 3가지 (반론)<br><strong>[4]</strong> 코플랜드의 '미래 기대' 이론 (보완/제3의 시각)<br><br>전형적인 <strong>「A주장→B반론→C보완」</strong> 구조. 각 문단의 입장이 다르므로, '누구의 주장인지'를 정확히 구분하는 것이 핵심.</div></div></div></div></div><div class="passage" id="p6"><div class="p-head">
+<div class="p-tag">지문 분석 ⑥</div>
+<h2>질문하기 독서법</h2>
+<p class="p-sub">학습자 주도의 질문을 통한 능동적 독서와 의미화 과정</p>
+<div class="p-meta"><span>📘 부교재 수록</span><span>📄 3개 문단</span><span>🏷️ 독서 · 교육</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">질문하기 독서법의 정의와 의의</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>학습자를 독서의 주체로 만드는 방법. 기존: 교사 질문→학생 답. 질문하기 독서법: <strong>학습자가 스스로 질문</strong> → 능동적 배움. 질문의 주도권이 학습자에게 → 주입식 교육 탈피, <strong>주체적 성찰</strong>과 <strong>비판적 사고</strong> 도움.</p>
+<div class="kp">💡 핵심 키워드: 학습자 주도, 주체적 성찰, 비판적 사고</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">질문하기 독서법의 구체적 절차</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>① <strong>낭독하기</strong>(짝과 함께) → ② <strong>1차 질문하기</strong>(등장인물·경험·사회 현상 등 개방형 질문) → ③ <strong>대화와 토론</strong>(질문 공유·의견 교환) → ④ <strong>2차 질문하기</strong>(연상 질문, 탐구 유형 질문이 중심) → ⑤ <strong>대화와 토론</strong>(심화) → ⑥ <strong>성찰적 메시지 찾기</strong>(느낀 점·깨달은 바 정리). 의미화 과정은 1차→2차로 갈수록 심화·확장.</p>
+<div class="kp">💡 핵심 키워드: 낭독→1차 질문→토론→2차 질문→토론→성찰적 메시지</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">질문하기 독서법의 효과</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>학습자의 <strong>능동적·비판적 사유</strong> 가능. 지식 획득 + 필요한 정보를 스스로 인식·탐구하는 힘 배양. 질문하기 독서법 = <strong>앎과 깨달음, 실천이라는 독서의 본질</strong>에 가까이 갈 수 있는 방법.</p>
+<div class="kp">💡 핵심 키워드: 능동적 사유, 앎·깨달음·실천</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">질문하기 독서법의 절차와 효과</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">학습자가 스스로 질문하고 대화·토론을 통해 사고를 확장하며, 독서의 의미화 과정을 심화하는 능동적 독서 방법</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">이 지문은 다른 지문에 비해 난도가 낮습니다. <strong>절차(순서)</strong>를 정확히 파악하는 것이 핵심이며, '1차 질문(피상적)→2차 질문(탐구적)'으로 질적 변화가 일어난다는 점을 놓치지 마세요.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">피상적</span><span class="vp">관형사</span></td><td class="vd">겉에 나타난 부분에만 해당하는. 깊이 없이 표면적인.<br><span class="vc">「1차 질문하기에서 피상적 질문이 많았다면」</span></td></tr><tr><td><span class="vw">성찰</span><span class="vp">명사</span></td><td class="vd">자기 자신을 깊이 반성하고 살피는 것.<br><span class="vc">「주체적 성찰과 비판적 사고를 돕는다」</span></td></tr><tr><td><span class="vw">의미화</span><span class="vp">명사</span></td><td class="vd">어떤 것에 의미를 부여하는 과정. 뜻을 만들어 가는 것.<br><span class="vc">「독서의 의미화 과정이 어느 정도 이루어졌기」</span></td></tr><tr><td><span class="vw">사유</span><span class="vp">명사</span></td><td class="vd">깊이 생각하여 이치를 따짐. = 사고, 숙고.<br><span class="vc">「능동적이고 비판적인 사유가 가능하게」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">1차 질문 vs 2차 질문의 질적 차이</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">1차 질문하기에서 피상적 질문이 많았다면 2차 질문하기에서는 주제에 대한 깊이 있는 탐구 … 탐구 유형의 질문이 주를 이루게 된다.</div><div class="de"><strong>1차 질문</strong>: 등장인물, 개인 경험, 표면적 사회 현상 → <strong>피상적</strong><br><strong>2차 질문</strong>: 주제 탐구, 삶의 성찰, 사회 현상 심층 분석 → <strong>탐구적</strong><br><br>이 변화가 가능한 이유: 1차 질문 + 대화·토론을 거치면서 '의미화 과정'이 이미 어느 정도 진행되었기 때문.<br><br><span class='highlight'>내신 포인트:</span> '피상적→탐구적'이라는 질적 변화와 그 이유(의미화 과정의 선행)를 연결하는 문제 출제 가능.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">지문 전체 구조: 정의→절차→효과</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>[1]</strong> 정의 + 기존 방식과의 차이점<br><strong>[2]</strong> 구체적 절차 (6단계)<br><strong>[3]</strong> 효과 + 독서의 본질과의 연결<br><br>가장 단순한 <strong>「무엇→어떻게→왜(효과)」</strong> 구조. 2문단의 절차 순서를 정확히 외우는 것이 이 지문의 핵심 공략법입니다.</div></div></div></div></div><div class="passage" id="p7"><div class="p-head">
+<div class="p-tag">지문 분석 ⑦</div>
+<h2>통정 허위 표시</h2>
+<p class="p-sub">민법의 의사 표시 이론: 통정 허위 표시의 성립 요건, 효력, 선의의 제삼자 보호</p>
+<div class="p-meta"><span>📘 부교재 수록</span><span>📄 4개 문단</span><span>🏷️ 사회 · 법</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">민법의 사적 자치 원칙과 통정 허위 표시 도입</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>민법은 <strong>사적 자치의 원칙</strong> → 개인이 자유롭게 법률관계 형성. 그러나 의사 표시와 실제 의사가 불일치하는 경우 존재. 민법은 이에 대해 특별 규율 → 그 대표적인 것이 <strong>통정 허위 표시</strong>.</p>
+<div class="kp">💡 핵심 키워드: 사적 자치, 의사 표시 불일치, 통정 허위 표시</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">통정 허위 표시의 정의와 성립 요건</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>당사자 모두가 외형만 갖추고 실제 법률 효과 발생 의사 없이 합의하여 행하는 의사 표시. 성립 요건 2가지: ① 외부 표시 행위가 <strong>허위</strong>일 것, ② 허위에 대해 쌍방이 <strong>통정(서로 인식·합의)</strong>할 것. 한쪽만 허위를 알면 성립 불가.</p>
+<div class="kp">💡 핵심 키워드: 쌍방 합의, 허위 표시, 통정</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">사기·강박에 의한 의사 표시와의 비교</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>유사점: 표면 행위 ≠ 실제 의사. 차이점: <strong>사기·강박</strong> = 한쪽이 기망·강요 → 일단 <strong>유효</strong>하게 성립, 취소 절차 거치면 <strong>소급하여 무효</strong>. <strong>통정 허위 표시</strong> = 처음부터 <strong>무효</strong>, 별도 취소 절차 불필요.</p>
+<div class="kp">💡 핵심 키워드: 사기·강박=유효→취소→소급 무효, 통정 허위=처음부터 무효</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">선의의 제삼자 보호</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>원칙적으로 무효이지만, <strong>선의의 제삼자</strong>(허위 사실을 모르고 이해관계를 맺은 자)에게는 무효 주장 불가. 이유: 거래의 안전 보호. 예) 허위 매매로 외형상 소유자가 된 자가 제삼자에게 처분 → 제삼자 보호(유효). 단, 제삼자가 허위 사실을 알았으면 무효 주장 가능.</p>
+<div class="kp">💡 핵심 키워드: 선의의 제삼자, 거래 안전, 악의=무효 주장 가능</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">통정 허위 표시의 법적 효력</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">민법상 의사 표시와 실제 의사가 불일치하는 통정 허위 표시의 성립 요건, 사기·강박과의 차이, 그리고 선의의 제삼자 보호</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">법 지문은 <strong>개념 정의 → 성립 요건 → 효력 → 예외</strong> 순서가 전형적입니다. 이 지문도 같은 구조입니다. 특히 3문단의 사기·강박과의 '대비'가 시험 출제 핵심입니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">근간</span><span class="vp">명사</span></td><td class="vd">사물의 바탕이 되는 줄기. = 근본, 토대.<br><span class="vc">「사적 자치의 원칙을 근간으로 하기 때문에」</span></td></tr><tr><td><span class="vw">합치되다</span><span class="vp">동사</span></td><td class="vd">서로 일치하다. 뜻이 맞아떨어지다.<br><span class="vc">「당사자 간의 의사가 합치되는 것이」</span></td></tr><tr><td><span class="vw">규율</span><span class="vp">명사</span></td><td class="vd">규칙에 따라 통제·제한하는 것. 법적 규범.<br><span class="vc">「법률 행위의 효력에 대해 특별한 규율을」</span></td></tr><tr><td><span class="vw">기망</span><span class="vp">명사</span></td><td class="vd">남을 속이는 것. = 사기.<br><span class="vc">「상대방의 기망이나 강요에 의해」</span></td></tr><tr><td><span class="vw">소급하다</span><span class="vp">동사</span></td><td class="vd">이미 지나간 과거로 거슬러 올라가 효력을 미치다.<br><span class="vc">「취소 절차를 거치면 소급하여 무효가」</span></td></tr><tr><td><span class="vw">선의</span><span class="vp">명사</span></td><td class="vd">(법) 어떤 사실을 모르는 상태. ↔ 악의(사실을 아는 상태).<br><span class="vc">「선의의 제삼자에게는 그 무효를 주장할 수 없다」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">통정 허위 표시 vs 사기·강박 — 핵심 대비표</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">사기나 강박에 의한 의사 표시는 … 일단 유효하게 성립한다. … 통정 허위 표시는 원칙적으로 무효이기 때문에 …</div><div class="de"><table style='width:100%;font-size:13px;border-collapse:collapse;color:var(--text-secondary);'><tr style='border-bottom:1px solid var(--border);'><td style='padding:8px;color:var(--text-muted);'>구분</td><td style='padding:8px;'><strong>사기·강박</strong></td><td style='padding:8px;'><strong>통정 허위 표시</strong></td></tr><tr style='border-bottom:1px solid var(--border);'><td style='padding:8px;color:var(--text-muted);'>인식</td><td style='padding:8px;'>한쪽만 허위 인식</td><td style='padding:8px;'>쌍방 모두 허위 합의</td></tr><tr style='border-bottom:1px solid var(--border);'><td style='padding:8px;color:var(--text-muted);'>최초 효력</td><td style='padding:8px;'>유효</td><td style='padding:8px;'>무효</td></tr><tr><td style='padding:8px;color:var(--text-muted);'>취소 절차</td><td style='padding:8px;'>필요 (소급 무효)</td><td style='padding:8px;'>불필요</td></tr></table><br><span class='highlight'>내신 포인트:</span> 이 대비표 전체가 시험 범위. 특히 '최초 효력'과 '취소 절차 필요 여부'가 가장 빈출.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">법률 용어 '선의'와 '악의'</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">선의의 제삼자는 통정 허위 표시라는 사실을 알지 못하고 새로운 이해관계를 맺은 자를 말한다.</div><div class="de">일상 한국어에서 '선의'='좋은 뜻', '악의'='나쁜 뜻'이지만,<br><strong>법률 용어</strong>에서는 전혀 다릅니다:<br><br><strong>선의(善意)</strong> = 어떤 사실을 <strong>모르는</strong> 상태<br><strong>악의(惡意)</strong> = 어떤 사실을 <strong>아는</strong> 상태<br><br>도덕적 판단과 무관. '선의의 제삼자' = 허위 사실을 모르고 거래에 참여한 제삼자.<br><br><span class='highlight'>내신 포인트:</span> '선의=몰랐다', '악의=알았다'로 단순 치환하면 됩니다. 이 구분을 묻는 문제가 반드시 출제됩니다.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">지문 전체 구조: 정의→요건→대비→예외</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>[1]</strong> 사적 자치 원칙 + 통정 허위 표시 도입 (배경)<br><strong>[2]</strong> 통정 허위 표시의 정의 + 성립 요건 2가지<br><strong>[3]</strong> 사기·강박과의 대비 (유사점·차이점)<br><strong>[4]</strong> 선의의 제삼자 보호 (예외 규정)<br><br><strong>「배경→정의/요건→대비→예외」</strong> = 법 지문의 전형적 구조.</div></div></div></div></div><div class="passage" id="p8"><div class="p-head">
+<div class="p-tag">지문 분석 ⑧</div>
+<h2>동물의 자기 수용 메커니즘</h2>
+<p class="p-sub">자철석, 크립토크롬, 암풀라 기관 — 세 가지 자기장 감지 시스템의 원리와 비교</p>
+<div class="p-meta"><span>📘 부교재 수록</span><span>📄 6개 문단</span><span>🏷️ 과학 · 생물</span></div>
+</div><div class="section active" data-s="summary">
+<div class="s-title"><div class="ico" style="background:var(--mintG);color:var(--mint);">①</div>문단별 중심 내용 요약</div>
+<p class="s-desc">내신 시험에서 독서 지문은 기본적으로 문단별 내용 파악이 중심이 된다.</p><div class="pc open"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-mint">1</div>
+<div class="pc-l">자기 수용의 정의 + 자철석 기반 시스템</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>자기 수용</strong> = 동물이 지구 자기장을 감지하는 능력(약 50여 종 보유). 3가지 메커니즘 제시. <strong>자철석 기반</strong>: 체내 산화 철(Fe₃O₄)이 자기장에 반응 → 이온 채널 자극 → 전기 신호 → 뇌 전달. 강도+방향 모두 감지. 빛 없이도 작동(크립토크롬보다 어두운 환경에서 유리).</p>
+<div class="kp">💡 핵심 키워드: 자기 수용, 자철석, 이온 채널, 빛 불필요</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-blue">2</div>
+<div class="pc-l">크립토크롬 기반 시스템</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p><strong>광화학적 반응</strong> 이용. 크립토크롬 단백질이 청색광 흡수 → <strong>라디칼 쌍</strong> 형성 → 자기장 방향에 따라 전자 스핀 변화 → 신경 신호 변환. 철새 망막의 <strong>Cry4 단백질</strong>이 자기장을 시각적 패턴으로 변환('볼 수 있게'). 주로 <strong>방향 정보</strong> 제공. 장거리 이동 철새에게 중요. 청색광 필터 실험으로 입증.</p>
+<div class="kp">💡 핵심 키워드: 크립토크롬, 청색광, 라디칼 쌍, Cry4, 방향 정보</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-amber">3</div>
+<div class="pc-l">암풀라 기관(전기 역학적 시스템)</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>상어·가오리 등 연골어류에서 발견. 머리 부분의 <strong>젤로 채워진 관과 주머니</strong>. 원래 전기 수용체 → 최근 자기장 감지 역할도 확인. 해수 속 이동 시 자기장을 가로지르며 전기적 변화 유도 → 젤이 감지. 물속 환경 특화, 전기장+자기장 동시 감지. <strong>다기능</strong>: 온도·수압 변화도 감지. 진화적으로 가장 오래된 시스템 추정.</p>
+<div class="kp">💡 핵심 키워드: 암풀라 기관, 젤, 전기장+자기장, 다기능</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-coral">4</div>
+<div class="pc-l">세 시스템의 종합 활용 — 지도 감각과 나침반 감각</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>철새: 자철석(지도 감각 = 위도·경도 파악) + 크립토크롬(나침반 감각 = 방향 인지) 결합. 유럽울새는 5,000km 이상을 cm 단위 오차로 비행. 바다거북: 자기장으로 '정신 지도' 형성. 상어·가오리: 자기장+전기장 동시 감지로 물속 내비게이션 + 먹이 탐지 특화.</p>
+<div class="kp">💡 핵심 키워드: 지도 감각(자철석), 나침반 감각(크립토크롬), 정신 지도</div></div></div><div class="pc"><div class="pc-h" onclick="tpc(this)">
+<div class="pc-n n-purple">5</div>
+<div class="pc-l">연구 과제와 감도 비교</div><div class="pc-t">▾</div>
+</div><div class="pc-b"><p>주요 과제: 분자적 작동 원리 규명. 감도 비교: <strong>크립토크롬</strong> 약 50nT(가장 민감) > <strong>암풀라</strong> 중간 > <strong>자철석</strong> 200~500nT. 생체 모방 내비게이션·의학 기술에 응용 기대.</p>
+<div class="kp">💡 핵심 키워드: 감도: 크립토크롬>암풀라>자철석, 응용 가능성</div></div></div></div><div class="section" data-s="title">
+<div class="s-title"><div class="ico" style="background:var(--blueG);color:var(--blue);">②</div>표제와 부제</div>
+<p class="s-desc">쉬운 유형으로 출제되지만 글을 아우르는 '표제와 부제'에 관한 문항도 출제되곤 하니 언제나 정리가 필요하다.</p>
+<div class="tc"><div class="tl main">표제</div><div class="tv">동물의 자기 수용 메커니즘과 응용</div>
+<div class="td"></div><div class="tl sub">부제</div><div class="tv sv">자철석·크립토크롬·암풀라 기관을 통한 세 가지 자기장 감지 시스템의 원리, 종별 활용 방식, 그리고 연구 전망</div></div>
+<div class="tc tip"><div class="tl">내신 TIP</div><div class="tv sv">과학 지문 중 가장 정보량이 많습니다. <strong>3개 시스템의 비교</strong>가 핵심이며, 작동 원리·감지 대상·환경 조건·감도를 표로 정리하는 것이 효과적입니다.</div></div>
+</div><div class="section" data-s="vocab">
+<div class="s-title"><div class="ico" style="background:var(--amberG);color:var(--amber);">③</div>어려운 어휘 정리</div>
+<p class="s-desc">의외로 독서 문항에서 가장 고난도는 어휘에 대한 문제임을 기억해야 한다.</p>
+<table class="vt"><thead><tr><th style="width:28%">어휘</th><th>사전적 정의 / 문맥적 의미</th></tr></thead><tbody><tr><td><span class="vw">감지하다</span><span class="vp">동사</span></td><td class="vd">느낌으로 알아차리다. 미세한 변화를 감각이나 장치로 알아내다.<br><span class="vc">「지구의 자기장을 감지할 수 있는 능력」</span></td></tr><tr><td><span class="vw">정렬되다</span><span class="vp">동사</span></td><td class="vd">가지런하게 줄지어 놓이다. 일정한 방향으로 배열되다.<br><span class="vc">「특정 방향으로 회전하거나 정렬된다」</span></td></tr><tr><td><span class="vw">유도되다</span><span class="vp">동사</span></td><td class="vd">어떤 현상이 다른 현상에 의해 이끌려 일어나다.<br><span class="vc">「전기적 변화가 유도되기 때문이며」</span></td></tr><tr><td><span class="vw">규명하다</span><span class="vp">동사</span></td><td class="vd">어떤 사실을 자세히 따져서 바로 밝히다.<br><span class="vc">「분자적 작동 원리를 규명하는 것이다」</span></td></tr><tr><td><span class="vw">특화되다</span><span class="vp">동사</span></td><td class="vd">특별히 한 분야에 전문적으로 맞추어지다.<br><span class="vc">「물속 환경에 특화되어 있으며」</span></td></tr><tr><td><span class="vw">추정되다</span><span class="vp">동사</span></td><td class="vd">미루어 헤아려 판단되다. 확실하지 않지만 그러할 것으로 여겨지다.<br><span class="vc">「가장 오래된 자기 수용 시스템 중 하나로 추정되며」</span></td></tr></tbody></table></div><div class="section" data-s="deep">
+<div class="s-title"><div class="ico" style="background:var(--coralG);color:var(--coral);">④</div>어려운 부분 집중 설명</div>
+<p class="s-desc">이 지문에서 가장 중요하고, 어려운 부분을 집중적으로 파악할 필요가 있다.</p><div class="dc open"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-hard">난문</div>
+<div class="dc-ti">3개 시스템 비교 정리표</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><table style='width:100%;font-size:12px;border-collapse:collapse;color:var(--text-secondary);'><tr style='border-bottom:1px solid var(--border);'><td style='padding:6px;color:var(--text-muted);'>구분</td><td style='padding:6px;'><strong>자철석</strong></td><td style='padding:6px;'><strong>크립토크롬</strong></td><td style='padding:6px;'><strong>암풀라</strong></td></tr><tr style='border-bottom:1px solid var(--border);'><td style='padding:6px;color:var(--text-muted);'>원리</td><td style='padding:6px;'>자성 입자 정렬→이온 채널</td><td style='padding:6px;'>청색광→라디칼 쌍→전자 스핀</td><td style='padding:6px;'>해수 이동→전기 유도→젤 감지</td></tr><tr style='border-bottom:1px solid var(--border);'><td style='padding:6px;color:var(--text-muted);'>감지 대상</td><td style='padding:6px;'>강도+방향</td><td style='padding:6px;'>주로 방향</td><td style='padding:6px;'>전기장+자기장</td></tr><tr style='border-bottom:1px solid var(--border);'><td style='padding:6px;color:var(--text-muted);'>빛 필요</td><td style='padding:6px;'>불필요</td><td style='padding:6px;'>필요(청색광)</td><td style='padding:6px;'>불필요</td></tr><tr style='border-bottom:1px solid var(--border);'><td style='padding:6px;color:var(--text-muted);'>감도</td><td style='padding:6px;'>200~500nT</td><td style='padding:6px;'>~50nT(최고)</td><td style='padding:6px;'>중간</td></tr><tr><td style='padding:6px;color:var(--text-muted);'>대표 동물</td><td style='padding:6px;'>비둘기, 연어, 거북</td><td style='padding:6px;'>철새(유럽울새)</td><td style='padding:6px;'>상어, 가오리</td></tr></table><br><span class='highlight'>내신 포인트:</span> 이 비교표 전체가 시험 범위. 특히 '빛 필요 여부'와 '감도 순서'가 빈출.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-concept">개념</div>
+<div class="dc-ti">지도 감각 vs 나침반 감각</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="dq">철새는 자철석 시스템과 크립토크롬 시스템을 모두 사용하여 각각 '지도 감각'과 '나침반 감각'을 구현한다.</div><div class="de"><strong>지도 감각(자철석)</strong> = 자기장의 <strong>강도+경사각</strong>으로 '내가 어디에 있는지'(위도·경도) 파악 → 현재 위치 확인<br><br><strong>나침반 감각(크립토크롬)</strong> = 자기장의 <strong>수평 성분 방향</strong>으로 '어디로 가야 하는지' 인지 → 방향 설정<br><br>즉, 지도 감각 = <strong>위치(where)</strong>, 나침반 감각 = <strong>방향(which way)</strong>.<br>철새는 이 둘을 결합하여 정밀 내비게이션 수행.</div></div></div><div class="dc"><div class="dc-h" onclick="tdc(this)">
+<div class="dc-b-tag b-logic">논리</div>
+<div class="dc-ti">지문 전체 구조: 병렬 비교형</div><div class="dc-tg">▾</div>
+</div><div class="dc-bd"><div class="de"><strong>[1]</strong> 자기 수용 정의 + 시스템 ① 자철석<br><strong>[2]</strong> 시스템 ② 크립토크롬<br><strong>[3]</strong> 시스템 ③ 암풀라 기관<br><strong>[4]</strong> 세 시스템의 종합 활용 (종별 비교)<br><strong>[5]</strong> 연구 과제 + 감도 비교 + 응용 전망<br><br><strong>「정의→A→B→C→종합 비교→전망」</strong> = 과학 비교형 지문의 전형. 각 시스템의 공통점과 차이점을 대비하는 것이 핵심.</div></div></div></div></div></div><div class="wm"><div class="br">[<em>오름</em>] 국어 · 가경T — 독서 지문 분석 워크북</div></div><script>
+// Passage switching
+document.querySelectorAll('.pbtn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.pbtn').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.passage').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.p).classList.add('active');
+    // Reset to first tab
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelector('.tab[data-t="summary"]').classList.add('active');
+    const ap=document.getElementById(b.dataset.p);
+    ap.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    ap.querySelector('.section[data-s="summary"]').classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+// Tab switching
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    const ap=document.querySelector('.passage.active');
+    ap.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    ap.querySelector('.section[data-s="'+t.dataset.t+'"]').classList.add('active');
+  });
+});
+function tpc(h){h.closest('.pc').classList.toggle('open')}
+function tdc(h){h.closest('.dc').classList.toggle('open')}
+</script></body></html>
