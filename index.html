@@ -180,6 +180,15 @@ html{font-size:15px}
 .cal-tag.eg{background:#e8eaf6;color:#283593}
 .cal-tag.es{background:#fce4ec;color:#880e4f}
 .cal-tag.ds{background:#f3e5f5;color:#6a1b9a}
+.cal-tag.dk{background:#e8eaf6;color:#1a237e}
+.cal-tag.mk{background:#fff8e1;color:#f57f17}
+.cal-tag.gmo{background:#fce4ec;color:#880e4f}
+.qn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:960px;margin:0 auto;padding:24px 28px}
+.qn a{display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 10px;border-radius:12px;font-size:.9rem;font-weight:600;color:var(--olive);background:var(--warm-white);border:1px solid var(--border);text-decoration:none;transition:all .2s;white-space:nowrap;text-align:center}
+.qn a:hover{background:var(--olive-pale);border-color:var(--olive)}
+.qn a:nth-child(n+5){grid-column:span 1}
+@media(max-width:768px){.qn{grid-template-columns:repeat(2,1fr);gap:8px;padding:16px 18px}.qn a{padding:12px 8px;font-size:.84rem}}
+.pl.dk{background:#e8eaf6;color:#1a237e}.pl.mk{background:#fff8e1;color:#f57f17}
 .cal-wk{grid-column:1/-1;padding:5px 16px;font-size:.7rem;font-weight:700;color:var(--olive);background:linear-gradient(90deg,var(--olive-pale),transparent 70%);text-align:left;letter-spacing:.04em;border-bottom:1px solid #f0ede6}
 @media(max-width:768px){.cal-head{flex-direction:column;gap:8px;align-items:flex-start;padding:14px 18px}.cal-day{padding:4px 2px 6px}.cal-num{font-size:.78rem}.cal-tag{font-size:.46rem;padding:1px 3px}.cal-wk{font-size:.65rem;padding:4px 12px}.cal-leg{flex-wrap:wrap;gap:8px}}
 @media(max-width:400px){.cal-day{padding:3px 1px 4px}.cal-tag{font-size:.42rem;padding:1px 2px}}
@@ -193,13 +202,23 @@ html{font-size:15px}
   <h1>고3 정규반<br><span>수능 대비 과정</span></h1>
   <p class="hd">수능특강 〈문학〉을 수능적 관점에서 분석하고,<br>매주 실전 모의고사로 감각을 키우는 수능 대비 과정입니다.</p>
   <div class="hs">
-    <div><div class="hsl">Schedule</div><div class="hsv">금 19–22시</div><div class="hsv" style="margin-top:4px">토 09–12시 <span class="mg">마감</span></div></div>
-    <div><div class="hsl">Instructor</div><div class="hsv">가경 T</div></div>
+    <div><div class="hsl">수업 시간</div><div class="hsv">금 19–22시</div><div class="hsv" style="margin-top:4px">토 09–12시 <span class="mg">마감</span></div></div>
+    <div><div class="hsl">담당</div><div class="hsv">가경 T</div></div>
   </div>
 </div></section>
 
+<div class="qn">
+  <a href="#ov">📖 과정 안내</a>
+  <a href="#cal">📅 5월 과제 및 수업</a>
+  <a href="#mt">📚 교재 구성</a>
+  <a href="#as">✍️ 과제 일정</a>
+  <a href="#lk">🎬 보강 영상 및 유튜브</a>
+  <a href="#study">📜 수업 참고 자료</a>
+  <a href="#naeshin">📝 내신 자료</a>
+</div>
+
 <section id="ov"><div class="w">
-  <div class="sb fi">Course Overview</div>
+  <div class="sb fi">과정 안내</div>
   <h2 class="st fi">과정 안내</h2>
   <p class="sd fi">수능특강 〈문학〉 현장 강의를 중심으로, 영역별 균형 잡힌 학습이 진행됩니다.</p>
   <div class="cr">
@@ -210,87 +229,90 @@ html{font-size:15px}
 
 </div></section>
 
-<!-- APRIL CALENDAR -->
-<section class="a"><div class="w">
-  <div class="sb fi">April Schedule</div>
-  <h2 class="st fi">4월 진도 & 과제</h2>
-  <p class="sd fi">독서 마무리 → 문학 숙제 → 본바탕 완료까지, 4월 전체 로드맵입니다.</p>
+<!-- MAY CALENDAR -->
+<section id="cal" class="a"><div class="w">
+  <div class="sb fi">5월 일정</div>
+  <h2 class="st fi">5월 진도 & 과제</h2>
+  <p class="sd fi">이감 시즌3 모의고사 + 간쓸개 주간지로 실전력을 키웁니다.</p>
 
   <div class="cal fi">
     <div class="cal-head">
-      <h3>📅 4월 전체 일정</h3>
+      <h3>📅 5월 전체 일정</h3>
       <div class="cal-leg">
         <span class="cal-leg-item"><span class="cal-leg-dot" style="background:var(--gold)"></span>수업</span>
-        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#7e57c2"></span>독서</span>
-        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#bf360c"></span>극수</span>
-        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#283593"></span>갈복</span>
-        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#880e4f"></span>실전</span>
-        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#c62828"></span>본언</span>
-        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#00838f"></span>본화</span>
+        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#1a237e"></span>독서</span>
+        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#f57f17"></span>문학</span>
+        <span class="cal-leg-item"><span class="cal-leg-dot" style="background:#880e4f"></span>6모</span>
       </div>
     </div>
     <div class="cal-grid">
       <div class="cal-dow">일</div><div class="cal-dow">월</div><div class="cal-dow">화</div><div class="cal-dow">수</div><div class="cal-dow">목</div><div class="cal-dow">금</div><div class="cal-dow">토</div>
 
-      <div class="cal-wk">1주차 · 문학 05강 · 독서 마무리</div>
+      <div class="cal-wk">1주차 · 이감 시즌3-1회</div>
       <div class="cal-day empty">&nbsp;</div>
       <div class="cal-day empty">&nbsp;</div>
       <div class="cal-day empty">&nbsp;</div>
-      <div class="cal-day"><span class="cal-num">1</span><span class="cal-tag ha">인예12</span><span class="cal-tag hc">사문12</span><span class="cal-tag be">본언61-80</span><span class="cal-tag bh">본화4회</span></div>
-      <div class="cal-day"><span class="cal-num">2</span><span class="cal-tag hb">과기12</span><span class="cal-tag hd">주통12</span><span class="cal-tag be">본언81-100</span><span class="cal-tag bh">본화5회</span></div>
-      <div class="cal-day cls"><span class="cal-num">3</span><span class="cal-tag lec">05강</span><span class="cal-tag ds">독실1회</span><span class="cal-tag be">본언101-120</span><span class="cal-tag bh">본화6회</span></div>
-      <div class="cal-day cls sat"><span class="cal-num">4</span><span class="cal-tag lec">05강</span><span class="cal-tag ds">독실2회</span><span class="cal-tag be">본언121-140</span><span class="cal-tag bh">본화7회</span></div>
+      <div class="cal-day empty">&nbsp;</div>
+      <div class="cal-day empty">&nbsp;</div>
+      <div class="cal-day cls"><span class="cal-num">1</span><span class="cal-tag lec">실전1회</span></div>
+      <div class="cal-day cls sat"><span class="cal-num">2</span><span class="cal-tag lec">실전1회</span></div>
 
-      <div class="cal-wk">2주차 · 문학 06강 · 극수필+갈래복합</div>
-      <div class="cal-day sun"><span class="cal-num">5</span></div>
-      <div class="cal-day"><span class="cal-num">6</span><span class="cal-tag ek">극01</span><span class="cal-tag ek">극02</span><span class="cal-tag be">본언141-160</span><span class="cal-tag bh">본화8회</span></div>
-      <div class="cal-day"><span class="cal-num">7</span><span class="cal-tag ek">극03</span><span class="cal-tag ek">극04</span><span class="cal-tag be">본언161-180</span><span class="cal-tag bh">본화9회</span></div>
-      <div class="cal-day"><span class="cal-num">8</span><span class="cal-tag ek">극05</span><span class="cal-tag ek">극06</span><span class="cal-tag be">본언181-200</span><span class="cal-tag bh">본화10회</span></div>
-      <div class="cal-day"><span class="cal-num">9</span><span class="cal-tag ek">극07</span><span class="cal-tag ek">극08</span><span class="cal-tag be">본언1회</span><span class="cal-tag bh">본화11회</span></div>
-      <div class="cal-day cls"><span class="cal-num">10</span><span class="cal-tag lec">06강</span><span class="cal-tag eg">갈01</span><span class="cal-tag eg">갈02</span><span class="cal-tag be">본언2회</span><span class="cal-tag bh">본화12회</span></div>
-      <div class="cal-day cls sat"><span class="cal-num">11</span><span class="cal-tag lec">06강</span><span class="cal-tag eg">갈03</span><span class="cal-tag eg">갈04</span><span class="cal-tag be">본언3회</span><span class="cal-tag bh">본화13회</span></div>
+      <div class="cal-wk">간쓸개 3-1 숙제 → 2주차 · 시즌3-2회</div>
+      <div class="cal-day sun"><span class="cal-num">3</span><span class="cal-tag dk">독1</span><span class="cal-tag mk">문1</span></div>
+      <div class="cal-day"><span class="cal-num">4</span><span class="cal-tag dk">독2</span><span class="cal-tag mk">문2</span></div>
+      <div class="cal-day"><span class="cal-num">5</span><span class="cal-tag dk">독3</span><span class="cal-tag mk">문3</span></div>
+      <div class="cal-day"><span class="cal-num">6</span><span class="cal-tag dk">독4</span><span class="cal-tag mk">문4</span></div>
+      <div class="cal-day"><span class="cal-num">7</span><span class="cal-tag dk">독5</span><span class="cal-tag mk">문5</span></div>
+      <div class="cal-day cls"><span class="cal-num">8</span><span class="cal-tag lec">실전2회</span></div>
+      <div class="cal-day cls sat"><span class="cal-num">9</span><span class="cal-tag lec">실전2회</span></div>
 
-      <div class="cal-wk">3주차 · 문학 07강 · 갈래복합+문학실전</div>
-      <div class="cal-day sun"><span class="cal-num">12</span></div>
-      <div class="cal-day"><span class="cal-num">13</span><span class="cal-tag eg">갈05</span><span class="cal-tag eg">갈06</span><span class="cal-tag be">본언4회</span><span class="cal-tag bh">본화14회</span></div>
-      <div class="cal-day"><span class="cal-num">14</span><span class="cal-tag eg">갈07</span><span class="cal-tag eg">갈08</span><span class="cal-tag be">본언5회</span><span class="cal-tag bh">본화15회</span></div>
-      <div class="cal-day"><span class="cal-num">15</span><span class="cal-tag eg">갈09</span><span class="cal-tag eg">갈10</span><span class="cal-tag be">본언6회</span><span class="cal-tag bh">본화16회</span></div>
-      <div class="cal-day"><span class="cal-num">16</span><span class="cal-tag eg">갈11</span><span class="cal-tag es">실1①</span><span class="cal-tag be">본언7회</span><span class="cal-tag bh">본화17회</span></div>
-      <div class="cal-day cls"><span class="cal-num">17</span><span class="cal-tag lec">07강</span><span class="cal-tag es">실1②</span><span class="cal-tag es">실1③</span><span class="cal-tag be">본언8회</span><span class="cal-tag bh">본화18회</span></div>
-      <div class="cal-day cls sat"><span class="cal-num">18</span><span class="cal-tag lec">07강</span><span class="cal-tag es">실1④</span><span class="cal-tag es">실2①</span><span class="cal-tag be">본언9회</span><span class="cal-tag bh">본화19회</span></div>
+      <div class="cal-wk">간쓸개 3-2 숙제 → 3주차 · 시즌3-3회</div>
+      <div class="cal-day sun"><span class="cal-num">10</span><span class="cal-tag dk">독1</span><span class="cal-tag mk">문1</span></div>
+      <div class="cal-day"><span class="cal-num">11</span><span class="cal-tag dk">독2</span><span class="cal-tag mk">문2</span></div>
+      <div class="cal-day"><span class="cal-num">12</span><span class="cal-tag dk">독3</span><span class="cal-tag mk">문3</span></div>
+      <div class="cal-day"><span class="cal-num">13</span><span class="cal-tag dk">독4</span><span class="cal-tag mk">문4</span></div>
+      <div class="cal-day"><span class="cal-num">14</span><span class="cal-tag dk">독5</span><span class="cal-tag mk">문5</span></div>
+      <div class="cal-day cls"><span class="cal-num">15</span><span class="cal-tag lec">실전3회</span></div>
+      <div class="cal-day cls sat"><span class="cal-num">16</span><span class="cal-tag lec">실전3회</span></div>
 
-      <div class="cal-wk">4주차 · 문학 08강 · 본바탕 완료</div>
-      <div class="cal-day sun"><span class="cal-num">19</span></div>
-      <div class="cal-day"><span class="cal-num">20</span><span class="cal-tag es">실2②</span><span class="cal-tag es">실2③</span><span class="cal-tag be">본언10회</span><span class="cal-tag bh">본화20회</span></div>
-      <div class="cal-day"><span class="cal-num">21</span><span class="cal-tag es">실2④</span><span class="cal-tag be">본언11회</span><span class="cal-tag bh">본화21회</span></div>
-      <div class="cal-day"><span class="cal-num">22</span><span class="cal-tag be">본언12회</span><span class="cal-tag bh">본화22회</span></div>
-      <div class="cal-day"><span class="cal-num">23</span><span class="cal-tag be">본언13회</span><span class="cal-tag bh">본화23회</span></div>
-      <div class="cal-day cls"><span class="cal-num">24</span><span class="cal-tag lec">08강</span><span class="cal-tag be">본언14회</span><span class="cal-tag bh">본화24회</span></div>
-      <div class="cal-day cls sat"><span class="cal-num">25</span><span class="cal-tag lec">08강</span><span class="cal-tag be">본언15회</span><span class="cal-tag bh">본화25회</span></div>
+      <div class="cal-wk">간쓸개 3-3 숙제 + 6모 지문 → 4주차 · 시즌3-4회</div>
+      <div class="cal-day sun"><span class="cal-num">17</span><span class="cal-tag dk">독1</span><span class="cal-tag mk">문1</span></div>
+      <div class="cal-day"><span class="cal-num">18</span><span class="cal-tag dk">독2</span><span class="cal-tag mk">문2</span></div>
+      <div class="cal-day"><span class="cal-num">19</span><span class="cal-tag dk">독3</span><span class="cal-tag mk">문3</span></div>
+      <div class="cal-day"><span class="cal-num">20</span><span class="cal-tag dk">독4</span><span class="cal-tag mk">문4</span></div>
+      <div class="cal-day"><span class="cal-num">21</span><span class="cal-tag dk">독5</span><span class="cal-tag mk">문5</span><span class="cal-tag gmo">6모지문</span></div>
+      <div class="cal-day cls"><span class="cal-num">22</span><span class="cal-tag lec">실전4회</span></div>
+      <div class="cal-day cls sat"><span class="cal-num">23</span><span class="cal-tag lec">실전4회</span></div>
+
+      <div class="cal-wk">간쓸개 3-4 숙제</div>
+      <div class="cal-day sun"><span class="cal-num">24</span><span class="cal-tag dk">독1</span><span class="cal-tag mk">문1</span></div>
+      <div class="cal-day"><span class="cal-num">25</span><span class="cal-tag dk">독2</span><span class="cal-tag mk">문2</span></div>
+      <div class="cal-day"><span class="cal-num">26</span><span class="cal-tag dk">독3</span><span class="cal-tag mk">문3</span></div>
+      <div class="cal-day"><span class="cal-num">27</span><span class="cal-tag dk">독4</span><span class="cal-tag mk">문4</span></div>
+      <div class="cal-day"><span class="cal-num">28</span><span class="cal-tag dk">독5</span><span class="cal-tag mk">문5</span></div>
+      <div class="cal-day cls"><span class="cal-num">29</span><span class="cal-tag lec">수업</span></div>
+      <div class="cal-day cls sat"><span class="cal-num">30</span><span class="cal-tag lec">수업</span></div>
 
       <div class="cal-wk" style="background:transparent;border:none">&nbsp;</div>
-      <div class="cal-day sun"><span class="cal-num">26</span></div>
-      <div class="cal-day"><span class="cal-num">27</span></div>
-      <div class="cal-day"><span class="cal-num">28</span></div>
-      <div class="cal-day"><span class="cal-num">29</span></div>
-      <div class="cal-day"><span class="cal-num">30</span></div>
+      <div class="cal-day sun"><span class="cal-num">31</span></div>
+      <div class="cal-day empty">&nbsp;</div>
+      <div class="cal-day empty">&nbsp;</div>
+      <div class="cal-day empty">&nbsp;</div>
+      <div class="cal-day empty">&nbsp;</div>
       <div class="cal-day empty">&nbsp;</div>
       <div class="cal-day empty">&nbsp;</div>
     </div>
     <div style="padding:14px 24px;background:var(--cream);font-size:.82rem;color:var(--text-light);border-top:1px solid var(--border);line-height:1.75">
-      <strong style="color:var(--gold-dark)">수업</strong> 매주 금/토 문학 강의 &nbsp;│&nbsp;
-      <span style="color:#6a1b9a;font-weight:600">독실</span> 독서 실전 &nbsp;│&nbsp;
-      <span style="color:#bf360c;font-weight:600">극01~08</span> 극·수필 &nbsp;│&nbsp;
-      <span style="color:#283593;font-weight:600">갈01~11</span> 갈래복합<br>
-      <span style="color:#880e4f;font-weight:600">실1①~④</span> 문학실전1회 [01~04/05~10/11~14/15~17] &nbsp;│&nbsp;
-      <span style="color:#880e4f;font-weight:600">실2①~④</span> 문학실전2회<br>
-      <strong>4/4 독서 완료</strong> → <strong>4/21 문학 완료</strong> → <strong style="color:var(--olive)">4/25 본바탕 완료 ✅</strong>
+      <strong style="color:var(--gold-dark)">수업</strong> 금/토 이감 시즌3 실전 모의고사 &nbsp;│&nbsp;
+      <span style="color:#1a237e;font-weight:600">독1~5</span> 간쓸개 독서 &nbsp;│&nbsp;
+      <span style="color:#f57f17;font-weight:600">문1~5</span> 간쓸개 문학<br>
+      매일 독서 1일차 + 문학 1일차 &nbsp;│&nbsp; 3주차 5일차에 <strong style="color:#880e4f">6모 주목 지문</strong> 확인
     </div>
   </div>
 </div></section>
 
 <section id="mt" class="a"><div class="w">
-  <div class="sb fi">Curriculum</div>
+  <div class="sb fi">교재 안내</div>
   <h2 class="st fi">교재 &amp; 수업 구성</h2>
   <p class="sd fi">학교 수능특강 교재와 함께, 수능 실전력을 키우는 추가 교재로 학습합니다.</p>
   <div class="tl fi">
@@ -301,63 +323,56 @@ html{font-size:15px}
 </div></section>
 
 <section id="as"><div class="w">
-  <div class="sb fi">Assignments</div>
+  <div class="sb fi">과제 안내</div>
   <h2 class="st fi">매주 기본 과제</h2>
-  <p class="sd fi">수업과 병행하여 꾸준한 학습 루틴을 만들어 갑니다.</p>
+  <p class="sd fi">수업 후 간쓸개 주간지를 매일 독서 1일차 + 문학 1일차씩 소화합니다.</p>
   <div class="ib ac fi"><h3>📌 매주 기본 과제</h3><ul>
-    <li>〈수능특강의 수능적 활용〉 그 주 예습 부분 풀어 오기</li>
-    <li>수능특강 〈독서〉 과제 — 매일 2지문씩 풀기 (아래 일정 참고)</li>
+    <li>이감 간쓸개 독서 1~5일차 (매일 1일차)</li>
+    <li>이감 간쓸개 문학 1~5일차 (매일 1일차)</li>
   </ul></div>
 
   <div style="margin-top:52px">
-    <h3 class="st fi" style="font-size:1.45rem">4월 과제 일정</h3>
-    <p class="sd fi">독서 마무리 + 문학 숙제 + 본바탕 선택 과목(~4/25)</p>
+    <h3 class="st fi" style="font-size:1.45rem">5월 과제 일정</h3>
+    <p class="sd fi">이감 시즌3 간쓸개 — 매일 독서+문학 1일차씩</p>
     <div class="lg fi">
-      <span class="li"><span class="dot" style="background:#5e35b1"></span>인문·예술</span>
-      <span class="li"><span class="dot" style="background:#1565c0"></span>사회·문화</span>
-      <span class="li"><span class="dot" style="background:#2e7d32"></span>과학·기술</span>
-      <span class="li"><span class="dot" style="background:#e65100"></span>주제 통합</span>
-      <span class="li"><span class="dot" style="background:#6a1b9a"></span>독서 실전</span>
-      <span class="li"><span class="dot" style="background:#bf360c"></span>극·수필</span>
-      <span class="li"><span class="dot" style="background:#283593"></span>갈래복합</span>
-      <span class="li"><span class="dot" style="background:#880e4f"></span>문학 실전</span>
-      <span class="li"><span class="dot" style="background:#c62828"></span>본언</span>
-      <span class="li"><span class="dot" style="background:#00838f"></span>본화</span>
+      <span class="li"><span class="dot" style="background:#1a237e"></span>독서 일차</span>
+      <span class="li"><span class="dot" style="background:#f57f17"></span>문학 일차</span>
+      <span class="li"><span class="dot" style="background:#880e4f"></span>6모 지문</span>
     </div>
     <div class="tw fi"><div class="tb-scroll"><table class="tb">
-      <thead><tr><th style="width:85px">날짜</th><th>과제 1</th><th>과제 2</th><th>비고</th><th>본언</th><th>본화</th></tr></thead>
+      <thead><tr><th style="width:85px">날짜</th><th>독서</th><th>문학</th><th>비고</th></tr></thead>
       <tbody>
-        <tr style="background:#f8f6f0"><td colspan="6" style="text-align:center;color:var(--olive);font-weight:700;font-size:.9rem;padding:10px">── 독서 마무리 ──</td></tr>
-        <tr><td>4/1 (수)</td><td><span class="pl h">인문·예술 12</span></td><td><span class="pl s">사회·문화 12</span></td><td></td><td><span class="pl be">61-80</span></td><td><span class="pl bh">4회</span></td></tr>
-        <tr><td>4/2 (목)</td><td><span class="pl c">과학·기술 12</span></td><td><span class="pl i">주제 통합 12</span></td><td></td><td><span class="pl be">81-100</span></td><td><span class="pl bh">5회</span></td></tr>
-        <tr><td>4/3 (금)</td><td><span class="pl ds">독서 실전1회</span></td><td></td><td></td><td><span class="pl be">101-120</span></td><td><span class="pl bh">6회</span></td></tr>
-        <tr style="background:var(--olive-pale)"><td><strong>4/4 (토)</strong></td><td><span class="pl ds">독서 실전2회</span></td><td></td><td style="color:var(--olive);font-weight:600;font-size:.8rem">독서 완료 ✅</td><td><span class="pl be">121-140</span></td><td><span class="pl bh">7회</span></td></tr>
-        <tr style="background:#f8f6f0"><td colspan="6" style="text-align:center;color:var(--olive);font-weight:700;font-size:.9rem;padding:10px">── 4월 · 극수필+갈래복합+문학실전 ──</td></tr>
-        <tr><td>4/6 (월)</td><td><span class="pl ek">극수필 01</span></td><td><span class="pl ek">극수필 02</span></td><td></td><td><span class="pl be">141-160</span></td><td><span class="pl bh">8회</span></td></tr>
-        <tr><td>4/7 (화)</td><td><span class="pl ek">극수필 03</span></td><td><span class="pl ek">극수필 04</span></td><td></td><td><span class="pl be">161-180</span></td><td><span class="pl bh">9회</span></td></tr>
-        <tr><td>4/8 (수)</td><td><span class="pl ek">극수필 05</span></td><td><span class="pl ek">극수필 06</span></td><td></td><td><span class="pl be">181-200</span></td><td><span class="pl bh">10회</span></td></tr>
-        <tr><td>4/9 (목)</td><td><span class="pl ek">극수필 07</span></td><td><span class="pl ek">극수필 08</span></td><td></td><td><span class="pl be">1회</span></td><td><span class="pl bh">11회</span></td></tr>
-        <tr><td>4/10 (금)</td><td><span class="pl eg">갈래복합 01</span></td><td><span class="pl eg">갈래복합 02</span></td><td></td><td><span class="pl be">2회</span></td><td><span class="pl bh">12회</span></td></tr>
-        <tr><td>4/11 (토)</td><td><span class="pl eg">갈래복합 03</span></td><td><span class="pl eg">갈래복합 04</span></td><td></td><td><span class="pl be">3회</span></td><td><span class="pl bh">13회</span></td></tr>
-        <tr><td>4/13 (월)</td><td><span class="pl eg">갈래복합 05</span></td><td><span class="pl eg">갈래복합 06</span></td><td></td><td><span class="pl be">4회</span></td><td><span class="pl bh">14회</span></td></tr>
-        <tr><td>4/14 (화)</td><td><span class="pl eg">갈래복합 07</span></td><td><span class="pl eg">갈래복합 08</span></td><td></td><td><span class="pl be">5회</span></td><td><span class="pl bh">15회</span></td></tr>
-        <tr><td>4/15 (수)</td><td><span class="pl eg">갈래복합 09</span></td><td><span class="pl eg">갈래복합 10</span></td><td></td><td><span class="pl be">6회</span></td><td><span class="pl bh">16회</span></td></tr>
-        <tr><td>4/16 (목)</td><td><span class="pl eg">갈래복합 11</span></td><td><span class="pl es">실전1 [01~04]</span></td><td></td><td><span class="pl be">7회</span></td><td><span class="pl bh">17회</span></td></tr>
-        <tr><td>4/17 (금)</td><td><span class="pl es">실전1 [05~10]</span></td><td><span class="pl es">실전1 [11~14]</span></td><td></td><td><span class="pl be">8회</span></td><td><span class="pl bh">18회</span></td></tr>
-        <tr><td>4/18 (토)</td><td><span class="pl es">실전1 [15~17]</span></td><td><span class="pl es">실전2 [01~04]</span></td><td></td><td><span class="pl be">9회</span></td><td><span class="pl bh">19회</span></td></tr>
-        <tr><td>4/20 (월)</td><td><span class="pl es">실전2 [05~10]</span></td><td><span class="pl es">실전2 [11~14]</span></td><td></td><td><span class="pl be">10회</span></td><td><span class="pl bh">20회</span></td></tr>
-        <tr style="background:var(--olive-pale)"><td><strong>4/21 (화)</strong></td><td><span class="pl es">실전2 [15~17]</span></td><td></td><td style="color:var(--olive);font-weight:600;font-size:.8rem">문학 완료 ✅</td><td><span class="pl be">11회</span></td><td><span class="pl bh">21회</span></td></tr>
-        <tr><td>4/22 (수)</td><td></td><td></td><td></td><td><span class="pl be">12회</span></td><td><span class="pl bh">22회</span></td></tr>
-        <tr><td>4/23 (목)</td><td></td><td></td><td></td><td><span class="pl be">13회</span></td><td><span class="pl bh">23회</span></td></tr>
-        <tr><td>4/24 (금)</td><td></td><td></td><td></td><td><span class="pl be">14회</span></td><td><span class="pl bh">24회</span></td></tr>
-        <tr style="background:var(--olive-pale)"><td><strong>4/25 (토)</strong></td><td></td><td></td><td></td><td><span class="pl be">15회 ✅</span></td><td><span class="pl bh">25회 ✅</span></td></tr>
+        <tr style="background:#f8f6f0"><td colspan="4" style="text-align:center;color:var(--olive);font-weight:700;font-size:.9rem;padding:10px">── 1주차 · 시즌3-1회 (5/1금·2토 수업) ──</td></tr>
+        <tr><td>5/3 (일)</td><td><span class="pl dk">1일차: 전자기유도현상 + 열잔류자기</span></td><td><span class="pl mk">1일차: 옹고집전 / 달밤</span></td><td></td></tr>
+        <tr><td>5/4 (월)</td><td><span class="pl dk">2일차: 텍스트마이닝 임베딩모델</span></td><td><span class="pl mk">2일차: 금방울전 + 사씨남정기</span></td><td></td></tr>
+        <tr><td>5/5 (화)</td><td><span class="pl dk">3일차: DNA메틸화 + 당뇨병</span></td><td><span class="pl mk">3일차: 대관재몽유록 + 황새결송</span></td><td></td></tr>
+        <tr><td>5/6 (수)</td><td><span class="pl dk">4일차: 탄소나노튜브</span></td><td><span class="pl mk">4일차: 반씨전 + 정수정전</span></td><td></td></tr>
+        <tr><td>5/7 (목)</td><td><span class="pl dk">5일차: 빅데이터 + 인메모리컴퓨팅</span></td><td><span class="pl mk">5일차: 임진록 / 웰컴투동막골</span></td><td></td></tr>
+        <tr style="background:#f8f6f0"><td colspan="4" style="text-align:center;color:var(--olive);font-weight:700;font-size:.9rem;padding:10px">── 2주차 · 시즌3-2회 (5/8금·9토 수업) ──</td></tr>
+        <tr><td>5/10 (일)</td><td><span class="pl dk">1일차</span></td><td><span class="pl mk">1일차</span></td><td></td></tr>
+        <tr><td>5/11 (월)</td><td><span class="pl dk">2일차</span></td><td><span class="pl mk">2일차</span></td><td></td></tr>
+        <tr><td>5/12 (화)</td><td><span class="pl dk">3일차</span></td><td><span class="pl mk">3일차</span></td><td></td></tr>
+        <tr><td>5/13 (수)</td><td><span class="pl dk">4일차</span></td><td><span class="pl mk">4일차</span></td><td></td></tr>
+        <tr><td>5/14 (목)</td><td><span class="pl dk">5일차</span></td><td><span class="pl mk">5일차</span></td><td></td></tr>
+        <tr style="background:#f8f6f0"><td colspan="4" style="text-align:center;color:var(--olive);font-weight:700;font-size:.9rem;padding:10px">── 3주차 · 시즌3-3회 (5/15금·16토 수업) + 6모 지문 ──</td></tr>
+        <tr><td>5/17 (일)</td><td><span class="pl dk">1일차</span></td><td><span class="pl mk">1일차</span></td><td></td></tr>
+        <tr><td>5/18 (월)</td><td><span class="pl dk">2일차</span></td><td><span class="pl mk">2일차</span></td><td></td></tr>
+        <tr><td>5/19 (화)</td><td><span class="pl dk">3일차</span></td><td><span class="pl mk">3일차</span></td><td></td></tr>
+        <tr><td>5/20 (수)</td><td><span class="pl dk">4일차</span></td><td><span class="pl mk">4일차</span></td><td></td></tr>
+        <tr style="background:var(--olive-pale)"><td><strong>5/21 (목)</strong></td><td><span class="pl dk">5일차</span></td><td><span class="pl mk">5일차</span></td><td style="color:#880e4f;font-weight:600;font-size:.82rem">+ 6모 주목 지문</td></tr>
+        <tr style="background:#f8f6f0"><td colspan="4" style="text-align:center;color:var(--olive);font-weight:700;font-size:.9rem;padding:10px">── 4주차 · 시즌3-4회 (5/22금·23토 수업) ──</td></tr>
+        <tr><td>5/24 (일)</td><td><span class="pl dk">1일차</span></td><td><span class="pl mk">1일차</span></td><td></td></tr>
+        <tr><td>5/25 (월)</td><td><span class="pl dk">2일차</span></td><td><span class="pl mk">2일차</span></td><td></td></tr>
+        <tr><td>5/26 (화)</td><td><span class="pl dk">3일차</span></td><td><span class="pl mk">3일차</span></td><td></td></tr>
+        <tr><td>5/27 (수)</td><td><span class="pl dk">4일차</span></td><td><span class="pl mk">4일차</span></td><td></td></tr>
+        <tr><td>5/28 (목)</td><td><span class="pl dk">5일차</span></td><td><span class="pl mk">5일차</span></td><td></td></tr>
       </tbody>
     </table></div></div>
   </div>
 </div></section>
 
-<section class="a"><div class="w">
-  <div class="sb fi">School Exam Prep</div>
+<section id="exam" class="a"><div class="w">
+  <div class="sb fi">내신 대비</div>
   <h2 class="st fi">내신 대비 안내</h2>
   <p class="sd fi">정규반은 수능 대비 과정이므로, 내신 대비가 필요한 학생은 별도 신청이 필요합니다.</p>
   <div class="ib ac fi"><h3>🏫 내신 클리닉</h3><ul>
@@ -368,26 +383,26 @@ html{font-size:15px}
 </div></section>
 
 <section id="lk"><div class="w">
-  <div class="sb fi">Quick Links</div>
+  <div class="sb fi">바로가기</div>
   <h2 class="st fi">바로가기</h2>
   <p class="sd fi">보강 영상, 참고 자료, 유튜브 채널 등 필요한 링크를 모아두었습니다.</p>
   <div class="lg2 fi">
-    <a href="https://www.notion.so/26f63b05ee6c80e0aee7d3e6064e243b" target="_blank" class="lc"><div class="lci">📂</div><div><h4>보강 영상 / 참고 자료 / 과제</h4><span class="su">Notion 페이지</span></div></a>
-    <a href="https://youtube.com/playlist?list=PLtWT0L-4ydjR0Wo7UBrAtxsWJe0xaiS2z" target="_blank" class="lc"><div class="lci">🎬</div><div><h4>내신 대비 수능특강 영상</h4><span class="su">YouTube 재생목록</span></div></a>
-    <a href="https://www.youtube.com/playlist?list=PLtWT0L-4ydjT_7tuhGYcEtj9OkkynKGw9" target="_blank" class="lc"><div class="lci">🎬</div><div><h4>내신 대비 수능특강 영상</h4><span class="su">YouTube 재생목록 2</span></div></a>
-    <a href="https://youtube.com/channel/UCrEYhXaFqlcnxn1wpsiUKEg" target="_blank" class="lc"><div class="lci">📺</div><div><h4>김가경 국어 연구소</h4><span class="su">YouTube 채널 구독</span></div></a>
-    <a href="https://forms.gle/9c5ByS3mRJWa7b869" target="_blank" class="lc"><div class="lci">📋</div><div><h4>선택 과목 조사</h4><span class="su">Google Forms</span></div></a>
-    <a href="https://forms.gle/sgRaW4xuoGcx7RgM7" target="_blank" class="lc"><div class="lci">🏫</div><div><h4>내신 클리닉 참여</h4><span class="su">Google Forms</span></div></a>
+    <a href="https://www.notion.so/26f63b05ee6c80e0aee7d3e6064e243b" target="_blank" class="lc"><div class="lci">📂</div><div><h4>보강 영상 / 참고 자료 / 과제</h4><span class="su">노션 페이지</span></div></a>
+    <a href="https://youtube.com/playlist?list=PLtWT0L-4ydjR0Wo7UBrAtxsWJe0xaiS2z" target="_blank" class="lc"><div class="lci">🎬</div><div><h4>내신 대비 수능특강 영상</h4><span class="su">유튜브 재생목록</span></div></a>
+    <a href="https://www.youtube.com/playlist?list=PLtWT0L-4ydjT_7tuhGYcEtj9OkkynKGw9" target="_blank" class="lc"><div class="lci">🎬</div><div><h4>내신 대비 수능특강 영상</h4><span class="su">유튜브 재생목록 2</span></div></a>
+    <a href="https://youtube.com/channel/UCrEYhXaFqlcnxn1wpsiUKEg" target="_blank" class="lc"><div class="lci">📺</div><div><h4>김가경 국어 연구소</h4><span class="su">유튜브 채널 구독</span></div></a>
+    <a href="https://forms.gle/9c5ByS3mRJWa7b869" target="_blank" class="lc"><div class="lci">📋</div><div><h4>선택 과목 조사</h4><span class="su">설문 링크</span></div></a>
+    <a href="https://forms.gle/sgRaW4xuoGcx7RgM7" target="_blank" class="lc"><div class="lci">🏫</div><div><h4>내신 클리닉 참여</h4><span class="su">설문 링크</span></div></a>
   </div>
 
-  <h3 class="st fi" style="font-size:1.3rem;margin-top:48px">수능특강 작품 정리</h3>
+  <h3 id="study" class="st fi" style="font-size:1.3rem;margin-top:48px">수능특강 작품 정리</h3>
   <p class="sd fi" style="margin-bottom:20px">수업에서 다루는 작품별 학습 자료입니다.</p>
   <div class="lg2 fi">
     <a href="gosi-summary.html" target="_blank" class="lc"><div class="lci">📜</div><div><h4>고전시가 구절 총정리</h4><span class="su">주요 구절 · 고사 정리</span></div></a>
     <a href="novel-characters.html" target="_blank" class="lc"><div class="lci">🏯</div><div><h4>고전소설 인물관계도</h4><span class="su">수능특강 작품 정리</span></div></a>
   </div>
 
-  <h3 class="st fi" style="font-size:1.3rem;margin-top:48px">내신 대비 자료</h3>
+  <h3 id="naeshin" class="st fi" style="font-size:1.3rem;margin-top:48px">내신 대비 자료</h3>
   <p class="sd fi" style="margin-bottom:20px">학교별 내신 시험 대비 자료입니다.</p>
   <div class="lg2 fi">
     <a href="bonmun.html" target="_blank" class="lc"><div class="lci">📝</div><div><h4>본문해석 (문학 복습 자료)</h4><span class="su">고전시가 · 현대시 · 고전산문 · 현대소설 · 갈래복합 · 교과서</span></div></a>
