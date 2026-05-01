@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta name="theme-color" content="#0a0e0a" />
+<title>오름 국어 · 모의고사 진단 시스템</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg-deep: #0a0e0a;
+    --bg-card: #111a11;
+    --bg-card-2: #0f160f;
+    --bg-input: #0d130d;
+    --border-row: rgba(255,255,255,.18);
+    --border-strong: rgba(255,255,255,.32);
+    --border-outer: rgba(255,255,255,.22);
+    --green-brand: #4a5a3a;
+    --green-accent: #6b8f5e;
+    --green-light: #8aad7a;
+    --green-bright: #4ade80;
+    --gold: #c9a84c;
+    --gold-bright: #e6c25a;
+    --gold-dim: #a08838;
+    --cream: #f4ede0;
+    --text-primary: #ece8e0;
+    --text-secondary: #c4bfb4;
+    --text-muted: #928d82;
+    --text-dim: #7a7568;
+    --correct: #6b8f5e;
+    --wrong: #d97757;
+    --warn: #e6a23c;
+  }
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: "Noto Sans KR", sans-serif;
+    word-break: keep-all;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 800px 400px at 20% 0%, rgba(74,90,58,.10), transparent 60%),
+      radial-gradient(ellipse 600px 300px at 80% 100%, rgba(201,168,76,.05), transparent 60%);
+  }
+
+  /* ───── Watermark ───── */
+  .watermark {
+    position: fixed; inset: 0;
+    background-image: linear-gradient(135deg, transparent 30%, rgba(201,168,76,.015) 50%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ───── Layout ───── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; position: relative; z-index: 1; }
+  @media (max-width: 720px) { .container { padding: 20px 16px 60px; } }
+
+  /* ───── Header ───── */
+  .brand {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-outer);
+    margin-bottom: 36px;
+  }
+  .brand-mark {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: -.02em;
+  }
+  .brand-mark::before { content: "["; color: var(--gold-dim); font-weight: 500; }
+  .brand-mark::after  { content: "]"; color: var(--gold-dim); font-weight: 500; }
+  .brand-sub {
+    font-family: "Noto Serif KR", serif;
+    font-size: 15px;
+    color: var(--text-secondary);
+    letter-spacing: .04em;
+  }
+  .brand-sub::before { content: "ㆍ "; color: var(--gold-dim); }
+  .brand-tag {
+    margin-left: auto;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: .05em;
+  }
+  @media (max-width: 720px) {
+    .brand { flex-wrap: wrap; gap: 8px; }
+    .brand-mark { font-size: 22px; }
+    .brand-sub { font-size: 13px; }
+    .brand-tag { width: 100%; margin-left: 0; font-size: 12px; }
+  }
+
+  /* ───── Stepper ───── */
+  .stepper { display: flex; gap: 0; margin-bottom: 40px; align-items: center; }
+  .step {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-dim);
+    font-family: "Noto Serif KR", serif;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .step .dot {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text-muted);
+    background: var(--bg-deep);
+  }
+  .step.active .dot { color: var(--bg-deep); background: var(--gold); border-color: var(--gold); }
+  .step.active { color: var(--text-primary); }
+  .step.done .dot { color: var(--green-light); border-color: var(--green-accent); }
+  .step.done { color: var(--text-secondary); }
+  .step-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--border-strong), var(--border-outer));
+    margin: 0 14px;
+  }
+  @media (max-width: 720px) {
+    .step span { display: none; }
+    .step-line { margin: 0 8px; }
+  }
+
+  /* ───── Sections ───── */
+  .screen { display: none; animation: fadeIn .4s ease; }
+  .screen.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .section-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--cream);
+    margin: 0 0 8px;
+    letter-spacing: -.02em;
+    line-height: 1.3;
+  }
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+  @media (max-width: 720px) {
+    .section-title { font-size: 24px; }
+    .section-desc { font-size: 14px; margin-bottom: 24px; }
+  }
+
+  /* ───── Form ───── */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .form-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field-full { grid-column: 1 / -1; }
+  .field label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+  .field label .req { color: var(--gold); }
+  .field input, .field select {
+    background: var(--bg-input);
+    border: 1px solid var(--border-outer);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 16px; /* iOS zoom 방지 */
+    transition: border-color .15s, background .15s;
+  }
+  .field input:focus, .field select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--bg-card);
+  }
+  .field input::placeholder { color: var(--text-dim); }
+
+  .choice-row { display: flex; gap: 10px; }
+  .choice-btn {
+    flex: 1;
+    background: var(--bg-input);
+    border: 1px solid var(--border-outer);
+    color: var(--text-secondary);
+    padding: 12px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all .15s;
+  }
+  .choice-btn:hover { border-color: var(--green-accent); color: var(--text-primary); }
+  .choice-btn.selected {
+    background: var(--green-brand);
+    border-color: var(--green-light);
+    color: var(--cream);
+  }
+
+  /* ───── Buttons ───── */
+  .btn-row { display: flex; justify-content: space-between; align-items: center; margin-top: 36px; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    border: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-family: "Noto Serif KR", serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: .03em;
+    transition: all .15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--bg-deep);
+  }
+  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-1px); }
+  .btn-primary:disabled {
+    background: var(--bg-input);
+    color: var(--text-dim);
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-outer);
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--cream); }
+
+  /* ───── Marking Grid ───── */
+  .mark-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-outer);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .mark-section-title {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-outer);
+  }
+  .mark-section-title .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .mark-section-title .label {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--cream);
+  }
+  .mark-section-title .meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+  .mark-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: 8px;
+  }
+  .mark-cell {
+    aspect-ratio: 1;
+    border: 1px solid var(--border-outer);
+    border-radius: 4px;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 18px;
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: all .12s;
+    position: relative;
+    user-select: none;
+  }
+  .mark-cell:hover { border-color: var(--green-accent); color: var(--text-primary); }
+  .mark-cell.wrong {
+    background: var(--wrong);
+    color: var(--cream);
+    border-color: var(--wrong);
+    font-weight: 600;
+  }
+  .mark-cell.wrong::after {
+    content: "✕";
+    position: absolute;
+    top: 2px; right: 4px;
+    font-size: 9px;
+    font-style: normal;
+    opacity: .7;
+  }
+  .mark-cell.three-pt {
+    border-color: var(--gold-dim);
+  }
+  .mark-cell.three-pt::before {
+    content: "3";
+    position: absolute;
+    top: 1px; left: 3px;
+    font-size: 8px;
+    font-style: normal;
+    color: var(--gold);
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 700;
+  }
+  .mark-cell.hard-q {
+    box-shadow: inset 0 0 0 1px rgba(217,119,87,.35);
+  }
+  .mark-cell.hard-q::after {
+    content: "";
+    position: absolute;
+    bottom: 4px; right: 4px;
+    width: 5px; height: 5px;
+    background: var(--wrong);
+    border-radius: 50%;
+    opacity: .65;
+  }
+  .mark-cell.wrong.hard-q::after {
+    content: "✕";
+    background: none;
+    width: auto; height: auto;
+    bottom: auto; right: 4px;
+    top: 2px;
+    font-size: 9px;
+    font-style: normal;
+    color: var(--cream);
+    opacity: .7;
+    border-radius: 0;
+  }
+
+  /* ───── Marking footer ───── */
+  .mark-stats {
+    background: var(--bg-card-2);
+    border: 1px solid var(--border-outer);
+    border-radius: 6px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 32px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 2px; }
+  .stat-label { font-size: 12px; color: var(--text-muted); letter-spacing: .05em; }
+  .stat-value {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--gold);
+  }
+  .stat-value.green { color: var(--green-light); }
+  .stat-value.warn { color: var(--wrong); }
+  .stat-value.gold-c { color: var(--gold); }
+
+  /* 토스트 */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--bg-deep);
+    border: 1px solid var(--gold);
+    color: var(--cream);
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-family: "Noto Serif KR", serif;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    z-index: 9999;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .toast.ok { border-color: var(--green-light); color: var(--green-light); }
+  .toast.warn { border-color: var(--wrong); color: var(--wrong); }
+
+  .toggle-row {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    padding: 16px;
+    background: var(--bg-card-2);
+    border: 1px dashed var(--border-outer);
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .toggle-row .label {
+    font-size: 13px; color: var(--text-secondary);
+    margin-right: 4px;
+    align-self: center;
+  }
+  .toggle-chip {
+    background: var(--bg-input);
+    border: 1px solid var(--border-outer);
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .toggle-chip:hover { border-color: var(--green-accent); }
+  .toggle-chip.on {
+    background: var(--green-brand);
+    border-color: var(--green-light);
+    color: var(--cream);
+  }
+
+  /* ───── REPORT STYLES ───── */
+  .report-header {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-2) 100%);
+    border: 1px solid var(--border-outer);
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .report-id {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .report-name {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--cream);
+    margin: 0 0 4px;
+  }
+  .report-name .nm { color: var(--gold); }
+  .report-meta { color: var(--text-muted); font-size: 13px; }
+
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 720px) { .scorecard { grid-template-columns: repeat(2, 1fr); } }
+  .score-cell {
+    background: var(--bg-card);
+    border: 1px solid var(--border-outer);
+    border-radius: 6px;
+    padding: 18px 20px;
+    text-align: left;
+  }
+  .score-cell .lbl { font-size: 11px; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .score-cell .val {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .score-cell .val .unit { font-size: 16px; color: var(--text-muted); margin-left: 4px; font-style: normal; font-family: "Noto Serif KR", serif; }
+  .score-cell.gold .val { color: var(--gold); }
+  .score-cell.green .val { color: var(--green-light); }
+
+  .block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-outer);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 720px) { .block { padding: 22px 18px; } }
+  .block-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .block-title {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--cream);
+    margin: 0 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-outer);
+  }
+  .block-title .accent {
+    color: var(--gold);
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 500;
+    margin-right: 10px;
+  }
+
+  /* 종합 진단 */
+  .summary-text {
+    font-family: "Noto Serif KR", serif;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-primary);
+  }
+  .summary-text strong { color: var(--gold); font-weight: 700; }
+  .summary-quote {
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 18px;
+    margin: 18px 0 4px;
+    color: var(--cream);
+    font-style: italic;
+    font-family: "Noto Serif KR", serif;
+    font-size: 16px;
+  }
+
+  /* 분포 차트 */
+  .dist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 720px) { .dist-grid { grid-template-columns: 1fr; gap: 20px; } }
+  .dist-block h4 {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--cream);
+    margin: 0 0 14px;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 50px;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .bar-row .bar-label { color: var(--text-secondary); }
+  .bar-row .bar-track {
+    height: 8px;
+    background: var(--bg-input);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border-outer);
+  }
+  .bar-row .bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--green-brand), var(--green-light));
+    border-radius: 3px;
+    transition: width .8s ease;
+  }
+  .bar-row .bar-fill.gold {
+    background: linear-gradient(to right, var(--gold-dim), var(--gold));
+  }
+  .bar-row .bar-val {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 15px;
+    text-align: right;
+  }
+
+  /* 약점 패턴 */
+  .pattern-card {
+    background: var(--bg-card-2);
+    border: 1px solid var(--border-outer);
+    border-left: 2px solid var(--wrong);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .pattern-card.strength {
+    border-left-color: var(--green-light);
+  }
+  .pattern-rank {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .pattern-name {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--cream);
+    margin: 0 0 10px;
+  }
+  .pattern-evidence {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .pattern-evidence .item-no {
+    display: inline-block;
+    background: var(--bg-input);
+    border: 1px solid var(--border-outer);
+    color: var(--gold);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+  }
+  .pattern-diag {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .pattern-action {
+    background: var(--bg-input);
+    border-left: 2px solid var(--green-accent);
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-size: 13px;
+    border-radius: 0 3px 3px 0;
+  }
+  .pattern-action::before {
+    content: "→ 보완 ";
+    color: var(--green-light);
+    font-weight: 700;
+  }
+
+  /* 변별 진단 */
+  .discrim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 720px) { .discrim-grid { grid-template-columns: 1fr; } }
+  .discrim-col {
+    background: var(--bg-card-2);
+    border: 1px solid var(--border-outer);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+  .discrim-title {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+  .discrim-title.focus { color: var(--wrong); }
+  .discrim-title.shared { color: var(--gold); }
+  .discrim-sub {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-outer);
+  }
+  .discrim-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 60px;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255,255,255,.08);
+    font-size: 13px;
+  }
+  .discrim-row:last-child { border-bottom: none; }
+  .discrim-row .d-no {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .discrim-row .d-info { color: var(--text-secondary); line-height: 1.4; }
+  .discrim-row .d-info b { color: var(--text-primary); font-weight: 500; }
+  .discrim-row .d-rate {
+    text-align: right;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .discrim-row .d-rate.high { color: var(--wrong); }
+  .discrim-row .d-rate.low { color: var(--green-light); }
+  .discrim-empty {
+    color: var(--text-dim);
+    font-size: 13px;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+  }
+  .discrim-summary {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: var(--bg-input);
+    border-left: 2px solid var(--green-accent);
+    color: var(--text-primary);
+    font-size: 13px;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.6;
+  }
+  .discrim-summary.warn { border-left-color: var(--wrong); }
+
+  /* 문항별 진단표 */
+  .item-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .item-table th {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border-strong);
+    color: var(--gold);
+    font-family: "Noto Serif KR", serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .04em;
+  }
+  .item-table td {
+    padding: 12px 8px;
+    border-bottom: 1px dashed var(--border-outer);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+  .item-table tr:last-child td { border-bottom: none; }
+  .item-table .col-no {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--wrong);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .item-table .col-area {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: .05em;
+  }
+  .item-table .weakness {
+    color: var(--text-primary);
+  }
+
+  /* 코멘트 박스 */
+  .comment-box {
+    background: linear-gradient(135deg, rgba(74,90,58,.18) 0%, rgba(15,22,15,.4) 100%);
+    border: 1px solid var(--green-brand);
+    border-radius: 6px;
+    padding: 22px 26px;
+    position: relative;
+  }
+  .comment-box::before {
+    content: "“";
+    position: absolute;
+    top: -8px; left: 18px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 56px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .comment-text {
+    font-family: "Noto Serif KR", serif;
+    color: var(--cream);
+    font-size: 15px;
+    line-height: 1.85;
+    padding-top: 6px;
+  }
+  .comment-copy {
+    margin-top: 14px;
+    text-align: right;
+  }
+  .copy-btn {
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    padding: 6px 14px;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .15s;
+  }
+  .copy-btn:hover { background: var(--gold); color: var(--bg-deep); }
+  .copy-btn.copied { background: var(--green-light); color: var(--bg-deep); border-color: var(--green-light); }
+
+  /* 다음 학습 방향 */
+  .plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: plan;
+  }
+  .plan-list li {
+    padding: 14px 16px 14px 50px;
+    border: 1px solid var(--border-outer);
+    border-radius: 4px;
+    background: var(--bg-card-2);
+    margin-bottom: 10px;
+    position: relative;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .plan-list li::before {
+    counter-increment: plan;
+    content: counter(plan, decimal-leading-zero);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+  }
+  .plan-list li b { color: var(--gold); font-weight: 700; }
+
+  /* Tab toggle for 학생/학부모 view */
+  .view-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-outer);
+    border-radius: 4px;
+    padding: 3px;
+    width: fit-content;
+  }
+  .view-toggle button {
+    background: transparent;
+    border: none;
+    padding: 8px 18px;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .15s;
+  }
+  .view-toggle button.on {
+    background: var(--green-brand);
+    color: var(--cream);
+  }
+
+  /* footer / disclaimer */
+  .footer-note {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-outer);
+    color: var(--text-dim);
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .footer-note .em { color: var(--gold-dim); }
+
+  /* 인쇄 */
+  @media print {
+    body { background: white; color: black; }
+    .stepper, .btn-row, .copy-btn, .view-toggle, .toggle-row, .mark-stats { display: none; }
+    .block, .report-header, .pattern-card, .scorecard, .comment-box {
+      background: white !important;
+      color: black !important;
+      border-color: #999 !important;
+      page-break-inside: avoid;
+    }
+    .block-title, .pattern-name, .report-name, .summary-text, .comment-text, .item-table td, .plan-list li, .score-cell .val, .score-cell .lbl {
+      color: black !important;
+    }
+    .block-eyebrow, .pattern-rank, .report-id, .col-area, .accent, .item-table th { color: #6b5a1a !important; }
+    .bar-fill { background: #555 !important; }
+  }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(12px); animation: reveal .6s ease forwards; }
+  @keyframes reveal { to { opacity: 1; transform: none; } }
+  .reveal:nth-child(1) { animation-delay: .05s; }
+  .reveal:nth-child(2) { animation-delay: .15s; }
+  .reveal:nth-child(3) { animation-delay: .25s; }
+  .reveal:nth-child(4) { animation-delay: .35s; }
+  .reveal:nth-child(5) { animation-delay: .45s; }
+  .reveal:nth-child(6) { animation-delay: .55s; }
+  .reveal:nth-child(7) { animation-delay: .65s; }
+  .reveal:nth-child(8) { animation-delay: .75s; }
+
+  /* Tooltip on mark cell hover (desktop only) */
+  .mark-cell .tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-deep);
+    border: 1px solid var(--gold-dim);
+    color: var(--cream);
+    padding: 8px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 11px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    z-index: 10;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .mark-cell:hover .tip { display: block; }
+  }
+</style>
+</head>
+<body>
+<div class="watermark"></div>
+<div class="container">
+
+  <!-- 헤더 -->
+  <header class="brand">
+    <div class="brand-mark">오름</div>
+    <div class="brand-sub">국어 모의고사 진단 시스템</div>
+    <div class="brand-tag">DIAGNOSTIC REPORT v1</div>
+  </header>
+
+  <!-- Stepper -->
+  <div class="stepper">
+    <div class="step active" id="step1"><span class="dot">i</span><span>기본 정보</span></div>
+    <div class="step-line"></div>
+    <div class="step" id="step2"><span class="dot">ii</span><span>오답 마킹</span></div>
+    <div class="step-line"></div>
+    <div class="step" id="step3"><span class="dot">iii</span><span>진단 리포트</span></div>
+  </div>
+
+  <!-- ─────────── SCREEN 1: 기본 정보 ─────────── -->
+  <section class="screen active" id="screen1">
+    <div class="section-eyebrow">Step 01 — Setup</div>
+    <h1 class="section-title">기본 정보를 입력해 주세요</h1>
+    <p class="section-desc">
+      이름과 선택 과목을 입력해 주세요. 점수와 등급은 다음 단계에서 오답을 표시하시면 등급컷에 따라 자동으로 계산됩니다.
+    </p>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>이름 <span class="req">*</span></label>
+        <input type="text" id="f-name" placeholder="예: 김민준" />
+      </div>
+      <div class="field">
+        <label>응시일</label>
+        <input type="date" id="f-date" />
+      </div>
+
+      <div class="field field-full">
+        <label>응시 시험</label>
+        <select id="f-exam">
+          <option value="2025-05">2025학년도 5월 학력평가 (고3)</option>
+        </select>
+      </div>
+
+      <div class="field field-full">
+        <label>선택 과목 <span class="req">*</span></label>
+        <div class="choice-row">
+          <button type="button" class="choice-btn" data-choice="hs" data-target="f-choice">화법과 작문</button>
+          <button type="button" class="choice-btn" data-choice="lm" data-target="f-choice">언어와 매체</button>
+        </div>
+        <input type="hidden" id="f-choice" />
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <div></div>
+      <button class="btn btn-primary" id="go-step2">오답 마킹으로 →</button>
+    </div>
+  </section>
+
+  <!-- ─────────── SCREEN 2: 오답 마킹 ─────────── -->
+  <section class="screen" id="screen2">
+    <div class="section-eyebrow">Step 02 — Mark</div>
+    <h1 class="section-title">틀린 문항을 눌러 주세요</h1>
+    <p class="section-desc">
+      각 번호를 누르면 오답으로 표시되고, 다시 누르면 해제됩니다.<br />
+      좌상단 <strong style="color:var(--gold)">3</strong>은 3점 문항, 우하단 <span style="display:inline-block;width:6px;height:6px;background:var(--wrong);border-radius:50%;vertical-align:middle;"></span>은 전국 오답률 50% 이상의 고난도 문항입니다.<br />
+      오답을 표시하시면 점수와 등급이 등급컷에 따라 자동 계산됩니다.
+    </p>
+
+    <div class="mark-stats">
+      <div class="stat-item">
+        <span class="stat-label">오답 수</span>
+        <span class="stat-value warn" id="stat-wrong">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">예상 원점수</span>
+        <span class="stat-value gold-c" id="stat-est">100</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">예상 등급</span>
+        <span class="stat-value green" id="stat-grade">1</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">표준점수</span>
+        <span class="stat-value" id="stat-std">134</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">백분위</span>
+        <span class="stat-value" id="stat-pct">100</span>
+      </div>
+    </div>
+
+    <!-- 공통 1-17 독서 -->
+    <div class="mark-section">
+      <div class="mark-section-title">
+        <span class="num">i</span>
+        <span class="label">공통 · 독서</span>
+        <span class="meta">1번 ~ 17번</span>
+      </div>
+      <div class="mark-grid" id="grid-reading"></div>
+    </div>
+
+    <!-- 공통 18-34 문학 -->
+    <div class="mark-section">
+      <div class="mark-section-title">
+        <span class="num">ii</span>
+        <span class="label">공통 · 문학</span>
+        <span class="meta">18번 ~ 34번</span>
+      </div>
+      <div class="mark-grid" id="grid-lit"></div>
+    </div>
+
+    <!-- 선택 35-45 -->
+    <div class="mark-section">
+      <div class="mark-section-title">
+        <span class="num">iii</span>
+        <span class="label" id="choice-label">선택 과목</span>
+        <span class="meta">35번 ~ 45번</span>
+      </div>
+      <div class="mark-grid" id="grid-choice"></div>
+    </div>
+
+    <!-- 보조 토글 -->
+    <div class="toggle-row">
+      <span class="label">추가로 알려 주세요:</span>
+      <button class="toggle-chip" data-flag="time">시간이 부족했어요</button>
+      <button class="toggle-chip" data-flag="guess">찍어서 맞은 게 많아요</button>
+      <button class="toggle-chip" data-flag="careless">알았는데 실수로 틀렸어요</button>
+      <button class="toggle-chip" data-flag="late-shake">뒤쪽에서 흔들렸어요</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="back-step1">← 이전</button>
+      <button class="btn btn-primary" id="go-step3">진단 리포트 생성 →</button>
+    </div>
+  </section>
+
+  <!-- ─────────── SCREEN 3: 리포트 ─────────── -->
+  <section class="screen" id="screen3">
+    <div class="report-header reveal">
+      <div class="report-id">DIAGNOSTIC REPORT — 2025 May Mock</div>
+      <h1 class="report-name"><span class="nm" id="r-name">학생</span> 학생의 진단 리포트</h1>
+      <div class="report-meta" id="r-meta">2025학년도 5월 학력평가</div>
+    </div>
+
+    <div class="scorecard reveal">
+      <div class="score-cell"><div class="lbl">원점수</div><div class="val" id="r-raw">—</div></div>
+      <div class="score-cell gold"><div class="lbl">등급</div><div class="val" id="r-grade">—</div></div>
+      <div class="score-cell"><div class="lbl">표준점수</div><div class="val" id="r-std">—</div></div>
+      <div class="score-cell green"><div class="lbl">백분위</div><div class="val" id="r-pct">—</div></div>
+    </div>
+
+    <!-- A. 종합 진단 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part A · Overall</div>
+      <h2 class="block-title"><span class="accent">01</span>종합 진단</h2>
+      <div class="summary-text" id="r-summary"></div>
+    </div>
+
+    <!-- B. 분포 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part B · Distribution</div>
+      <h2 class="block-title"><span class="accent">02</span>오답 분포 분석</h2>
+      <div class="dist-grid">
+        <div class="dist-block">
+          <h4>영역별 오답</h4>
+          <div id="dist-area"></div>
+        </div>
+        <div class="dist-block">
+          <h4>요구 사고 유형별 오답</h4>
+          <div id="dist-thinking"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B-2. 변별 진단 (너만의 약점 vs 다 같이 어려운 문항) -->
+    <div class="block reveal" id="discrim-block">
+      <div class="block-eyebrow">Part B+ · Discrimination</div>
+      <h2 class="block-title"><span class="accent">02+</span>변별 진단 — 전국 오답률과 비교</h2>
+      <p style="color:var(--text-secondary); font-size:14px; margin: -8px 0 18px;">
+        같은 ‘오답 1개’라도 무게가 다릅니다. 다른 학생들도 다 틀린 문항인지, 본인만 틀린 문항인지를 보면 진짜 약점이 드러납니다.
+      </p>
+      <div class="discrim-grid">
+        <div class="discrim-col">
+          <h4 class="discrim-title focus">🎯 집중 보강 영역</h4>
+          <div class="discrim-sub">전국 오답률 30% 미만인데 틀린 문항 — 본인만의 약점</div>
+          <div id="discrim-focus"></div>
+        </div>
+        <div class="discrim-col">
+          <h4 class="discrim-title shared">🌊 함께 어려웠던 문항</h4>
+          <div class="discrim-sub">전국 오답률 50% 이상 — 다수가 함께 흔들린 고난도</div>
+          <div id="discrim-shared"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C. 핵심 약점 패턴 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part C · Weakness</div>
+      <h2 class="block-title"><span class="accent">03</span>핵심 약점 패턴</h2>
+      <div id="r-patterns"></div>
+    </div>
+
+    <!-- D. 강점 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part D · Strength</div>
+      <h2 class="block-title"><span class="accent">04</span>강점 분석</h2>
+      <div id="r-strengths"></div>
+    </div>
+
+    <!-- E. 문항별 진단표 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part E · Item Diagnosis</div>
+      <h2 class="block-title"><span class="accent">05</span>문항별 진단표</h2>
+      <div style="overflow-x: auto;">
+        <table class="item-table" id="r-items">
+          <thead>
+            <tr>
+              <th style="width:40px;">번호</th>
+              <th style="width:80px;">영역</th>
+              <th style="width:60px;">전국</th>
+              <th style="width:120px;">문항 유형</th>
+              <th>오답 시 약점</th>
+              <th style="width:200px;">보완 방향</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- F. 학생용 코멘트 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part F · Comment</div>
+      <h2 class="block-title"><span class="accent">06</span>피드백</h2>
+      <div id="comment-student" class="comment-box">
+        <div class="comment-text" id="r-student-comment"></div>
+      </div>
+    </div>
+
+    <!-- G. 다음 2주 학습 방향 -->
+    <div class="block reveal">
+      <div class="block-eyebrow">Part G · Next Steps</div>
+      <h2 class="block-title"><span class="accent">07</span>다음 2주 학습 방향</h2>
+      <ol class="plan-list" id="r-plan"></ol>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="back-step2">← 마킹 수정</button>
+      <button class="btn btn-ghost" id="print-report">🖨 인쇄 / PDF 저장</button>
+      <button class="btn btn-primary" id="submit-result">📤 선생님께 제출하기</button>
+      <button class="btn btn-ghost" id="restart">처음으로 ↻</button>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    본 자료는 오직 <span class="em">[오름] 국어</span> 학원 수강생들의 성적 향상을 위해 제작된 비매품입니다.<br />
+    무단 배포 시 즉각적인 퇴원 조치 및 법적 조치가 따릅니다. © 가경 국어 연구소
+  </div>
+</div>
+
+<!-- Google Sheets 결과 전송용 -->
+<iframe id="sheet-iframe" name="sheet-iframe" style="display:none;width:0;height:0;border:0;"></iframe>
+<form id="sheet-form" method="POST" target="sheet-iframe" style="display:none;">
+  <input type="hidden" name="data" id="sheet-data" />
+</form>
+
+<!-- 토스트 알림 -->
+<div id="toast" class="toast"></div>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   등급컷 데이터 — 2025학년도 5월 학력평가 (경기도교육청)
+   ──────────────────────────────────────────────────────── */
+const GRADE_CUT = {
+  "lm": [
+    { grade: 1, raw: 95, std: 130, pct: 97 },
+    { grade: 2, raw: 88, std: 124, pct: 89 },
+    { grade: 3, raw: 81, std: 118, pct: 78 },
+    { grade: 4, raw: 70, std: 109, pct: 61 },
+    { grade: 5, raw: 54, std: 96,  pct: 40 },
+    { grade: 6, raw: 40, std: 85,  pct: 23 },
+    { grade: 7, raw: 30, std: 76,  pct: 11 },
+    { grade: 8, raw: 20, std: 68,  pct: 4  },
+    { grade: 9, raw: 0,  std: 60,  pct: 1  }
+  ],
+  "hs": [
+    { grade: 1, raw: 97, std: 130, pct: 97 },
+    { grade: 2, raw: 90, std: 124, pct: 89 },
+    { grade: 3, raw: 83, std: 118, pct: 78 },
+    { grade: 4, raw: 72, std: 109, pct: 61 },
+    { grade: 5, raw: 56, std: 96,  pct: 40 },
+    { grade: 6, raw: 42, std: 85,  pct: 23 },
+    { grade: 7, raw: 32, std: 76,  pct: 11 },
+    { grade: 8, raw: 22, std: 68,  pct: 4  },
+    { grade: 9, raw: 0,  std: 60,  pct: 1  }
+  ]
+};
+function lookupGrade(raw, choice) {
+  if (raw == null || isNaN(raw)) return null;
+  const cuts = GRADE_CUT[choice] || GRADE_CUT["hs"];
+  for (const c of cuts) {
+    if (raw >= c.raw) return c;
+  }
+  return cuts[cuts.length - 1];
+}
+
+/* ════════════════════════════════════════════════════════
+   2025학년도 5월 학력평가 문항 데이터베이스
+   ──────────────────────────────────────────────────────── */
+const QUESTIONS = {
+  // ───── 공통 1-17 독서 ─────
+  1:  { area:"독서", source:"독서론", type:"내용일치", thinking:"확인", three:false,
+        coreElement:"요약하기·거시규칙의 개념 정의 확인",
+        weakness1:"기본 내용 확인 약점", weakness2:"개념 방향성 혼동",
+        remediation:"개념 정의를 읽을 때 ‘무엇이 무엇을 뺀다/만든다’ 식으로 방향 화살표를 그리기",
+        parentNote:"이 문항은 지문 안에 명시된 정보를 정확히 확인해야 하는 기본형이었습니다." },
+  2:  { area:"독서", source:"독서론", type:"개념적용", thinking:"적용", three:false,
+        coreElement:"삭제·일반화·구성·선택 규칙을 실제 문장에 적용",
+        weakness1:"개념 적용 약점", weakness2:"개념 암기 후 적용 단절",
+        remediation:"개념 → 예문 → 낯선 예문의 3단 적용 훈련",
+        parentNote:"개념을 외운 것은 맞지만, 그 개념을 실제 문장에 적용하는 단계에서 막힌 문항입니다." },
+  3:  { area:"독서", source:"독서론", type:"공통점파악", thinking:"비교", three:false,
+        coreElement:"[A]와 〈보기〉의 공통 사고 도출",
+        weakness1:"구조 파악 약점", weakness2:"개별→상위 추출 약함",
+        remediation:"두 자료 비교 시 공통 키워드를 먼저 추출한 뒤 묶기",
+        parentNote:"개별 정보는 읽지만, 두 자료를 묶어 상위 개념을 뽑는 능력이 부족했습니다." },
+  4:  { area:"독서", source:"쇼펜하우어·가브리엘", type:"전개방식", thinking:"정리", three:false,
+        coreElement:"지문 전체의 설명·비교·비판 구조 파악",
+        weakness1:"구조 파악 약점", weakness2:"내용만 따라가는 독해",
+        remediation:"문단별 ‘기능 표시’(소개/비교/반박/예시) 훈련",
+        parentNote:"내용을 따라가는 독해는 가능하나, 글의 전개 방식을 거시적으로 보는 힘이 약합니다." },
+  5:  { area:"독서", source:"쇼펜하우어·가브리엘", type:"세부정보", thinking:"확인", three:false,
+        coreElement:"신실재론의 핵심 명제 확인 (실재≠참)",
+        weakness1:"기본 내용 확인 약점", weakness2:"개념 정의 혼동",
+        remediation:"철학 지문에서 핵심 용어의 정의 문장에 표시 후 선지 대조",
+        parentNote:"지문에 분명히 정의되어 있는 개념을 끝까지 대조하지 않은 문항입니다." },
+  6:  { area:"독서", source:"쇼펜하우어·가브리엘", type:"관점비교", thinking:"비교", three:false, wr:34.8,
+        coreElement:"두 철학자의 입장을 〈보기〉 진술에 대입",
+        weakness1:"개념 적용 약점", weakness2:"관점별 기준 정리 부족",
+        remediation:"인물별 기준표(전제/대상/결론) 만들고 보기 문장에 매칭",
+        parentNote:"두 관점을 따로따로 이해하는 데서 끝나고, 진술을 어느 입장에 대입할지 판단하지 못했습니다." },
+  7:  { area:"독서", source:"쇼펜하우어·가브리엘", type:"문장의미", thinking:"추론", three:false,
+        coreElement:"㉠·㉡의 압축적 의미 풀어내기",
+        weakness1:"근거 확장력 부족", weakness2:"추상→구체 번역 약함",
+        remediation:"추상적 문장을 본인의 말로 다시 쓰는 ‘재진술’ 훈련",
+        parentNote:"지문 속 압축된 표현을 풀어 이해하는 추론력이 약했습니다." },
+  8:  { area:"독서", source:"쇼펜하우어·가브리엘", type:"보기적용", thinking:"적용", three:true, wr:57.0,
+        coreElement:"표상·실재·의미장 개념을 사슴 사례에 대응",
+        weakness1:"개념 적용 약점", weakness2:"개념 적용 범위 혼동",
+        remediation:"개념-조건-사례 3단 정리표 (보기 한 항목씩 매칭)",
+        parentNote:"이 문항은 지문을 ‘이해했는가’가 아니라, 그 개념을 낯선 사례에 ‘옮길 수 있는가’를 본 문항입니다." },
+  9:  { area:"독서", source:"쇼펜하우어·가브리엘", type:"어휘문맥", thinking:"확인", three:false,
+        coreElement:"다의어의 문맥적 의미 구분",
+        weakness1:"어휘·문법 약점", weakness2:"문맥 추론 부족",
+        remediation:"한 단어의 ‘기본 뜻 vs 문맥 뜻’ 카드 훈련",
+        parentNote:"쉬운 단어라도 문맥에서 어떤 기능을 하는지 확인하는 습관이 부족했습니다." },
+ 10:  { area:"독서", source:"자기유변유체", type:"내용일치", thinking:"확인", three:false, wr:27.6,
+        coreElement:"가속도 감지기·제어기·감쇠기의 정보 흐름",
+        weakness1:"기본 내용 확인 약점", weakness2:"장치 간 역할 혼동",
+        remediation:"기술 지문은 ‘부품 → 기능 → 신호 흐름’ 화살표 그리기",
+        parentNote:"기술 지문에서 부품들의 역할 관계를 정확히 정리하지 못했습니다." },
+ 11:  { area:"독서", source:"자기유변유체", type:"세부정보", thinking:"확인", three:false, wr:32.7,
+        coreElement:"자기유변유체의 성질 확인",
+        weakness1:"기본 내용 확인 약점", weakness2:"대상·시스템 혼동",
+        remediation:"대상의 성질과 시스템 작동을 분리해서 정리",
+        parentNote:"중심이 되는 대상의 기능과, 그것이 들어간 시스템 전체 작동을 혼동한 문항입니다." },
+ 12:  { area:"독서", source:"자기유변유체", type:"자료해석", thinking:"적용", three:true, wr:65.5,
+        coreElement:"기술 지문 정보를 그래프(방향·전류·점성)에 연결",
+        weakness1:"개념 적용 약점", weakness2:"자료 해석력 부족",
+        remediation:"그래프 축의 의미를 지문 용어로 라벨링한 후 단계 추적",
+        parentNote:"지문 내용을 그래프에 옮기는 적용형 사고에서 흔들린 문항입니다." },
+ 13:  { area:"독서", source:"자기유변유체", type:"원인추론", thinking:"추론", three:false, wr:62.7,
+        coreElement:"㉠ 현상의 조건 변화→결과 추론",
+        weakness1:"근거 확장력 부족", weakness2:"인과 추적 약함",
+        remediation:"‘조건이 바뀌면 무엇이 바뀌는가’를 단계별로 쓰는 훈련",
+        parentNote:"단순 확인이 아니라 조건이 바뀔 때의 결과를 한 단계 더 추론해야 하는 문항이었습니다." },
+ 14:  { area:"독서", source:"섀플리값", type:"내용일치", thinking:"확인", three:false,
+        coreElement:"지문에 있는 정보와 없는 정보 구분",
+        weakness1:"기본 내용 확인 약점", weakness2:"선지 표현 확장 인식 부족",
+        remediation:"선지의 ‘있다/없다’를 지문 문장 단위로 표시하기",
+        parentNote:"기본적인 정보 확인 문항인데도 선지의 표현을 끝까지 대조하지 않은 결과로 보입니다." },
+ 15:  { area:"독서", source:"섀플리값", type:"보기적용", thinking:"적용", three:true, wr:57.6,
+        coreElement:"섀플리 값 계산 구조를 사례에 적용 (한계기여도·순서·가중치)",
+        weakness1:"개념 적용 약점", weakness2:"수리 조건 정리 부족",
+        remediation:"개념 정의→공식→사례 대입의 3단계 노트 훈련",
+        parentNote:"수리·계산 조건이 들어간 적용형 문항에서 약점이 드러났습니다." },
+ 16:  { area:"독서", source:"섀플리값", type:"이유추론", thinking:"추론", three:false, wr:34.8,
+        coreElement:"섀플리 값이 공정한 기준인 이유 정리",
+        weakness1:"구조 파악 약점", weakness2:"결론·근거 연결 부족",
+        remediation:"지문의 ‘주장-근거-사례’ 3층 구조를 화살표로 정리",
+        parentNote:"앞 설명과 뒤의 결론을 연결해 ‘왜 그러한가’를 끌어내는 힘이 부족했습니다." },
+ 17:  { area:"독서", source:"섀플리값", type:"어휘한자", thinking:"확인", three:false,
+        coreElement:"문맥에 맞는 한자어 대응",
+        weakness1:"어휘·문법 약점", weakness2:"어휘력 부족",
+        remediation:"한자어 어휘 카드(고유어→한자어 짝짓기) 훈련",
+        parentNote:"문맥 속 어휘 의미를 한자어로 옮기는 능력에서 약점이 드러났습니다." },
+
+  // ───── 공통 18-34 문학 ─────
+ 18:  { area:"문학", source:"장한절효기 (고전소설)", type:"서술상특징", thinking:"평가", three:false,
+        coreElement:"외양 묘사·사건 전개 등 서술 기법 판단",
+        weakness1:"문학 개념어 약점", weakness2:"개념과 실제 작품 연결 부족",
+        remediation:"서술 개념어(편집자적 논평·요약·장면 제시 등)와 실제 문장 매칭 훈련",
+        parentNote:"작품 내용 이해보다, 그 작품에 어떤 서술 기법이 쓰였는지를 판단하는 개념어 학습이 필요한 문항입니다." },
+ 19:  { area:"문학", source:"장한절효기 (고전소설)", type:"내용이해", thinking:"확인", three:false,
+        coreElement:"고전소설 사건 순서·인물 행위 따라가기",
+        weakness1:"기본 내용 확인 약점", weakness2:"고전 어투 독해 부담",
+        remediation:"고전소설 줄거리 정리(누가/언제/왜/결과) 4칸 노트",
+        parentNote:"고전소설의 긴 문장과 사건 흐름을 따라가는 기본 독해에서 흔들린 문항입니다." },
+ 20:  { area:"문학", source:"장한절효기 (고전소설)", type:"발화분석", thinking:"추론", three:false,
+        coreElement:"인물 발화에 담긴 처지·우려·감사 의미",
+        weakness1:"근거 확장력 부족", weakness2:"표면·속뜻 구분 부족",
+        remediation:"발화 옆에 ‘직접 의미 / 속뜻’ 두 칸 적기 훈련",
+        parentNote:"인물의 말을 표면 그대로 읽고, 그 안의 의도와 처지를 짚지 못한 문항입니다." },
+ 21:  { area:"문학", source:"장한절효기 (고전소설)", type:"외적준거", thinking:"적용", three:true, wr:30.5,
+        coreElement:"효·절·가문 갈등이라는 보기 관점을 장면에 연결",
+        weakness1:"문학 감상형 약점", weakness2:"보기 핵심어 추출 부족",
+        remediation:"〈보기〉에서 핵심어 3개 뽑고, 각 선지를 그 핵심어로 연결",
+        parentNote:"보기에서 제시된 관점을 작품 장면에 옮겨 판단하는 감상형 문항에서 약점이 드러났습니다." },
+ 22:  { area:"문학", source:"축산별곡·명성에 대하여 (갈래복합)", type:"표현비교", thinking:"비교", three:false,
+        coreElement:"고전시가와 고전수필의 표현 방식 비교",
+        weakness1:"문학 개념어 약점", weakness2:"갈래별 표현 분리 부족",
+        remediation:"갈래별 표현 특징표(시가/수필) 만들고 작품에 표시",
+        parentNote:"두 갈래의 표현 방식을 분리해서 비교하는 능력이 부족했습니다." },
+ 23:  { area:"문학", source:"축산별곡·명성에 대하여 (갈래복합)", type:"시구의미", thinking:"추론", three:false,
+        coreElement:"특정 구절의 정서·기능 파악",
+        weakness1:"문학 개념어 약점", weakness2:"화자 태도·상황 연결 약함",
+        remediation:"시구 옆에 ‘화자 상태 / 정서 / 기능’ 3태그 달기",
+        parentNote:"고전시가에서 화자의 태도와 시적 상황을 시구에 연결하는 힘이 약했습니다." },
+ 24:  { area:"문학", source:"축산별곡·명성에 대하여 (갈래복합)", type:"소재기능", thinking:"비교", three:false,
+        coreElement:"같은 소재가 두 작품에서 갖는 기능 비교",
+        weakness1:"문학 개념어 약점", weakness2:"소재 기능 판단 부족",
+        remediation:"소재별 ‘대상·기능·정서’ 표 만들기",
+        parentNote:"같은 소재가 작품마다 다른 기능을 한다는 점을 정확히 짚지 못했습니다." },
+ 25:  { area:"문학", source:"축산별곡·명성에 대하여 (갈래복합)", type:"논지전개", thinking:"정리", three:false, wr:30.1,
+        coreElement:"수필의 논의가 타인→자신으로 옮겨가는 흐름",
+        weakness1:"구조 파악 약점", weakness2:"수필 사고 흐름 약함",
+        remediation:"수필을 문단별 ‘무엇을 말하는지’ 한 줄 요약 훈련",
+        parentNote:"수필의 사고가 어떤 방향으로 옮겨가는지 흐름 자체를 잡지 못한 문항입니다." },
+ 26:  { area:"문학", source:"축산별곡·명성에 대하여 (갈래복합)", type:"외적준거", thinking:"적용", three:true,
+        coreElement:"사대부·관직·명성·정진 관점 적용",
+        weakness1:"문학 감상형 약점", weakness2:"보기 문장의 근거화 부족",
+        remediation:"보기 문장을 단위별로 쪼개고, 각 단위가 어느 선지에 작동하는지 확인",
+        parentNote:"보기 속 관점을 ‘작품에 적용’하는 감상형 문항에서 약점이 드러났습니다." },
+ 27:  { area:"문학", source:"무명초 (최서해)", type:"서술상특징", thinking:"평가", three:false,
+        coreElement:"작품 밖 서술자·사건 중심 전개 등 기본 서술 방식",
+        weakness1:"문학 개념어 약점", weakness2:"서술자 위치 판단 약함",
+        remediation:"서술자 시점 4종(1인칭·3인칭 관찰·전지·작가) 구분 훈련",
+        parentNote:"소설의 서술상 특징을 개념어로 정확히 판별하는 학습이 필요합니다." },
+ 28:  { area:"문학", source:"무명초 (최서해)", type:"소재의미", thinking:"비교", three:false,
+        coreElement:"㉠ 일 원 지폐와 ㉡ 알약이 인물에게 갖는 의미 차이",
+        weakness1:"근거 확장력 부족", weakness2:"인물 처지 중심 독해 부족",
+        remediation:"소재가 등장한 ‘직전 사건 / 인물 상태 / 변화’ 3박스 정리",
+        parentNote:"같은 인물에게 두 소재가 다른 의미를 갖는다는 점을 처지 중심으로 읽지 못했습니다." },
+ 29:  { area:"문학", source:"무명초 (최서해)", type:"내용이해", thinking:"확인", three:false,
+        coreElement:"인물의 말과 실제 사건 구분",
+        weakness1:"기본 내용 확인 약점", weakness2:"진술·사실 혼동",
+        remediation:"소설을 읽을 때 ‘말한 것 vs 실제 일어난 것’ 두 줄로 정리",
+        parentNote:"소설에서 인물이 말한 것과 실제 일어난 사건을 구분하는 기본 독해에서 흔들렸습니다." },
+ 30:  { area:"문학", source:"무명초 (최서해)", type:"외적준거", thinking:"적용", three:true, wr:27.5,
+        coreElement:"빈궁·자괴감·모멸감·일시적 위안의 적용",
+        weakness1:"문학 감상형 약점", weakness2:"보기 핵심어 추출 부족",
+        remediation:"보기에서 정서 키워드 4개 표시 후 각 선지 매칭",
+        parentNote:"보기에서 제시한 정서를 작품 장면에 정확히 연결하는 감상형 문항에서 약점이 드러났습니다." },
+ 31:  { area:"문학", source:"고향으로 간다·그 골목 잃어버리고", type:"표현상특징", thinking:"평가", three:false, wr:29.2,
+        coreElement:"반복·감탄사·명령형·명사형 종결 등 시 표현 판단",
+        weakness1:"문학 개념어 약점", weakness2:"개념·작품 연결 부족",
+        remediation:"표현 개념어 카드 + 실제 시구 매칭 훈련",
+        parentNote:"시 표현법을 개념으로는 알지만 실제 작품에 정확히 적용하지 못한 문항입니다." },
+ 32:  { area:"문학", source:"고향으로 간다·그 골목 잃어버리고", type:"시구비교", thinking:"비교", three:false,
+        coreElement:"㉠·㉡이 화자에게 가져온 변화 차이",
+        weakness1:"근거 확장력 부족", weakness2:"시적 상황 변화 읽기 약함",
+        remediation:"시구 양옆에 ‘이전 상황 → 이후 상황’ 표시",
+        parentNote:"시 안에서 일어나는 미세한 상황 변화를 읽어내는 힘이 부족했습니다." },
+ 33:  { area:"문학", source:"고향으로 간다·그 골목 잃어버리고", type:"시어해석", thinking:"추론", three:false,
+        coreElement:"시어의 정서·시간성·반복 의미 해석",
+        weakness1:"문학 개념어 약점", weakness2:"시어 단위 의미 판단 부족",
+        remediation:"시어 한 단어씩 ‘정서·시간·기능’ 3태그 달기",
+        parentNote:"시어 하나가 만드는 의미 차이를 섬세하게 읽는 훈련이 필요한 문항입니다." },
+ 34:  { area:"문학", source:"고향으로 간다·그 골목 잃어버리고", type:"외적준거", thinking:"적용", three:true,
+        coreElement:"상실·회상·성찰·삶의 태도 관점 적용",
+        weakness1:"문학 감상형 약점", weakness2:"보기 관점→작품 연결 부족",
+        remediation:"보기에서 ‘태도/대상/시간’ 키워드 추출 후 각 선지에 매칭",
+        parentNote:"고난도 시 감상 문항으로, 보기의 관점을 작품에 적용하는 힘에서 약점이 드러났습니다." },
+
+  // ───── 선택: 언어와 매체 (lm) 35-45 ─────
+  "lm-35": { area:"언매", source:"띄어쓰기 자료", type:"문법개념", thinking:"확인", three:false,
+        coreElement:"단어·조사·어미·접사·보조용언 개념 확인",
+        weakness1:"어휘·문법 약점", weakness2:"기본 개념 불안정",
+        remediation:"품사 체계와 단위 개념의 정의를 그림으로 정리",
+        parentNote:"문법 기본 개념이 안정되어 있지 않아 발생한 오답입니다." },
+  "lm-36": { area:"언매", source:"띄어쓰기 자료", type:"문법적용", thinking:"적용", three:true, wr:33.2,
+        coreElement:"보조용언 띄어쓰기 규칙을 사례에 적용",
+        weakness1:"언매 개념 적용 약점", weakness2:"규칙·사례 연결 부족",
+        remediation:"보조용언 사례를 ‘본용언+보조용언’ 분해표로 훈련",
+        parentNote:"규칙은 알아도 실제 문장에 적용하는 단계에서 막힌 문항입니다." },
+  "lm-37": { area:"언매", source:"음운변동", type:"문법적용", thinking:"적용", three:false,
+        coreElement:"음운 변동의 유형·횟수를 단어에 적용",
+        weakness1:"언매 개념 적용 약점", weakness2:"개념 암기 후 단절",
+        remediation:"단어를 음운 단위로 쪼개 ‘어디서 무슨 변동’이 일어나는지 표시",
+        parentNote:"음운 변동의 이름은 알지만 실제 단어에 적용하는 힘이 부족합니다." },
+  "lm-38": { area:"언매", source:"안긴문장", type:"문법적용", thinking:"적용", three:false,
+        coreElement:"명사절·관형절·부사절·인용절 판별",
+        weakness1:"언매 개념 적용 약점", weakness2:"문장 구조 분석 약함",
+        remediation:"문장의 안긴절 표지를 직접 동그라미 → 절 종류 판정 훈련",
+        parentNote:"문장 구조를 끊어 분석하는 능력에서 약점이 드러났습니다." },
+  "lm-39": { area:"언매", source:"중세국어", type:"문법적용", thinking:"적용", three:false, wr:35.9,
+        coreElement:"모음 조화·이어적기·어두자음군·두음법칙 적용",
+        weakness1:"언매 개념 적용 약점", weakness2:"중세 자료 해석 부족",
+        remediation:"중세 국어 자료를 단위별로 쪼개 ‘현대어 대응’ 표 만들기",
+        parentNote:"중세 국어 개념을 자료에 적용하는 훈련이 더 필요한 문항입니다." },
+  "lm-40": { area:"언매", source:"매체 자료 구성", type:"매체구성", thinking:"확인", three:false,
+        coreElement:"자막·이미지·하단 정보·화면 분할 기능 확인",
+        weakness1:"매체·자료 대응 약점", weakness2:"매체 요소 식별 부족",
+        remediation:"매체 자료 위에 ‘자막/이미지/하단/분할’을 직접 라벨",
+        parentNote:"매체 자료의 구성 요소를 식별하는 힘이 부족했습니다." },
+  "lm-41": { area:"언매", source:"매체 수용 양상", type:"매체수용", thinking:"비교", three:false,
+        coreElement:"수용자의 반응이 정보요청·경험연결·평가 중 무엇인지",
+        weakness1:"매체·자료 대응 약점", weakness2:"반응 유형 구분 부족",
+        remediation:"수용자 발화를 ‘정보/경험/평가/요청’ 4종 분류 연습",
+        parentNote:"매체 수용자의 반응 유형을 분류해 판단하는 능력에 약점이 있습니다." },
+  "lm-42": { area:"언매", source:"담화 표현", type:"문법개념", thinking:"적용", three:false,
+        coreElement:"어미·피동·부정·지시·선어말 어미 기능 판단",
+        weakness1:"언매 개념 적용 약점", weakness2:"개념 식별 약함",
+        remediation:"문법 표현 카드를 만들고 예문에 직접 표시",
+        parentNote:"문법 표현을 실제 문장에서 식별하는 힘이 부족했습니다." },
+  "lm-43": { area:"언매", source:"슬라이드 제작", type:"매체제작", thinking:"적용", three:true, wr:28.8,
+        coreElement:"글쓰기 계획과 실제 슬라이드의 대응 확인",
+        weakness1:"매체·자료 대응 약점", weakness2:"계획·결과물 대조 부족",
+        remediation:"계획서 항목을 한 줄씩 슬라이드 요소에 매칭하는 훈련",
+        parentNote:"계획과 실제 결과물의 대응 관계를 끝까지 대조하지 않은 문항입니다." },
+  "lm-44": { area:"언매", source:"누리 소통망 기능", type:"매체수용", thinking:"확인", three:false,
+        coreElement:"답장·공지·파일 전송·메시지 취소 기능 판별",
+        weakness1:"매체·자료 대응 약점", weakness2:"매체 기능 목적 판단 부족",
+        remediation:"앱 기능 아이콘별 ‘목적/한계/예시’ 정리",
+        parentNote:"디지털 매체 기능의 목적을 판단하는 능력에서 약점이 드러났습니다." },
+  "lm-45": { area:"언매", source:"앱 화면", type:"매체구성", thinking:"확인", three:false,
+        coreElement:"대화 내용이 앱 화면에 어떻게 구현되었는지 확인",
+        weakness1:"매체·자료 대응 약점", weakness2:"종합 판단력 부족",
+        remediation:"대화 → 화면의 어떤 위치에 어떻게 반영됐는지 직접 표시",
+        parentNote:"매체 자료를 종합적으로 판단하는 능력에 약점이 드러났습니다." },
+
+  // ───── 선택: 화법과 작문 (hs) 35-45 ─────
+  "hs-35": { area:"화작", source:"발표", type:"발표전략", thinking:"평가", three:false,
+        coreElement:"청중 유도·자료 제시·질문 반영 등 발표 전략 파악",
+        weakness1:"화작 자료 대응 약점", weakness2:"발화 목적 판단 부족",
+        remediation:"발표문 옆에 ‘이 발화의 목적’을 한 줄씩 메모",
+        parentNote:"발표자가 무엇을 위해 그렇게 말했는지를 짚는 힘이 부족했습니다." },
+  "hs-36": { area:"화작", source:"발표", type:"메모반영", thinking:"비교", three:false,
+        coreElement:"준비 메모와 실제 발표 내용의 대응 관계 확인",
+        weakness1:"화작 자료 대응 약점", weakness2:"자료-결과 대조 부족",
+        remediation:"메모 항목을 번호화 후 발표문에서 위치 표시",
+        parentNote:"준비 메모와 실제 결과물을 1:1로 대조하는 과정이 부족했습니다." },
+  "hs-37": { area:"화작", source:"발표", type:"청중반응", thinking:"비교", three:false,
+        coreElement:"청중 반응이 긍정 평가·궁금증·추가 탐색 중 무엇인지",
+        weakness1:"화작 자료 대응 약점", weakness2:"반응 유형 분류 부족",
+        remediation:"청중 발화를 ‘평가/궁금/탐색/공감’ 4종 분류 연습",
+        parentNote:"청중의 반응 유형을 분류하는 능력에 약점이 드러났습니다." },
+  "hs-38": { area:"화작", source:"대화", type:"발화기능", thinking:"평가", three:false,
+        coreElement:"제안·동의·보완·조정의 발화 기능 구분",
+        weakness1:"화작 자료 대응 약점", weakness2:"발화 기능 분류 부족",
+        remediation:"대화 발화 옆에 ‘기능 태그’ 한 단어씩 달기",
+        parentNote:"대화에서 각 발화가 어떤 기능을 하는지를 분류하는 힘이 약했습니다." },
+  "hs-39": { area:"화작", source:"대화·작문", type:"내용반영", thinking:"비교", three:false,
+        coreElement:"대화 내용이 글에 어떻게 반영되었는지 확인",
+        weakness1:"화작 자료 대응 약점", weakness2:"자료-초고 대응 부족",
+        remediation:"대화 항목을 번호화 후 초고에서 어디에 반영됐는지 표시",
+        parentNote:"앞 대화의 내용이 글에 반영된 지점을 끝까지 확인하지 않은 문항입니다." },
+  "hs-40": { area:"화작", source:"작문", type:"계획반영", thinking:"비교", three:true, wr:49.0,
+        coreElement:"글쓰기 계획과 실제 글의 대응 확인",
+        weakness1:"화작 자료 대응 약점", weakness2:"계획 조건 누락",
+        remediation:"계획표 한 칸씩 글에서 대응 문장 표시 훈련",
+        parentNote:"계획서와 실제 글의 대응을 1:1로 확인하는 과정이 부족했습니다." },
+  "hs-41": { area:"화작", source:"작문", type:"점검기준", thinking:"평가", three:false, wr:28.0,
+        coreElement:"비평 대상·관점·근거·약점 보완 여부 확인",
+        weakness1:"화작 자료 대응 약점", weakness2:"점검 기준 적용 부족",
+        remediation:"점검 항목 체크리스트로 글에서 직접 확인",
+        parentNote:"비평문의 점검 기준을 글에 적용하는 힘이 부족했습니다." },
+  "hs-42": { area:"화작", source:"작문", type:"제목조건", thinking:"평가", three:false,
+        coreElement:"표제·부제 조건의 동시 만족 여부 판단",
+        weakness1:"화작 자료 대응 약점", weakness2:"조건 동시 충족 판단 약함",
+        remediation:"조건을 1·2·3번으로 나눠 각각 ✓/✗ 표시",
+        parentNote:"여러 조건을 동시에 충족하는지 끝까지 확인하지 않은 문항입니다." },
+  "hs-43": { area:"화작", source:"작문", type:"전개구조", thinking:"정리", three:false,
+        coreElement:"문제 상황·원인·해결의 글 구조 파악",
+        weakness1:"구조 파악 약점", weakness2:"글의 전개 구조 식별 부족",
+        remediation:"문단별로 ‘문제/원인/해결/기대효과’ 라벨 달기",
+        parentNote:"글의 전체 전개 구조를 거시적으로 잡는 힘이 부족했습니다." },
+  "hs-44": { area:"화작", source:"작문", type:"결론쓰기", thinking:"적용", three:false,
+        coreElement:"앞 방안 요약 + 기대 효과 연결",
+        weakness1:"화작 자료 대응 약점", weakness2:"결론 구성 약함",
+        remediation:"결론 문단의 ‘요약+효과’ 2단 구조를 표로 훈련",
+        parentNote:"결론에서 앞 내용을 요약하면서 기대 효과까지 연결하는 힘이 부족했습니다." },
+  "hs-45": { area:"화작", source:"작문 자료", type:"자료활용", thinking:"적용", three:true, wr:60.7,
+        coreElement:"표·기사·인터뷰 자료를 주장에 맞게 활용",
+        weakness1:"화작 자료 대응 약점", weakness2:"자료 근거화 약함",
+        remediation:"자료마다 ‘무엇을 뒷받침하는지’ 한 줄 메모 후 글에 매칭",
+        parentNote:"자료를 글의 주장에 맞춰 근거로 만드는 힘에서 약점이 드러났습니다." }
+};
+
+/* ════════════════════════════════════════════════════════
+   상태
+   ──────────────────────────────────────────────────────── */
+const STATE = {
+  name: "",
+  date: "",
+  exam: "2025-05",
+  examLabel: "2025학년도 5월 학력평가",
+  choice: null,
+  raw: 100,
+  std: null,
+  grade: null,
+  pct: null,
+  wrongs: new Set(),
+  flags: new Set(),
+  parentComment: "",  // 시트 전송용
+  studentComment: "", // 시트 전송용
+  patterns: [],
+  submitted: false
+};
+
+/* ════════════════════════════════════════════════════════
+   네비게이션
+   ──────────────────────────────────────────────────────── */
+const screens = ["screen1","screen2","screen3"];
+function showScreen(idx) {
+  screens.forEach((id, i) => {
+    document.getElementById(id).classList.toggle("active", i === idx);
+    const step = document.getElementById("step"+(i+1));
+    step.classList.toggle("active", i === idx);
+    step.classList.toggle("done", i < idx);
+  });
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ════════════════════════════════════════════════════════
+   Screen 1
+   ──────────────────────────────────────────────────────── */
+document.querySelectorAll(".choice-btn[data-target]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = btn.dataset.target;
+    document.querySelectorAll(`.choice-btn[data-target="${target}"]`).forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    document.getElementById(target).value = btn.dataset.choice;
+  });
+});
+
+document.getElementById("go-step2").addEventListener("click", () => {
+  const name = document.getElementById("f-name").value.trim();
+  const choice = document.getElementById("f-choice").value;
+  if (!name) { alert("이름을 입력해 주세요."); return; }
+  if (!choice) { alert("선택 과목을 골라 주세요."); return; }
+
+  STATE.name = name;
+  STATE.date = document.getElementById("f-date").value;
+  STATE.choice = choice;
+
+  buildMarkingGrid();
+  showScreen(1);
+});
+
+/* ════════════════════════════════════════════════════════
+   Screen 2 — 마킹 그리드
+   ──────────────────────────────────────────────────────── */
+function buildMarkingGrid() {
+  const reading = document.getElementById("grid-reading");
+  const lit = document.getElementById("grid-lit");
+  const choiceGrid = document.getElementById("grid-choice");
+  reading.innerHTML = lit.innerHTML = choiceGrid.innerHTML = "";
+
+  // 1-17 독서
+  for (let i = 1; i <= 17; i++) reading.appendChild(makeCell(String(i), QUESTIONS[i]));
+  // 18-34 문학
+  for (let i = 18; i <= 34; i++) lit.appendChild(makeCell(String(i), QUESTIONS[i]));
+  // 35-45 선택
+  document.getElementById("choice-label").textContent =
+    "선택 · " + (STATE.choice === "lm" ? "언어와 매체" : "화법과 작문");
+  for (let i = 35; i <= 45; i++) {
+    const k = STATE.choice + "-" + i;
+    choiceGrid.appendChild(makeCell(String(i), QUESTIONS[k], k));
+  }
+  updateMarkStats();
+}
+
+function makeCell(label, q, keyOverride) {
+  const key = keyOverride || label;
+  const cell = document.createElement("div");
+  cell.className = "mark-cell";
+  if (q && q.three) cell.classList.add("three-pt");
+  cell.dataset.key = key;
+  const wrTxt = q && q.wr ? ` · 전국 ${q.wr}%↗` : "";
+  cell.innerHTML = label + (q ? `<span class="tip">${q.area} · ${q.type}${wrTxt}</span>` : "");
+  if (q && q.wr && q.wr >= 50) cell.classList.add("hard-q");
+  cell.addEventListener("click", () => {
+    if (STATE.wrongs.has(key)) {
+      STATE.wrongs.delete(key);
+      cell.classList.remove("wrong");
+    } else {
+      STATE.wrongs.add(key);
+      cell.classList.add("wrong");
+    }
+    updateMarkStats();
+  });
+  return cell;
+}
+
+function updateMarkStats() {
+  const w = STATE.wrongs.size;
+  document.getElementById("stat-wrong").textContent = w;
+  // 예상 원점수
+  let lostPoints = 0;
+  STATE.wrongs.forEach(key => {
+    const q = QUESTIONS[key];
+    if (!q) return;
+    lostPoints += q.three ? 3 : 2;
+  });
+  const totalPoints = computeTotalPoints();
+  const est = Math.max(0, totalPoints - lostPoints);
+  STATE.raw = est;
+  document.getElementById("stat-est").textContent = est;
+
+  // 등급/표준점수/백분위 자동 조회
+  const result = lookupGrade(est, STATE.choice);
+  if (result) {
+    STATE.grade = result.grade;
+    STATE.std = result.std;
+    STATE.pct = result.pct;
+    const gradeEl = document.getElementById("stat-grade");
+    gradeEl.textContent = result.grade;
+    gradeEl.className = "stat-value " + (result.grade <= 2 ? "green" : result.grade <= 4 ? "gold-c" : "warn");
+    document.getElementById("stat-std").textContent = result.std;
+    document.getElementById("stat-pct").textContent = result.pct;
+  }
+}
+function computeTotalPoints() {
+  let t = 0;
+  for (let i = 1; i <= 34; i++) t += (QUESTIONS[i] && QUESTIONS[i].three) ? 3 : 2;
+  for (let i = 35; i <= 45; i++) {
+    const q = QUESTIONS[STATE.choice + "-" + i];
+    t += (q && q.three) ? 3 : 2;
+  }
+  return t;
+}
+
+/* 토글 칩 */
+document.querySelectorAll(".toggle-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    const f = chip.dataset.flag;
+    if (STATE.flags.has(f)) { STATE.flags.delete(f); chip.classList.remove("on"); }
+    else { STATE.flags.add(f); chip.classList.add("on"); }
+  });
+});
+
+document.getElementById("back-step1").addEventListener("click", () => showScreen(0));
+document.getElementById("back-step2").addEventListener("click", () => showScreen(1));
+
+document.getElementById("go-step3").addEventListener("click", () => {
+  generateReport();
+  showScreen(2);
+});
+
+/* ════════════════════════════════════════════════════════
+   Screen 3 — 진단 엔진
+   ──────────────────────────────────────────────────────── */
+function generateReport() {
+  // 헤더
+  document.getElementById("r-name").textContent = STATE.name;
+  const dateStr = STATE.date ? STATE.date : "";
+  const choiceName = STATE.choice === "lm" ? "언어와 매체" : "화법과 작문";
+  document.getElementById("r-meta").textContent =
+    `${STATE.examLabel} · 선택: ${choiceName}` + (dateStr ? ` · 응시일 ${dateStr}` : "");
+  document.getElementById("r-raw").innerHTML = STATE.raw ? STATE.raw + '<span class="unit">점</span>' : "—";
+  document.getElementById("r-grade").innerHTML = STATE.grade ? STATE.grade + '<span class="unit">등급</span>' : "—";
+  document.getElementById("r-std").textContent = STATE.std || "—";
+  document.getElementById("r-pct").textContent = STATE.pct || "—";
+
+  // 오답 → 문항 객체 배열
+  const wrongQs = [];
+  STATE.wrongs.forEach(k => {
+    if (QUESTIONS[k]) wrongQs.push({ key:k, no:parseInt(String(k).replace(/.*-/,""), 10), ...QUESTIONS[k] });
+  });
+  wrongQs.sort((a,b) => a.no - b.no);
+
+  // ───── 분포 집계 ─────
+  const areaCount = {}, typeCount = {}, thinkingCount = {}, weaknessCount = {};
+  const sourceCount = {}; // 같은 지문/작품에서 몇 개 틀렸나
+  let threePtWrong = 0;
+  wrongQs.forEach(q => {
+    areaCount[q.area] = (areaCount[q.area]||0) + 1;
+    typeCount[q.type] = (typeCount[q.type]||0) + 1;
+    thinkingCount[q.thinking] = (thinkingCount[q.thinking]||0) + 1;
+    weaknessCount[q.weakness1] = (weaknessCount[q.weakness1]||0) + 1;
+    sourceCount[q.source] = (sourceCount[q.source]||0) + 1;
+    if (q.three) threePtWrong++;
+  });
+
+  // ───── A. 종합 진단 ─────
+  document.getElementById("r-summary").innerHTML = buildSummary(wrongQs, areaCount, threePtWrong);
+
+  // ───── B. 분포 ─────
+  document.getElementById("dist-area").innerHTML = buildBars(areaCount, ["독서","문학","화작","언매"], "gold");
+  document.getElementById("dist-thinking").innerHTML = buildBars(thinkingCount, ["확인","정리","비교","추론","적용","평가"], "");
+
+  // ───── B-2. 변별 진단 ─────
+  buildDiscrimination(wrongQs);
+
+  // ───── C. 약점 패턴 ─────
+  const patterns = matchPatterns(wrongQs, areaCount, typeCount, thinkingCount, weaknessCount, sourceCount);
+  document.getElementById("r-patterns").innerHTML = patterns.length
+    ? patterns.map((p,i) => buildPatternCard(p, i+1)).join("")
+    : `<div class="pattern-card strength">
+         <div class="pattern-rank">No Significant Weakness</div>
+         <div class="pattern-name">반복 약점 패턴이 발견되지 않았습니다</div>
+         <div class="pattern-diag">오답이 적거나 특정 유형에 집중되지 않았습니다. 현재 페이스를 유지하며 실수 점검 위주로 진행합니다.</div>
+       </div>`;
+
+  // ───── D. 강점 ─────
+  document.getElementById("r-strengths").innerHTML = buildStrengths(wrongQs, areaCount, thinkingCount).map(s => `
+    <div class="pattern-card strength">
+      <div class="pattern-rank">${s.rank}</div>
+      <div class="pattern-name">${s.name}</div>
+      <div class="pattern-diag">${s.detail}</div>
+    </div>
+  `).join("");
+
+  // ───── E. 문항별 진단표 ─────
+  const tbody = document.querySelector("#r-items tbody");
+  tbody.innerHTML = wrongQs.length
+    ? wrongQs.map(q => {
+        const wrTxt = typeof q.wr === "number"
+          ? `<span style="color:${q.wr >= 50 ? 'var(--wrong)' : q.wr < 30 ? 'var(--green-light)' : 'var(--gold)'};font-family:'Cormorant Garamond',serif;font-style:italic;">${q.wr}%</span>`
+          : `<span style="color:var(--text-dim);font-size:11px;">—</span>`;
+        return `
+        <tr>
+          <td class="col-no">${q.no}</td>
+          <td class="col-area">${q.area}</td>
+          <td>${wrTxt}</td>
+          <td>${q.type}</td>
+          <td class="weakness">${q.weakness1}<br><span style="color:var(--text-muted);font-size:12px;">${q.coreElement}</span></td>
+          <td style="color:var(--green-light); font-size:12px;">${q.remediation}</td>
+        </tr>
+      `;
+      }).join("")
+    : `<tr><td colspan="6" style="text-align:center; padding:24px; color:var(--text-muted);">오답이 없습니다. 깔끔하게 모두 맞히셨습니다.</td></tr>`;
+
+  // ───── F. 코멘트 (학생용은 화면, 학부모용은 STATE에 저장하여 시트로 전송) ─────
+  const studentComment = buildStudentComment(wrongQs, patterns, areaCount);
+  const parentComment = buildParentComment(wrongQs, patterns, areaCount, threePtWrong);
+  document.getElementById("r-student-comment").innerHTML = studentComment;
+  STATE.studentComment = studentComment;
+  STATE.parentComment = parentComment;
+  STATE.patterns = patterns;
+  STATE.submitted = false;
+
+  // ───── G. 다음 2주 학습 방향 ─────
+  const plan = buildPlan(patterns, areaCount, wrongQs);
+  document.getElementById("r-plan").innerHTML = plan.map(p => `<li>${p}</li>`).join("");
+
+  // 애니메이션 재실행
+  document.querySelectorAll("#screen3 .reveal").forEach(el => {
+    el.style.animation = "none";
+    void el.offsetWidth;
+    el.style.animation = "";
+  });
+}
+
+/* ───── 막대 그래프 ───── */
+function buildBars(counts, order, cls) {
+  const max = Math.max(1, ...Object.values(counts));
+  return order.map(k => {
+    const v = counts[k] || 0;
+    const pct = (v / max) * 100;
+    return `
+      <div class="bar-row">
+        <div class="bar-label">${k}</div>
+        <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>
+        <div class="bar-val">${v}</div>
+      </div>`;
+  }).join("");
+}
+
+/* ───── 변별 진단 ───── */
+function buildDiscrimination(wrongQs) {
+  // 오답률 데이터가 있는 문항만 분류
+  const withWr = wrongQs.filter(q => typeof q.wr === "number");
+
+  const focus = withWr.filter(q => q.wr < 30);   // 너만의 약점 (전국 30% 미만 오답률)
+  const shared = withWr.filter(q => q.wr >= 50); // 다 같이 어려웠던 문항 (전국 50% 이상)
+
+  // 정렬
+  focus.sort((a,b) => a.wr - b.wr); // 가장 쉬운 것부터 (= 가장 부끄러운 것부터)
+  shared.sort((a,b) => b.wr - a.wr); // 가장 어려운 것부터
+
+  const focusEl = document.getElementById("discrim-focus");
+  const sharedEl = document.getElementById("discrim-shared");
+
+  // 집중 보강 영역
+  if (focus.length === 0) {
+    focusEl.innerHTML = `<div class="discrim-empty">전국 오답률 30% 미만 문항 중 틀린 문항이 없습니다.<br>기본 변별 영역은 안정적입니다.</div>`;
+  } else {
+    focusEl.innerHTML = focus.map(q => `
+      <div class="discrim-row">
+        <div class="d-no">${q.no}</div>
+        <div class="d-info"><b>${q.area} · ${q.type}</b><br>${q.weakness1}</div>
+        <div class="d-rate low">${q.wr}%</div>
+      </div>
+    `).join("") + `
+      <div class="discrim-summary warn">
+        다른 학생들은 대부분 맞춘 문항인데 본인은 틀린 자리입니다. <b>이 부분이 진짜 약점</b>이며, 다음 시험까지 가장 우선해서 잡아야 할 영역입니다.
+      </div>`;
+  }
+
+  // 함께 어려웠던 문항
+  if (shared.length === 0) {
+    sharedEl.innerHTML = `<div class="discrim-empty">고난도(전국 오답률 50%+) 문항 중 틀린 문항이 없습니다.<br>변별 문항 방어가 잘 되었습니다.</div>`;
+  } else {
+    sharedEl.innerHTML = shared.map(q => `
+      <div class="discrim-row">
+        <div class="d-no">${q.no}</div>
+        <div class="d-info"><b>${q.area} · ${q.type}</b><br>${q.weakness1}</div>
+        <div class="d-rate high">${q.wr}%</div>
+      </div>
+    `).join("") + `
+      <div class="discrim-summary">
+        절반 이상의 학생이 틀린 문항들입니다. 본인만 못 푼 것이 아니므로 점수에 좌절하실 필요는 없습니다.
+        다만 1~2등급으로 가시려면 결국 이 자리에서 변별이 나므로, ${shared.length === 1 ? "이 1문항을" : "이 " + shared.length + "문항을"} 어떻게 잡을지가 다음 목표입니다.
+      </div>`;
+  }
+
+  // 데이터 없는 문항이 너무 많으면 블록 자체를 안내 처리
+  if (withWr.length === 0 && wrongQs.length > 0) {
+    document.getElementById("discrim-block").style.display = "none";
+  } else {
+    document.getElementById("discrim-block").style.display = "";
+  }
+}
+
+/* ───── 종합 진단 텍스트 ───── */
+function buildSummary(wrongQs, areaCount, threePtWrong) {
+  if (wrongQs.length === 0) {
+    return `<p>이번 시험에서 <strong>오답이 발생하지 않았습니다</strong>. 다음 시험까지 컨디션과 풀이 페이스를 유지하는 것이 1순위 과제입니다. 실전 모의고사를 통해 시간 압박 상황에서도 같은 정답률이 나오는지 점검해 보겠습니다.</p>`;
+  }
+  const total = wrongQs.length;
+  const dominantArea = Object.entries(areaCount).sort((a,b)=>b[1]-a[1])[0];
+  const gradeText = STATE.grade ? `현재 ${STATE.grade}등급 수준에서 ` : "";
+
+  // 오답률 기반 분류
+  const withWr = wrongQs.filter(q => typeof q.wr === "number");
+  const focus = withWr.filter(q => q.wr < 30);
+  const shared = withWr.filter(q => q.wr >= 50);
+
+  let main = "";
+  if (focus.length >= 3) {
+    main = `${gradeText}이번 오답에서 가장 무거운 신호는 <strong>전국 오답률 30% 미만의 평이한 문항을 ${focus.length}개 틀리셨다는 점</strong>입니다 (${focus.map(q=>q.no+"번").join(", ")}). 다른 학생들이 대부분 맞춘 자리에서 무너졌다는 것은, 점수 자체보다 ‘선지 검증 습관’과 ‘영역별 기본기’를 다시 점검해야 한다는 의미입니다.`;
+  } else if (shared.length >= 2 && focus.length === 0) {
+    main = `${gradeText}오답이 <strong>전국 오답률 50% 이상의 고난도 문항(${shared.map(q=>q.no+"번").join("·")})에 집중</strong>되어 있습니다. 평이한 문항은 안정적으로 푸셨고, 변별 문항에서만 흔들리셨습니다. 1~2등급 분기점이 정확히 이 자리입니다.`;
+  } else if (threePtWrong >= total * 0.5 && total >= 4) {
+    main = `${gradeText}오답이 <strong>3점 고난도 문항에 집중</strong>되어 있습니다. 기본 독해는 안정되어 있고, 조건이 복잡해지거나 보기·자료 적용이 필요한 순간에 흔들리는 패턴입니다.`;
+  } else if (focus.length >= 1) {
+    main = `${gradeText}이번 오답은 <strong>${dominantArea[0]} 영역(${dominantArea[1]}개)</strong>을 중심으로 분포되어 있고, 그중 <strong>${focus.length}문항은 전국 오답률 30% 미만</strong>의 평이한 자리입니다. 영역별 약점과 풀이 습관을 함께 봐야 합니다.`;
+  } else {
+    main = `${gradeText}이번 오답은 <strong>${dominantArea[0]} 영역(${dominantArea[1]}개)</strong>에 가장 많이 집중되어 있습니다. 이 영역을 어떤 결로 보강하느냐에 따라 다음 시험 점수가 갈립니다.`;
+  }
+
+  const flagText = [];
+  if (STATE.flags.has("time")) flagText.push("시간 부족이 풀이에 영향을 주었다고 체크해 주셨고");
+  if (STATE.flags.has("guess")) flagText.push("찍어서 맞은 문항이 있다고 체크해 주셨고");
+  if (STATE.flags.has("careless")) flagText.push("실수성 오답이 있었다고 체크해 주셨고");
+  if (STATE.flags.has("late-shake")) flagText.push("뒤쪽 문항에서 흔들렸다고 체크해 주셨습니다");
+  const flagSentence = flagText.length
+    ? `직접 체크해 주신 신호도 함께 봤습니다 — ${flagText.join(", ")}. 이 점은 진단에 반영했습니다.`
+    : "";
+
+  return `
+    <p>${main}</p>
+    <div class="summary-quote">총 ${total}문항 오답 · 3점 ${threePtWrong}개 · 본인만의 약점(쉬운데 틀림) ${focus.length}개 · 다 같이 어려웠던 문항 ${shared.length}개</div>
+    ${flagSentence ? `<p style="margin-top:14px;color:var(--text-secondary);font-size:14px;">${flagSentence}</p>` : ""}
+  `;
+}
+
+/* ───── 약점 패턴 매칭 룰 (진단 코드 A~H + 추가 룰) ───── */
+function matchPatterns(wrongQs, areaCount, typeCount, thinkingCount, weaknessCount, sourceCount) {
+  const patterns = [];
+  const wrongNos = new Set(wrongQs.map(q => q.no));   // 공통 1-34만
+  const wrongKeys = new Set(wrongQs.map(q => q.key)); // 선택 포함
+  const has = n => wrongNos.has(n);
+  const hasK = k => wrongKeys.has(k);
+
+  // ───── 진단 코드 A. 기술 지문 구조화 약점 (10/11/12/13) ─────
+  const techHits = [10,11,12,13].filter(has);
+  if (techHits.length >= 2) {
+    const severe = techHits.length >= 3;
+    patterns.push({
+      priority: severe ? 1 : 8,
+      type: severe ? "기술 지문 구조화 약점" : "기술 지문 적용형 약점",
+      evidence: techHits,
+      diag: severe
+        ? `자기유변유체 지문에서 ${techHits.length}개를 틀리셨습니다. 기술 지문 자체가 약하다는 신호입니다. 단순히 12·13번이 어려워서가 아니라, 장치가 무엇이고 어떤 순서로 작동하는지를 잡지 못한 채 선지를 본 결과입니다.`
+        : `12·13번처럼 ‘과정·조건 변화’를 다루는 기술 지문 후반부에서 흔들리셨습니다. 10·11번은 맞히셨으니 기본 정보는 읽으셨는데, 그것을 그래프나 인과 관계로 옮기는 단계에서 막히는 패턴입니다.`,
+      action: severe
+        ? `기술 지문을 읽으실 때 ‘부품 → 기능 → 신호 흐름’을 화살표로 정리해 봅시다. ‘A가 커지면 B가 어떻게 되는가’를 손으로 적으면서 읽으셔야 합니다.`
+        : `과정형 문항만 모아 풀이(EBS·기출 그래프 적용 문항). 지문 정보를 그래프 축에 라벨로 직접 옮기는 훈련을 진행합니다.`
+    });
+  } else if (has(12) || has(13)) {
+    patterns.push({
+      priority: 12,
+      type: "기술 지문 그래프·추론 약점",
+      evidence: [12, 13].filter(has),
+      diag: `기술 지문 중에서도 가장 변별이 큰 ${has(12) && has(13) ? "12·13번" : has(12) ? "12번" : "13번"}에서 흔들리셨습니다. 지문 내용을 그래프에 옮기거나 조건 변화의 이유를 추론하는 단계에서 막히는 패턴입니다. 다만 10·11번은 맞히셨으니 ‘기술이라 다 못 푼다’ 수준은 아닙니다.`,
+      action: `기술 지문은 ‘부품 → 작동 순서 → 조건 변화’ 3단계로 정리하는 노트 훈련을 진행합니다. 그래프 적용 문항만 따로 모아 회독해 봅시다.`
+    });
+  }
+
+  // ───── 진단 코드 B. 경제·수리형 독서 약점 (15/16) ─────
+  const econHits = [15,16].filter(has);
+  if (econHits.length === 2) {
+    patterns.push({
+      priority: 2,
+      type: "경제·수리형 독서 약점",
+      evidence: econHits,
+      diag: `섀플리 값 지문에서 15·16번을 모두 틀리셨습니다. 15번은 계산 적용, 16번은 결론 이유 추론으로 결이 다른 문항인데 둘 다 무너진 것은, 경제 지문에서 개념 → 조건 정리 → 결론 연결의 전 과정이 흔들린다는 의미입니다.`,
+      action: `경제 지문은 머리로 풀지 말고 반드시 ‘조건 표’를 그려 봅시다. 한계기여도·가중치 같은 낯선 개념은 정의→예시 대입→직접 계산까지 손으로 한 번 굴려 봅시다.`
+    });
+  } else if (has(15)) {
+    patterns.push({
+      priority: 9,
+      type: "경제 지문 계산 적용 약점",
+      evidence: [15],
+      diag: `15번은 개념을 ‘읽는 것’과 ‘계산 상황에 적용하는 것’이 다르다는 점을 보여 주는 문항입니다. 보기를 표로 정리하지 않고 머리로 풀려다 무너진 학생들의 전형적인 오답 위치입니다.`,
+      action: `경제·수리형 지문은 보기의 모든 조건을 ‘인물별 / 비용별’ 표로 옮긴 뒤 계산해 봅시다.`
+    });
+  }
+
+  // ───── 진단 코드 C. 추상 개념 적용 약점 (6/8) ─────
+  const philHits = [6,8].filter(has);
+  if (philHits.length === 2) {
+    patterns.push({
+      priority: 3,
+      type: "철학 지문 추상 개념 적용 약점",
+      evidence: philHits,
+      diag: `쇼펜하우어·가브리엘 지문에서 6번(관점 비교)과 8번(사례 적용)을 모두 틀리셨습니다. 두 철학자의 입장을 분리해서 정리하지 못한 채 보기를 본 결과입니다. 이번 시험에서 8번은 가장 중요한 진단 문항 중 하나입니다.`,
+      action: `철학 지문은 ‘인물 / 핵심 개념 / 전제 / 결론’ 4칸 표로 정리해 봅시다. 보기는 ‘누구의 입장에 더 가까운가’부터 판정합니다.`
+    });
+  } else if (has(8)) {
+    patterns.push({
+      priority: 5,
+      type: "추상 개념 사례 적용 약점",
+      evidence: [8],
+      diag: `8번은 추상 개념을 낯선 이야기에 옮길 수 있는가를 묻는 문항입니다. 여기서 막혔다는 것은 표상·실재·의미장 같은 개념이 정의 단계에 머물러 있고 ‘어떤 상황에서 작동하는가’까지 내려가지 못했다는 의미입니다.`,
+      action: `철학·인문 지문을 읽고 나면 핵심 개념마다 ‘이 개념이 적용되는 상황 vs 안 되는 상황’을 두 칸으로 적어 봅시다.`
+    });
+  } else if (has(6)) {
+    patterns.push({
+      priority: 11,
+      type: "관점 비교 약점",
+      evidence: [6],
+      diag: `6번은 두 철학자의 입장을 보기 진술에 대입하는 문항입니다. 인물별 기준이 분리되지 않은 상태에서 풀면 무너지는 자리입니다.`,
+      action: `철학 지문을 읽으실 때마다 인물별 ‘동의/반대’ 표를 만들어 봅시다.`
+    });
+  }
+
+  // ───── 진단 코드 D. 문학 외적 준거 약점 (21/30/34) ─────
+  const litExtHits = [21,30,34].filter(has);
+  if (litExtHits.length >= 2) {
+    patterns.push({
+      priority: 4,
+      type: "문학 외적 준거(감상형) 약점",
+      evidence: litExtHits,
+      diag: `〈보기〉가 붙은 문학 감상 문항에서 ${litExtHits.length}개 오답입니다. 작품을 읽는 데서 끝나고 ‘보기의 관점으로 작품을 다시 해석하는’ 단계에서 매번 흔들리는 패턴입니다. 갈래 가리지 않고 동일하게 나타나면 더 분명한 신호입니다.`,
+      action: `보기가 붙은 감상형 문항(21·26·30·34)을 모아서 회독합니다. 보기에서 핵심어 3개 추출 → 각 선지에 색칠 → 작품 어느 부분과 매칭되는지 줄긋기 훈련을 진행합니다.`
+    });
+  } else if (litExtHits.length === 1) {
+    const n = litExtHits[0];
+    patterns.push({
+      priority: 13,
+      type: "문학 감상형 약점 (단일)",
+      evidence: [n],
+      diag: `${n}번은 보기 관점을 작품에 적용하는 감상형 문항입니다. 한 개라도 이런 유형에서 무너지면 다음 시험에서도 같은 패턴이 반복될 가능성이 큽니다.`,
+      action: `오늘 ${n}번 보기를 다시 보면서 핵심어 3개 추출 → 각 선지가 어느 핵심어를 근거로 하는지 직접 표시해 봅시다.`
+    });
+  }
+
+  // ───── 진단 코드 E. 문학 표현·논지 약점 (25/31) ─────
+  const litExpHits = [25,31].filter(has);
+  if (litExpHits.length === 2) {
+    patterns.push({
+      priority: 6,
+      type: "문학 표현·논지 약점",
+      evidence: litExpHits,
+      diag: `25번(수필 논지 전개)과 31번(현대시 표현상 특징)을 둘 다 틀리셨습니다. 갈래는 다르지만 본질은 같습니다 — ‘작품을 감으로 읽고, 객관적 근거로 판단하지 않는다’.`,
+      action: `수필은 문단별 ‘무엇을 말하는가’를 한 줄로 요약합니다. 시는 표현 개념어(반복·감탄사·명령형·명사형 종결) 카드를 만들고 실제 시구에 매칭합니다.`
+    });
+  } else if (has(31)) {
+    patterns.push({
+      priority: 14,
+      type: "현대시 표현상 특징 약점",
+      evidence: [31],
+      diag: `31번은 시를 느낌으로 읽으면 무너지는 위치입니다. 분위기는 잡으셨지만 표현 방식의 객관적 근거가 약했다는 신호입니다.`,
+      action: `반복·감탄·명령형·명사형 종결·시선 이동 등 표현 개념어 카드 + 실제 구절 매칭 훈련을 진행합니다.`
+    });
+  } else if (has(25)) {
+    patterns.push({
+      priority: 17,
+      type: "수필 논지 전개 약점",
+      evidence: [25],
+      diag: `25번은 글쓴이의 사고가 타인 → 자신으로 옮겨가는 흐름을 잡지 못하면 무너지는 자리입니다.`,
+      action: `수필을 읽으실 때 문단마다 ‘대상이 누구인가 / 무엇을 말하는가’를 두 줄로 메모해 봅시다.`
+    });
+  }
+
+  // ───── 진단 코드 F. 화작 자료 활용 약점 (40/41/45) ─────
+  if (STATE.choice === "hs") {
+    const hsHits = [40,41,45].filter(n => hasK("hs-"+n));
+    if (hsHits.length >= 2) {
+      patterns.push({
+        priority: 4,
+        type: "화작 자료 대응 약점",
+        evidence: hsHits,
+        diag: `화작에서 자료·계획·글의 대응 관계를 묻는 문항(${hsHits.join("·")}번)에서 다수 오답이 발생했습니다. 화작은 ‘쉬운 영역’이 아니라 ‘조건을 1:1로 끝까지 대조하는 영역’이라는 점을 보여 주는 결과입니다. 빠르게 풀려 한 것이 오히려 독이 됐을 가능성이 있습니다.`,
+        action: `화작을 푸실 때 자료·계획 항목마다 번호 매기기 → 선지에서 그 번호를 직접 표시 → ‘있음 / 없음 / 다르게 / 과장’ 4종 분류 훈련을 진행합니다.`
+      });
+    } else if (hsHits.length === 1) {
+      patterns.push({
+        priority: 16,
+        type: "화작 자료 활용 약점 (단일)",
+        evidence: hsHits,
+        diag: `${hsHits[0]}번은 자료·계획을 글에 어떻게 반영했는지 확인하는 문항입니다. 한 문항만 틀려도 의미 있는 위치입니다.`,
+        action: `자료 + 글 두 묶음을 좌우로 두고 한 항목씩 매칭하는 훈련을 진행합니다.`
+      });
+    }
+  }
+
+  // ───── 진단 코드 G. 언매 개념 적용 약점 (36/39) + H. 매체 (43) ─────
+  if (STATE.choice === "lm") {
+    const lmCore = [36,39].filter(n => hasK("lm-"+n));
+    const lmMedia = hasK("lm-43");
+    if (lmCore.length === 2) {
+      patterns.push({
+        priority: 4,
+        type: "언매 문법 적용 약점",
+        evidence: lmCore,
+        diag: `36번(띄어쓰기 적용)과 39번(중세 국어)을 모두 틀리셨습니다. 두 문항 다 ‘개념 암기는 끝났는데 자료에 적용을 못 하는’ 전형적 위치입니다. 언매는 적용 훈련이 90%입니다.`,
+        action: `한 개념마다 정의 → 예시 분석 → 낯선 예문 적용 3단계로 반복합니다. 음운 변동·안긴문장·중세 국어를 우선순위로 잡습니다.`
+      });
+    } else if (lmCore.length === 1) {
+      const n = lmCore[0];
+      patterns.push({
+        priority: 16,
+        type: "언매 개념 적용 약점 (단일)",
+        evidence: [n],
+        diag: `${n}번은 ${n===36 ? "띄어쓰기 규정을 사례에" : "중세 국어 개념을 자료에"} 적용하는 문항입니다. 개념 암기와 적용은 다른 단계임을 보여 주는 자리입니다.`,
+        action: `${n===36 ? "보조용언·접사·조사 사례를 ‘붙여 쓰기 가능 / 불가’ 두 칸으로 분류" : "중세 국어 자료를 단위별로 쪼개 ‘현대어 대응’ 표를 만들기"}.`
+      });
+    }
+    if (lmMedia) {
+      patterns.push({
+        priority: 19,
+        type: "매체 조건 반영 약점",
+        evidence: [43],
+        diag: `언매 43번은 매체 자료를 제작 조건에 맞게 구성했는지 묻는 문항입니다. 화작의 자료 대응 문제와 본질적으로 같은 결의 약점입니다.`,
+        action: `대화·계획의 조건이 화면 자료 어디에 어떻게 반영됐는지 ‘조건→화면 요소’ 매칭 훈련을 진행합니다.`
+      });
+    }
+  }
+
+  // ───── 추가 룰: 같은 지문 3개+ (이미 위에서 못 잡은 경우) ─────
+  Object.entries(sourceCount).forEach(([src, cnt]) => {
+    if (cnt >= 3 && src !== "자기유변유체" && src !== "섀플리값") {
+      const items = wrongQs.filter(q => q.source === src).map(q => q.no);
+      patterns.push({
+        priority: 7,
+        type: `${src.split("(")[0].trim()} 지문 통째 흔들림`,
+        evidence: items,
+        diag: `${src} 지문/작품에서 ${cnt}개를 틀리셨습니다. 단순 실수가 아니라 그 지문의 핵심 개념·문단 구조 자체를 잡지 못한 상태에서 선지를 판단한 결과입니다.`,
+        action: `해당 지문/작품을 다시 읽으면서 문단별 핵심 개념·관계·결론을 화살표로 정리한 뒤 선지로 돌아갑시다.`
+      });
+    }
+  });
+
+  // ───── 추가 룰: 시간 관리 ─────
+  if (STATE.flags.has("time") || STATE.flags.has("late-shake")) {
+    const easyMissed = wrongQs.filter(q => !q.three && q.thinking==="확인" && (!q.wr || q.wr < 30));
+    if (easyMissed.length >= 2 || STATE.flags.has("late-shake")) {
+      patterns.push({
+        priority: 15,
+        type: "풀이 페이스·시간 배분 문제",
+        evidence: easyMissed.map(q => q.no),
+        diag: `시간 부족 또는 뒤쪽 흔들림을 직접 체크해 주셨고, 어렵지 않은 문항(전국 오답률 30% 미만)에서도 오답이 나왔습니다. 풀이 순서·시간 배분이 흔들리면 ‘아는 것도 틀리는’ 결과로 이어지는 신호입니다.`,
+        action: `다음 회차 전 80분 컷으로 실전 1회를 진행합니다. 화작·언매 11분 / 문학 27분 / 독서 35분 / 검토 7분이 기준선입니다.`
+      });
+    }
+  }
+
+  // ───── 추가 룰: 어휘·한자어 ─────
+  const vocab = wrongQs.filter(q => q.type==="어휘문맥" || q.type==="어휘한자");
+  if (vocab.length >= 2) {
+    patterns.push({
+      priority: 14,
+      type: "어휘·한자어 약점",
+      evidence: vocab.map(q => q.no),
+      diag: `문맥 어휘·한자어 문항에서 반복 오답이 발생합니다. 쉬운 점수인데 자꾸 잃고 있는 영역입니다.`,
+      action: `매일 어휘 카드 10개씩 누적합니다. ‘기본 뜻 vs 문맥 뜻’을 두 칸으로 정리해 봅시다.`
+    });
+  }
+
+  // 우선순위 정렬, 중복 제거 후 상위 4개
+  patterns.sort((a,b) => a.priority - b.priority);
+  const seen = new Set();
+  const unique = [];
+  for (const p of patterns) {
+    if (!seen.has(p.type)) { seen.add(p.type); unique.push(p); }
+    if (unique.length >= 4) break;
+  }
+  return unique;
+}
+
+function buildPatternCard(p, rank) {
+  const ranks = ["FIRST PRIORITY","SECOND PRIORITY","THIRD","FOURTH"];
+  return `
+    <div class="pattern-card">
+      <div class="pattern-rank">${ranks[rank-1] || "ADDITIONAL"}</div>
+      <h3 class="pattern-name">${p.type}</h3>
+      <div class="pattern-evidence">
+        ${p.evidence.length ? "근거 문항 · " + p.evidence.map(n => `<span class="item-no">${n}번</span>`).join(" ") : ""}
+      </div>
+      <div class="pattern-diag">${p.diag}</div>
+      <div class="pattern-action">${p.action}</div>
+    </div>
+  `;
+}
+
+/* ───── 강점 분석 ───── */
+function buildStrengths(wrongQs, areaCount, thinkingCount) {
+  const strengths = [];
+  // 영역별 정답 수 계산
+  const totalArea = { "독서":17, "문학":17, "화작":11, "언매":11 };
+  const wrongArea = areaCount;
+  const choiceArea = STATE.choice === "lm" ? "언매" : "화작";
+  const oppArea = STATE.choice === "lm" ? "화작" : "언매";
+  delete totalArea[oppArea];
+
+  // 1. 영역 기준
+  Object.entries(totalArea).forEach(([area, total]) => {
+    const w = wrongArea[area] || 0;
+    const accuracy = ((total - w) / total) * 100;
+    if (accuracy >= 90 && total - w >= 5) {
+      strengths.push({
+        rank: "Strength",
+        name: `${area} 영역 안정`,
+        detail: `${area} ${total}문항 중 ${total - w}개 정답 (${accuracy.toFixed(0)}%). 이 영역은 흔들림이 없으니 다음 시험까지 페이스만 유지하시면 됩니다.`
+      });
+    }
+  });
+
+  // 2. 어려운 사고 유형 정답률
+  if ((thinkingCount["적용"] || 0) <= 1) {
+    strengths.push({
+      rank: "Strength",
+      name: "적용형 사고 안정",
+      detail: "보기·자료 적용 문항에서 거의 흔들리지 않으셨습니다. 1~2등급으로 가는 분기점인 ‘근거를 옮기는 힘’이 잡혀 있다는 신호입니다."
+    });
+  }
+  if ((thinkingCount["추론"] || 0) === 0 && wrongQs.length > 0) {
+    strengths.push({
+      rank: "Strength",
+      name: "추론형 사고 안정",
+      detail: "추론 문항은 모두 정답이었습니다. 지문에 명시되지 않은 결론을 끌어내는 힘은 안정적인 단계입니다."
+    });
+  }
+  if ((thinkingCount["확인"] || 0) === 0 && wrongQs.length > 0) {
+    strengths.push({
+      rank: "Strength",
+      name: "기본 확인력 안정",
+      detail: "내용 일치·세부 정보 같은 확인형 문항은 모두 맞히셨습니다. 지문을 꼼꼼히 보는 풀이 습관은 잡혀 있습니다."
+    });
+  }
+
+  // 3. 등급 기반
+  if (STATE.grade && parseInt(STATE.grade) <= 2 && wrongQs.length <= 6) {
+    strengths.push({
+      rank: "Overall",
+      name: `현재 ${STATE.grade}등급 — 안정권`,
+      detail: "전체 점수와 오답 분포 모두 상위권 학생의 패턴입니다. 약점만 정확히 좁혀 잡으면 1등급 진입이 가능합니다."
+    });
+  }
+
+  if (strengths.length === 0) {
+    strengths.push({
+      rank: "Note",
+      name: "특별한 강점이 두드러지지 않음",
+      detail: "현재는 약점 보강이 우선입니다. 다음 시험에서는 하나라도 ‘흔들림 없는 영역’을 만드는 것을 1차 목표로 두겠습니다."
+    });
+  }
+  return strengths.slice(0, 3);
+}
+
+/* ───── 학생용 코멘트 ───── */
+function buildStudentComment(wrongQs, patterns, areaCount) {
+  if (wrongQs.length === 0) {
+    return `이번 시험은 정말 깔끔했습니다. 점수보다 더 중요한 것은 ‘이 페이스를 다음 시험에서도 유지할 수 있는가’입니다. 다음 회차까지 풀이 시간을 재면서 실전 모의고사 1~2회 더 돌려 보겠습니다.`;
+  }
+
+  const total = wrongQs.length;
+  const top = patterns[0];
+  const dominantArea = Object.entries(areaCount).sort((a,b)=>b[1]-a[1])[0];
+  const withWr = wrongQs.filter(q => typeof q.wr === "number");
+  const focus = withWr.filter(q => q.wr < 30);
+  const shared = withWr.filter(q => q.wr >= 50);
+
+  let opening;
+  if (focus.length >= 3) {
+    opening = `점수 자체는 큰 충격이 아니더라도, <strong>전국에서 70%↑가 맞춘 문항을 ${focus.length}개 틀린 것은 의미 있게 봐야 합니다</strong>(${focus.map(q=>q.no+"번").join(", ")}). 실력 부족이라기보다 ‘끝까지 안 보고 골랐다’ 쪽에 가깝고, 이 습관은 다음 시험에서도 그대로 반복됩니다.`;
+  } else if (shared.length >= 2 && focus.length === 0) {
+    opening = `이번 시험 결과 자체는 잘 푸신 편입니다. 틀린 ${total}문항이 거의 다 <strong>전국 오답률 50% 이상의 변별 문항</strong>(${shared.map(q=>q.no+"번").join("·")})에 몰려 있습니다. 점수에 좌절하실 자리가 아닙니다 — 다만 1~2등급 위로 가시려면 결국 이 자리가 결정적이어서, 여기를 어떻게 잡을지가 다음 목표가 됩니다.`;
+  } else if (shared.length >= 1 && total <= 4) {
+    opening = `생각보다 잘 푸셨습니다. 틀린 ${total}문항 중 ${shared.map(q=>q.no+"번").join("·")}는 전국 오답률 ${shared[0].wr}% 수준의 고난도 변별이라 본인만의 문제는 아닙니다. 다만 ‘우연히 틀린 게 아니라 이유가 있다’는 것은 알고 가셔야 합니다.`;
+  } else if (total <= 4) {
+    opening = `생각보다 잘 푸셨습니다. 다만 틀린 ${total}문항은 ‘우연히 틀린 게 아니라 이유가 있다’는 것을 아셔야 합니다.`;
+  } else if (total <= 10) {
+    opening = `점수에 비해 약점이 분명한 시험이었습니다. 같은 패턴의 오답이 반복됩니다.`;
+  } else {
+    opening = `이번 시험은 점수보다 ‘어디서 무너지는지’를 확인하는 데 의미가 있습니다. 약점이 명확한 것이 오히려 다행입니다.`;
+  }
+
+  const main = top
+    ? `가장 큰 문제는 <strong>${top.type}</strong>입니다. ${stripTags(top.diag)}`
+    : `오답 분포가 ${dominantArea[0]} 영역에 집중되어 있습니다. 이 영역부터 잡아 보겠습니다.`;
+
+  const closing = `이번 주에 하실 일은 ‘틀린 문항을 다시 푸는 것’이 아니라 ‘<strong>왜 그 선지를 골랐는지</strong>’를 한 줄씩 적어 보는 것입니다. 그 작업이 끝났다면 위에 있는 다음 2주 학습 방향대로 움직여 주세요. 다음 시험에서 같은 패턴이 또 나오면 안 됩니다.`;
+
+  return `<p>${opening}</p><p style="margin-top:14px;">${main}</p><p style="margin-top:14px;">${closing}</p>`;
+}
+
+/* ───── 학부모 코멘트 ───── */
+function buildParentComment(wrongQs, patterns, areaCount, threePtWrong) {
+  const name = STATE.name;
+  const examName = "이번 5월 학력평가";
+
+  if (wrongQs.length === 0) {
+    return `<p>${examName}에서 ${name} 학생은 모든 문항을 정확히 풀어냈습니다. 단순한 정답률 이상의 의미가 있는 결과로, 지문 독해력·근거 판단력·시간 관리가 모두 안정적인 단계임을 보여 줍니다. 다음 시험까지는 ‘현재 페이스의 유지’가 1순위 과제가 됩니다.</p>`;
+  }
+
+  const top = patterns[0];
+  const total = wrongQs.length;
+  const withWr = wrongQs.filter(q => typeof q.wr === "number");
+  const focus = withWr.filter(q => q.wr < 30);
+  const shared = withWr.filter(q => q.wr >= 50);
+
+  // 오프닝: 오답의 성격에 따라 분기
+  let opening;
+  if (focus.length >= 3) {
+    opening = `${examName}에서 ${name} 학생의 오답을 분석한 결과, 가장 주의 깊게 봐야 할 신호는 <strong>다른 학생들 대다수가 정답을 맞춘 평이한 문항(전국 오답률 30% 미만)에서 ${focus.length}개의 오답이 발생</strong>했다는 점입니다. 이는 학습량의 문제라기보다, 선지를 끝까지 검증하는 풀이 습관에서 점수가 새고 있다는 의미입니다.`;
+  } else if (shared.length >= 2 && focus.length === 0) {
+    opening = `${examName}에서 ${name} 학생의 오답은 <strong>전국 오답률 50% 이상의 고난도 변별 문항</strong>에 집중되어 있었습니다(${shared.map(q=>q.no+"번").join("·")}). 평이한 문항은 안정적으로 풀어냈고, 다수의 학생들이 함께 흔들린 자리에서만 오답이 발생한 결과로, 기본기보다는 1~2등급 진입을 위한 ‘변별 영역 보강’이 다음 단계의 과제가 됩니다.`;
+  } else if (threePtWrong >= total * 0.5 && total >= 4) {
+    opening = `${examName}에서 ${name} 학생의 오답은 단순한 부주의보다 <strong>고난도 적용·추론 문항</strong>에 집중되어 있었습니다. 이는 기본 독해력은 안정되어 있으나, 조건이 복잡해지거나 〈보기〉 적용이 요구되는 단계에서 한 단계 더 나아가는 사고에 약점이 있다는 의미입니다.`;
+  } else if (total <= 5) {
+    opening = `${examName}에서 ${name} 학생은 전반적으로 안정적인 풀이를 보여 주었습니다. 다만 발생한 오답들은 ‘우연한 실수’가 아니라 특정 사고 유형에서 반복되는 패턴을 보여 주었습니다.`;
+  } else {
+    opening = `${examName}에서 ${name} 학생의 오답은 영역별로 고르게 분포되기보다 <strong>특정 사고 유형에 집중</strong>되어 있었습니다. 단순히 ‘공부량이 부족하다’가 아니라, 어디에서 막히는지가 분명히 드러나는 결과입니다.`;
+  }
+
+  // 미들: 1순위 약점
+  const middle = top
+    ? `<p style="margin-top:14px;">가장 두드러진 약점은 <strong>${top.type}</strong>입니다. ${stripTags(top.diag).split(".")[0]}. 이는 학습량의 문제가 아니라 ‘읽은 내용을 어떻게 다루는가’의 문제이며, 다음 학습 단계에서 우선적으로 보강할 부분입니다.</p>`
+    : "";
+
+  // 위안 + 변별 안내 (shared 문항이 있을 때)
+  const sharedNote = shared.length > 0
+    ? `<p style="margin-top:14px; color: rgba(236,232,224,.85); font-size: 14px;">참고로 ${shared.map(q=>q.no+"번").join("·")} 문항은 전국 오답률이 ${shared.length===1?shared[0].wr:Math.round(shared.reduce((s,q)=>s+q.wr,0)/shared.length)}% 수준에 이르는 고난도 변별 문항으로, 다수의 학생이 함께 흔들린 자리입니다. 따라서 점수에 즉각 반영되기보다는 상위권 진입 단계에서의 보강 과제로 두고 봐도 됩니다.</p>`
+    : "";
+
+  const closing = `<p style="margin-top:14px;">앞으로 2주간은 ${name} 학생에게 단순 문제 풀이보다는, 오답 문항을 다시 보면서 ‘왜 그 선지를 골랐는지’를 본인이 설명할 수 있도록 하는 훈련을 진행할 예정입니다. 정답률 자체보다 ‘판단의 과정’을 점검하는 시기로 삼겠습니다.</p>`;
+
+  return `<p>${opening}</p>${middle}${sharedNote}${closing}`;
+}
+
+function stripTags(s) { return String(s).replace(/<[^>]+>/g, ""); }
+
+/* ───── 다음 2주 학습 방향 ───── */
+function buildPlan(patterns, areaCount, wrongQs) {
+  const plan = [];
+  const seenAction = new Set();
+
+  patterns.slice(0, 3).forEach(p => {
+    const action = p.action;
+    if (!seenAction.has(action)) {
+      seenAction.add(action);
+      plan.push(`<b>${p.type}</b> · ${action}`);
+    }
+  });
+
+  // 기본 행동
+  plan.push(`<b>오답 노트</b> · 오늘 틀린 문항을 다시 풀지 마시고, ‘처음에 왜 그 선지를 골랐는가’를 각 문항당 한 줄씩 적어 봅시다. 이 작업을 거치지 않으면 같은 오답이 다음에도 반복됩니다.`);
+
+  if (STATE.flags.has("time") || STATE.flags.has("late-shake")) {
+    plan.push(`<b>실전 시간 훈련</b> · 다음 회차 모의고사 전까지 80분 컷으로 한 회차 풀이를 1회 진행합니다. 화작/언매 11분, 문학 27분, 독서 35분, 검토 7분이 기준선입니다.`);
+  }
+
+  if (wrongQs.length >= 8) {
+    plan.push(`<b>지문 다시 읽기</b> · 오답이 3개 이상 나온 지문/작품을 골라, 답지를 보지 말고 처음부터 다시 읽으면서 문단별 핵심을 한 줄씩 정리합니다.`);
+  }
+
+  return plan.slice(0, 5);
+}
+
+/* ───── 인쇄 ───── */
+document.getElementById("print-report").addEventListener("click", () => window.print());
+
+/* ───── 결과 제출 (Google Sheets) ───── */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2zAppShXucuEqObE9-TwyCf_4919U6tEoS6XBLlBJ-wQxi-RA32zxbzR4oHen0kY/exec"; // 배포 후 Apps Script 웹앱 URL로 교체
+
+document.getElementById("submit-result").addEventListener("click", () => {
+  if (STATE.submitted) {
+    if (!confirm("이미 제출하셨습니다. 다시 제출하시겠습니까?")) return;
+  }
+  if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR")) {
+    showToast("선생님께 제출 URL이 설정되지 않았습니다. 학원에 알려 주세요.", "warn");
+    return;
+  }
+  const wrongList = Array.from(STATE.wrongs).map(k => {
+    const q = QUESTIONS[k];
+    if (!q) return null;
+    const no = parseInt(String(k).replace(/.*-/, ""), 10);
+    return { no, area: q.area, type: q.type, source: q.source, three: q.three || false, wr: q.wr || null };
+  }).filter(Boolean).sort((a,b) => a.no - b.no);
+
+  const payload = {
+    timestamp: new Date().toISOString(),
+    name: STATE.name,
+    date: STATE.date,
+    examLabel: STATE.examLabel,
+    choice: STATE.choice,
+    choiceName: STATE.choice === "lm" ? "언어와 매체" : "화법과 작문",
+    raw: STATE.raw,
+    grade: STATE.grade,
+    std: STATE.std,
+    pct: STATE.pct,
+    wrongCount: STATE.wrongs.size,
+    wrongNumbers: wrongList.map(q => q.no).join(", "),
+    wrongDetail: JSON.stringify(wrongList),
+    flags: Array.from(STATE.flags).join(", "),
+    topPattern: STATE.patterns[0] ? STATE.patterns[0].type : "",
+    topPatternDetail: STATE.patterns[0] ? stripTags(STATE.patterns[0].diag) : "",
+    studentComment: stripTags(STATE.studentComment),
+    parentComment: stripTags(STATE.parentComment)
+  };
+
+  document.getElementById("sheet-data").value = JSON.stringify(payload);
+  document.getElementById("sheet-form").action = SCRIPT_URL;
+  document.getElementById("sheet-form").submit();
+  STATE.submitted = true;
+  showToast("✓ 선생님께 결과가 전송되었습니다", "ok");
+});
+
+function showToast(msg, type) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "toast show " + (type || "");
+  setTimeout(() => { t.className = "toast " + (type || ""); }, 2800);
+}
+
+/* ───── 처음으로 ───── */
+document.getElementById("restart").addEventListener("click", () => {
+  if (!confirm("입력한 내용을 모두 지우고 처음부터 다시 시작할까요?")) return;
+  STATE.wrongs.clear();
+  STATE.flags.clear();
+  STATE.submitted = false;
+  document.querySelectorAll(".mark-cell.wrong").forEach(c => c.classList.remove("wrong"));
+  document.querySelectorAll(".toggle-chip.on").forEach(c => c.classList.remove("on"));
+  document.querySelectorAll(".choice-btn.selected").forEach(c => c.classList.remove("selected"));
+  ["f-name","f-date","f-choice"].forEach(id => document.getElementById(id).value = "");
+  showScreen(0);
+});
+
+// 오늘 날짜 자동 입력
+document.getElementById("f-date").value = new Date().toISOString().split("T")[0];
+</script>
+</body>
+</html>
