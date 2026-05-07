@@ -2,8 +2,13 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>오름 국어 — 모의고사 진단 대시보드</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="theme-color" content="#0a0e0a" />
+<meta name="format-detection" content="telephone=no" />
+<title>오름 국어 — 2026학년도 5월 학평 진단 대시보드</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
 :root {
@@ -47,6 +52,33 @@ html, body { background: var(--bg-deep); color: var(--text-primary); font-family
 /* 통계 박스 */
 .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
 @media (max-width: 720px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+
+/* 모바일 — 대시보드 */
+@media (max-width: 600px) {
+  .dash-shell { padding: 18px 14px 60px; }
+  .dash-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .dash-brand { font-size: 22px; }
+  .dash-brand .accent { font-size: 18px; }
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-card { padding: 14px 12px; }
+  .stat-card .label { font-size: 11px; }
+  .stat-card .value { font-size: 28px; }
+
+  /* 표 가로 스크롤 처리 */
+  .submissions-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .submissions-table { font-size: 13px; min-width: 720px; }
+  .submissions-table th, .submissions-table td { padding: 10px 8px; }
+  .submissions-table .col-grade { font-size: 18px; }
+  .submissions-table .col-score { font-size: 16px; }
+
+  /* 디테일 영역 */
+  .detail-content { padding: 16px 14px; }
+  .detail-block h4 { font-size: 13px; }
+  .detail-block .row { font-size: 13px; }
+
+  /* 비밀번호 입력창 */
+  .login-shell input { font-size: 16px; }  /* iOS 자동 줌 방지 */
+}
 .stat-card {
   background: var(--bg-card); border: 1px solid var(--border-outer); border-radius: 6px;
   padding: 16px 18px;
@@ -224,7 +256,7 @@ html, body { background: var(--bg-deep); color: var(--text-primary); font-family
   <div class="dash-header">
     <div>
       <div class="dash-brand">[<span class="accent">오름</span>] 국어 진단 대시보드</div>
-      <div class="dash-sub">2025학년도 5월 학력평가 · 학생별 응답 모니터링</div>
+      <div class="dash-sub">2026학년도 5월 학력평가 · 학생별 응답 모니터링</div>
     </div>
     <div class="dash-controls">
       <button class="refresh-btn" id="refresh">↻ 새로고침</button>
@@ -285,13 +317,25 @@ html, body { background: var(--bg-deep); color: var(--text-primary); font-family
 </div>
 
 <div id="toast" class="toast"></div>
+  <!-- 설정 파일 (한 번만 만들어 두고 이후 수정 불필요) -->
+  <!-- 캐시 무력화를 위해 동적 로드 + URL에 타임스탬프 -->
+  <script>
+    (function() {
+      var s = document.createElement('script');
+      s.src = '../mock2025-05/config.js?v=' + Date.now();
+      s.async = false;
+      document.write(s.outerHTML);
+    })();
+  </script>
+
 
 <script>
 /* ──────────────────────────────────────────
    설정
    ────────────────────────────────────────── */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwXDbn4ERl71WD2A5NFv_Swr-gI7EjsovskaGFTF8fp_jePHAqaIX_ViZyAoJ7oojVi/exec";  // 같은 Apps Script URL
-const DASH_PASSWORD = "7452";                     // 강사용 접속 비밀번호 (변경하세요)
+// SCRIPT_URL과 DASH_PASSWORD는 config.js에서 가져옵니다 (편집 불필요)
+const SCRIPT_URL = (window.OREUM_CONFIG && window.OREUM_CONFIG.SCRIPT_URL) || "";
+const DASH_PASSWORD = (window.OREUM_CONFIG && window.OREUM_CONFIG.DASH_PASSWORD) || "";
 
 const GRADE_LABEL = { lm: "언매", hs: "화작" };
 
@@ -378,7 +422,7 @@ async function loadData() {
   btn.textContent = "↻ 불러오는 중…";
 
   if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR")) {
-    showError("Apps Script URL이 설정되지 않았습니다. dashboard.html의 SCRIPT_URL 변수를 설정해 주세요.");
+    showError("Apps Script URL이 설정되지 않았습니다. config.js 파일의 SCRIPT_URL을 확인해 주세요.");
     btn.classList.remove("loading");
     btn.textContent = "↻ 새로고침";
     return;
