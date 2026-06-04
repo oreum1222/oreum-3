@@ -47,6 +47,15 @@ body{background:var(--bg);color:var(--t1);font-family:'Noto Sans KR',sans-serif;
 .b-new{color:var(--coral);background:var(--coralG);border:1px solid rgba(255,107,138,.25)}
 .b-lit{color:var(--blue);background:var(--blueG);border:1px solid rgba(91,156,245,.25)}
 .note{font-size:11.5px;color:var(--t3);margin-top:14px;line-height:1.7}
+.lk{color:var(--mint);font-weight:600}
+.nlk{color:var(--t3)}
+.cardlead{font-size:12.5px;color:var(--t2);line-height:1.7;margin:2px 0 14px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.cardlead b{color:var(--t1)}
+.ctbl{width:100%;border-collapse:collapse;font-size:11.5px;margin:2px 0;border:1px solid var(--bdr);border-radius:8px;overflow:hidden}
+.ctbl th{background:var(--card2);color:var(--t2);font-weight:600;font-size:10px;letter-spacing:.3px;padding:8px 9px;text-align:left;border-bottom:1px solid var(--bdr2)}
+.ctbl td{padding:8px 9px;border-bottom:1px solid var(--bdr);vertical-align:top;color:var(--t1);line-height:1.6}
+.ctbl tr:last-child td{border-bottom:none}
+.ctbl .rk{color:var(--t2);font-weight:600;white-space:nowrap}
 
 /* set card */
 .setcard{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:20px 18px;margin-bottom:18px}
@@ -157,21 +166,21 @@ footer .brand{color:var(--mint);font-weight:600}
 
   <!-- OVERVIEW -->
   <div class="section" id="overview">
-    <div class="lead">국어 공통과목 <b>8개 지문 세트 중 7개</b>가 2027 수능특강에서 직접 연계됐다. 신규 출제는 <b>28~31번 「홍길동전」 한 세트뿐</b>이다. 독서는 소재·개념을 가져오되 지문을 새로 쓰거나 사례를 덧붙여 더 깊게, 문학은 작품을 그대로 두되 묶음·〈보기〉·대목을 바꿔 출제했다.</div>
+    <div class="lead">국어 공통과목 <b>8개 지문 세트 중 7개</b>에 2027 수능특강 연계작·연계 제재가 들어갔다. 세트 전체가 비연계인 곳은 <b>28~31번 「홍길동전」뿐</b>이다. 다만 갈래 복합·고전시가처럼 여러 작품을 묶은 세트에서는 <b>일부 작품만 연계</b>됐다 — 아래 표에서 <span class="lk">민트색은 연계작</span>, <span class="nlk">회색은 비연계작</span>이다.</div>
     <table class="maptbl">
       <thead><tr><th>문항</th><th>영역</th><th>수능특강 출처</th><th>작품 · 소재</th><th>연계 유형</th></tr></thead>
       <tbody>
-        <tr><td class="q">1~3</td><td>독서</td><td>독서론</td><td>SQ3R · CSQ3R 읽기 전략</td><td><span class="badge b-direct">소재 동일</span></td></tr>
+        <tr><td class="q">1~3</td><td>독서</td><td>독서론</td><td>SQ3R · CSQ3R 읽기 전략</td><td><span class="badge b-direct">직접 연계 · 재구성</span></td></tr>
         <tr><td class="q">4~9</td><td>독서</td><td>사회 · 형평 운동</td><td>노비제 · 신분 차별 · 형평 운동 · 민권</td><td><span class="badge b-deep">재활용+주제통합 심화</span></td></tr>
-        <tr><td class="q">10~13</td><td>독서</td><td>사회 · 정보 비대칭</td><td>역선택 → 플랫폼 · 생성형 AI · 표현의 자유</td><td><span class="badge b-deep">재활용+심화·변형</span></td></tr>
+        <tr><td class="q">10~13</td><td>독서</td><td>사회 · 정보 비대칭</td><td>역선택 → 플랫폼 · 생성형 AI · 표현의 자유</td><td><span class="badge b-deep">개념 차용 · 논점 확장</span></td></tr>
         <tr><td class="q">14~17</td><td>독서</td><td>과학 · 폐포</td><td>라플라스 식 · 표면 장력 · 계면활성제</td><td><span class="badge b-direct">개념 직접 차용</span></td></tr>
-        <tr><td class="q">18~21</td><td>문학</td><td>현대소설</td><td>하근찬 「나룻배 이야기」</td><td><span class="badge b-lit">동일 작품·다른 대목</span></td></tr>
-        <tr><td class="q">22~27</td><td>문학</td><td>현대시 · 김명인 「그 나무」</td><td>김명인 「그 나무」 + 김기택 「나무」 + 수필</td><td><span class="badge b-lit">동일 작품·갈래 복합</span></td></tr>
-        <tr class="new"><td class="q">28~31</td><td>문학</td><td>(연계 아님)</td><td>작자 미상 「홍길동전」</td><td><span class="badge b-new">신규 출제</span></td></tr>
-        <tr><td class="q">32~34</td><td>문학</td><td>고전시가 ①+②</td><td>만전춘별사 + 김수장 + 이정보</td><td><span class="badge b-lit">동일 작품·묶음 재구성</span></td></tr>
+        <tr><td class="q">18~21</td><td>문학</td><td>현대소설</td><td><span class="lk">하근찬 「나룻배 이야기」</span></td><td><span class="badge b-lit">핵심 장면 직접 일치</span></td></tr>
+        <tr><td class="q">22~27</td><td>문학</td><td>현대시 · 김명인 「그 나무」</td><td><span class="lk">김명인 「그 나무」</span> <span class="nlk">+ 김기택 「나무」 + 수필</span></td><td><span class="badge b-lit">일부 연계·갈래 복합</span></td></tr>
+        <tr class="new"><td class="q">28~31</td><td>문학</td><td>(수능특강 미수록)</td><td><span class="nlk">작자 미상 「홍길동전」</span></td><td><span class="badge b-new">비연계</span></td></tr>
+        <tr><td class="q">32~34</td><td>문학</td><td>고전시가 ①+②</td><td><span class="lk">만전춘별사</span> <span class="nlk">+ 김수장 +</span> <span class="lk">이정보</span></td><td><span class="badge b-lit">일부 연계·묶음 재구성</span></td></tr>
       </tbody>
     </table>
-    <p class="note">※ 28~31번(「홍길동전」)만 제공 자료와 무관한 신규 출제이며, 나머지 일곱 세트는 모두 연계 지문이다. 선택과목(35~45번 화법과 작문·언어와 매체)은 분석 대상에서 제외했다.</p>
+    <p class="note">※ 28~31번 「홍길동전」만 세트 전체가 비연계다. 22~27번은 김명인 「그 나무」만, 32~34번은 「만전춘별사」·이정보 시조만 연계작이며, 함께 묶인 김기택 「나무」·수필·김수장 시조는 비연계다. 선택과목(35~45번 화법과 작문·언어와 매체)은 분석 대상에서 제외했다.</p>
   </div>
 
   <!-- READING -->
@@ -180,46 +189,217 @@ footer .brand{color:var(--mint);font-weight:600}
 
     <div class="setcard">
       <div class="set-head"><span class="set-num">①</span><span class="set-title">SQ3R 읽기 전략 · 독서론</span><span class="set-q">모평 1~3번</span></div>
-      <div class="cmp">
-        <div class="col src"><div class="ttl">2027 수능특강</div><div class="txt">SQ3R(훑어보기·질문 만들기·읽기·되새기기·다시 보기)와 이를 확장한 <span class="kw">CSQ3R</span> 전략. 능동적 읽기 습관, 배경지식 활용, 단계의 비일방향성(이전 단계 재수행)을 다룸.</div></div>
-        <div class="col exam"><div class="ttl">2027 6월 모평</div><div class="txt">동일한 <span class="kw">SQ3R 5단계</span>를 제시하되, 각 단계의 활동과 효과를 중심으로 표준 독서론으로 출제. 구조·내용을 점검·조정하며 읽는 능동적 독서 과정을 강조.</div></div>
+      <p class="cardlead">EBS의 SQ3R ‘설명서’를, 평가원이 <b>‘학습을 위한 읽기’ — 능동적 읽기와 기억 효과</b> 중심으로 재조직한 직접 연계 지문이다. 소재·단계 구조는 그대로 두되, 읽기 전 활동(훑어보기·질문하기)의 효과를 크게 부각했다.</p>
+
+      <div class="blk"><div class="lbl">전체 구조 비교</div>
+        <table class="ctbl">
+          <thead><tr><th>구분</th><th>EBS 수능특강</th><th>6월 평가원</th></tr></thead>
+          <tbody>
+            <tr><td class="rk">도입</td><td>복잡한 글에서 중요 내용을 놓치지 않기 위한 전략 필요</td><td><span class="lk">‘학습을 위한 읽기’</span> — 지식 습득·정확한 파악과 기억</td></tr>
+            <tr><td class="rk">중심 소재</td><td>SQ3R 읽기 전략</td><td>SQ3R 읽기 전략</td></tr>
+            <tr><td class="rk">전개</td><td>5단계 설명 → CSQ3R → 효과를 높이는 방법</td><td>5단계 설명 → <span class="lk">읽기 전 활동의 효과 심화</span> → 새 활동 추가 전략</td></tr>
+            <tr><td class="rk">강조점</td><td>SQ3R의 절차와 활용 전반</td><td>훑어보기·질문하기의 <span class="lk">능동적 읽기 효과</span></td></tr>
+            <tr><td class="rk">변이 전략</td><td>CSQ3R, 시각 바꾸기</td><td>관점 바꾸기, 숙고하기</td></tr>
+            <tr><td class="rk">마무리</td><td>배경지식·표현 활동·단계 유연성·긍정적 태도</td><td>배경지식과 이해 내용을 잇는 ‘숙고하기’로 압축</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="blk"><div class="lbl">공통 토대</div><p>‘SQ3R’이라는 동일한 독서 전략을 핵심 소재로 공유한다. 다섯 단계의 명칭·순서와 능동적·점검적 읽기라는 강조점이 일치한다.</p></div>
-      <div class="blk deep"><div class="lbl">심화 · 변형</div><p>SQ3R은 독서론의 표준 화제이긴 하나, 수능특강이 SQ3R·CSQ3R을 명시적으로 정리해 둔 만큼 ‘예습한 화제’가 그대로 나온 셈이다. 수능특강이 CSQ3R(저자 입장에서 전달 방식 점검)까지 확장했다면, 모평은 SQ3R 5단계의 이해·적용에 집중했다.</p></div>
-      <div class="blk"><div class="lbl">학습 포인트</div><ul><li>SQ3R 다섯 단계의 명칭·순서·활동을 정확히 정리</li><li>‘되새기기·다시 보기’ 등 점검 단계의 기능(이해 확인·재수행) 이해</li></ul></div>
+
+      <div class="blk"><div class="lbl">공통 토대</div><p>‘SQ3R’이라는 소재와 다섯 단계 구조를 그대로 공유한다. 단계 명칭도 거의 같고, 네 번째 단계만 EBS <b>‘확인하기’</b> → 평가원 <b>‘암송하기’</b>로 바뀌어 기억·회상 쪽으로 강조점이 이동했다.</p></div>
+
+      <div class="blk deep"><div class="lbl">심화 · 변형</div>
+        <p><b>① 도입 재설정</b> — ‘복잡한 글 읽기’ 일반론에서 ‘지식 습득·기억을 위한 학습 독서’로 범위를 좁혀, 지문 전체를 학습 효과·기억 문제로 재설정했다.</p>
+        <p><b>② 읽기 전 활동 부각</b> — EBS는 다섯 단계를 고르게 설명하지만, 평가원은 <span class="kw">훑어보기·질문하기</span>를 따로 빼 한 문단(3문단)으로 확장하고 <span class="kw-a">효과 중심</span>으로 풀었다.</p>
+        <p><b>③ 변이 전략 일반화</b> — 고유 명칭 <b>CSQ3R</b>은 ‘새로운 활동을 추가한 전략’으로 일반화됐고, ‘시각 바꾸기’는 ‘관점 바꾸기’로 명칭만 바뀌었다(핵심 유지, 효과는 ‘분석적 읽기’로 정리).</p>
+        <p><b>④ 마무리 압축</b> — EBS 4문단의 토론·감상문 쓰기·단계 간 유연성·긍정적 태도는 대부분 삭제되고, 배경지식과 이해 내용을 잇는 부분만 <b>‘숙고하기’</b>로 재구성됐다.</p>
+      </div>
+
+      <div class="blk"><div class="lbl">선지 포인트 — 활동별 효과</div>
+        <p style="font-size:12px;color:var(--t2);margin-bottom:6px">평가원 3문단의 ‘활동 → 효과’ 인과가 선지로 나오기 좋다.</p>
+        <ul>
+          <li><b>훑어보기</b> → 배경지식 활성화 · 글에 대한 적응력 · 읽는 속도 향상 · 내용 구조화와 장기 기억</li>
+          <li><b>질문하기</b> → 읽는 목적 고려 · 중요 내용 선별 · 집중 · 기억과 회상, 스스로 질문하면 능동성 강화</li>
+        </ul>
+      </div>
+
+      <div class="blk"><div class="lbl">문단 대응</div>
+        <table class="ctbl">
+          <thead><tr><th>EBS 원문</th><th>6월 평가원</th><th>변형 방식</th></tr></thead>
+          <tbody>
+            <tr><td>1문단 · 복잡한 글 읽기 전략 필요</td><td>1문단 · 학습을 위한 읽기와 SQ3R</td><td>도입 목적 변경</td></tr>
+            <tr><td>2문단 · 5단계 설명</td><td>2문단 · 5단계 설명</td><td>구조 유지, 세부 압축</td></tr>
+            <tr><td>2문단 일부 · 훑어보기·질문하기</td><td>3문단 · 두 활동의 효과</td><td><span class="lk">특정 단계만 확대·효과화</span></td></tr>
+            <tr><td>3문단 · CSQ3R, 시각 바꾸기</td><td>4문단 앞 · 관점 바꾸기</td><td>명칭 변경, 내용 유지</td></tr>
+            <tr><td>4문단 · 효과를 높이는 방법</td><td>4문단 뒤 · 숙고하기</td><td>배경지식 부분만 추출</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blk"><div class="lbl">학습 포인트</div><ul>
+        <li>SQ3R을 ‘순서 암기’가 아니라 <b>각 활동의 효과(왜 그렇게 읽는가)</b>로 정리 — 특히 읽기 전 활동</li>
+        <li>‘확인하기→암송하기’, ‘시각 바꾸기→관점 바꾸기’, ‘CSQ3R→새 활동 추가’처럼 <b>용어가 바뀌어도 개념으로 대응</b></li>
+        <li>‘관점 바꾸기 = 분석적 읽기’, ‘숙고하기 = 배경지식과 이해 연결’ 효과를 한 줄로 정리</li>
+      </ul></div>
     </div>
 
     <div class="setcard">
       <div class="set-head"><span class="set-num">②</span><span class="set-title">신분 차별 · 형평 운동 · 주제 통합</span><span class="set-q">모평 4~9번</span></div>
-      <div class="cmp">
-        <div class="col src"><div class="ttl">2027 수능특강</div><div class="txt">조선 후기~일제강점기의 신분 차별과 <span class="kw">형평 운동</span>. 백정 차별, <span class="kw">1923년 진주 형평사</span> 조직, <span class="kw">1925년 대중사 개칭</span>, 인권·평등 운동으로의 전국화.</div></div>
-        <div class="col exam"><div class="ttl">2027 6월 모평</div><div class="txt"><b>(가)</b> 조선 노비제와 실학자 <span class="kw">이익</span>의 운명론(천명·성명·시세·조명, 노비 세습 금지론). <b>(나)</b> 19세기 서구 민권 사상, 유길준·박영효·김윤식 등 개화파 민권론, 그리고 형평 운동으로의 전개.</div></div>
+      <p class="cardlead">EBS의 ‘백정 차별과 형평 운동’ 지문을 그대로 낸 것이 아니라, 형평 운동을 <b>신분 차별과 인권 의식 변화의 마지막 사례</b>로 흡수했다. 그 앞에 조선 노비 인식·실학자 이익의 신분관·개화기 민권론·독립협회를 새로 붙여 <span class="kw">(가)(나) 주제 통합</span>으로 확장한 연계다.</p>
+
+      <div class="blk"><div class="lbl">전체 구조 비교</div>
+        <table class="ctbl">
+          <thead><tr><th>구분</th><th>EBS 수능특강</th><th>6월 평가원</th></tr></thead>
+          <tbody>
+            <tr><td class="rk">범위</td><td>백정 차별 → 형평 운동의 전개·갈등</td><td><span class="lk">노비 인식 → 실학(이익) → 개화기 민권론 → 갑오개혁·독립협회 → 형평 운동</span></td></tr>
+            <tr><td class="rk">구성</td><td>단일 지문</td><td>(가) 노비·실학 + (나) 민권·형평 <span class="lk">주제 통합</span></td></tr>
+            <tr><td class="rk">형평 운동 위치</td><td>지문 전체</td><td>(나) 후반부(4~5문단) 사례</td></tr>
+            <tr><td class="rk">강조점</td><td>차별의 생활상·사회 갈등</td><td>권리·인권 담론의 확대</td></tr>
+            <tr><td class="rk">마무리</td><td>‘새로운 정치의 필요성’(정치적 함의)</td><td>‘이후 인권 운동에 영향’(인권 운동사적 의의)</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="blk"><div class="lbl">공통 토대</div><p>신분 차별과 그 극복(형평 운동)이라는 소재를 공유하며, 백정·형평사·진주·대중사 개칭 등 핵심 사실이 그대로 겹친다.</p></div>
-      <div class="blk deep"><div class="lbl">심화 · 변형</div><p>수능특강이 형평 운동을 단독 화제로 정리했다면, 모평은 그 앞단에 <b>(가) 노비제·실학(이익)</b>과 <b>(나) 서구 민권 사상</b>을 배치한 <span class="kw-a">(가)(나) 주제 통합</span>으로 확장. 신분 문제를 ‘운명론적 인간관’과 ‘근대 권리론’이라는 두 사상사적 축으로 재구성했다. 9번 어휘까지 붙은 6문항 풀세트.</p></div>
-      <div class="blk"><div class="lbl">학습 포인트</div><ul><li>형평사·1923 진주·1925 대중사 개칭 등 사실 관계 정리</li><li>이익의 ‘천명→조명’ 논리(노력으로 운명을 바꿈) 이해</li><li>(가) 이익 신분관 ↔ (나) 개화파 민권론(천부 인권 vs 교육·법 전제) 대비</li></ul></div>
+
+      <div class="blk"><div class="lbl">공통 토대 — EBS에서 직접 가져온 부분</div><p>EBS의 형평 운동 서술이 <b>(나) 4~5문단</b>으로 압축돼 들어갔다. 직접 겹치는 고리는 ① ‘법적 신분제 폐지 → 현실의 차별 지속’ 구조, ② 1923년 진주 형평사 조직, ③ 형평 운동의 전국화, ④ 교육 차별이 도화선이 된 교육 활동, ⑤ 다른 사회 운동과의 연대다.</p></div>
+
+      <div class="blk deep"><div class="lbl">심화 · 변형 — 평가원이 새로 붙인 / 덜어낸 부분</div>
+        <p><b>추가 ①</b> 조선 노비에 대한 양반들의 글 — 충성을 칭송하고 연약한 존재로 보며 희생에 미안함을 느끼되, <span class="kw-a">신분 질서 자체는 문제 삼지 않음</span>.</p>
+        <p><b>추가 ②</b> 실학자 이익의 운명론 — 천명·성명·조명으로 나누고, 능동적으로 바꿀 수 있는 <span class="kw">조명의 대상을 노비까지 확대</span>. 신분은 세습이 아니라 재주·덕행으로.</p>
+        <p><b>추가 ③</b> 개화파 민권론 — 유길준(천부 인권·인위적 권리, 법률), 박영효(민권↔국권), 온건 개화파(세습 금지는 지지하되 능력에 따른 귀천은 인정하는 모순적 태도).</p>
+        <p><b>추가 ④</b> 독립협회(자유·평등은 하늘이 준 권리로 노비 소유·매매 비판) + 1935년 대동사 개칭.</p>
+        <p><b>삭제·약화</b> 백정 차별의 구체적 생활상(격리·반말·기와·명주·출입 금지), 일제의 도수장 관리, 양민과 백정의 경제적 경쟁(약자 간 갈등), ‘새로운 정치의 필요성’.</p>
+      </div>
+
+      <div class="blk"><div class="lbl">선지 포인트</div><ul>
+        <li><b>법적 폐지 ≠ 차별 소멸</b> — 갑오개혁으로 신분제는 폐지됐으나 차별은 지속. ‘이후 신분 차별이 완전히 사라졌다’류는 오답</li>
+        <li><b>권리 인식의 확대 사슬</b> — 이익(노비도 조명의 주체) → 유길준·박영효(민권) → 독립협회(천부 권리) → 형평 운동(존엄·평등). 형평 운동은 단독 사건이 아니라 흐름의 귀결</li>
+      </ul></div>
+
+      <div class="blk"><div class="lbl">문단 대응</div>
+        <table class="ctbl">
+          <thead><tr><th>EBS 원문</th><th>6월 평가원</th><th>반영 방식</th></tr></thead>
+          <tbody>
+            <tr><td>1 · 신분제·천민 구분</td><td>(가) 1 일부</td><td>천민 일반보다 ‘노비’에 초점</td></tr>
+            <tr><td>2 · 백정 차별·갑오개혁 후 지속</td><td>(나) 3~4</td><td><span class="lk">차별 지속만 압축</span></td></tr>
+            <tr><td>3 · 형평사 조직·전국화·교육</td><td>(나) 4</td><td>1923 진주·전국화·교육 활동 반영</td></tr>
+            <tr><td>4 · 3·1 이후 대중 운동 연대</td><td>(나) 4~5</td><td>‘다른 사회 운동과 연대’로 축약</td></tr>
+            <tr><td>5 · 양민 반대·경제 경쟁</td><td class="nlk">거의 삭제</td><td>약자 간 갈등 약화</td></tr>
+            <tr><td>6 · 약자 간 갈등·새 정치</td><td class="nlk">방향 변경</td><td>‘이후 인권 운동에 영향’으로</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blk"><div class="lbl">학습 포인트</div><ul>
+        <li>형평 운동을 ‘신분 차별 극복·인권 의식 확대’ 흐름의 결과로 위치시키기(이익→민권론→독립협회→형평)</li>
+        <li>1923 진주 형평사·전국화·교육 차별→교육 활동·1935 대동사 개칭 등 사실 정리</li>
+        <li>(가) 이익의 운명론(천명/성명/조명) ↔ (나) 민권론(천부 인권 vs 능력에 따른 귀천) 대비 — 세부 암기형이 아니라 <b>주제 확장형</b></li>
+      </ul></div>
     </div>
 
     <div class="setcard">
       <div class="set-head"><span class="set-num">③</span><span class="set-title">정보 비대칭 · 역선택 · 경제</span><span class="set-q">모평 10~13번</span></div>
-      <div class="cmp">
-        <div class="col src"><div class="ttl">2027 수능특강</div><div class="txt">보험 시장을 사례로 정보 비대칭 → <span class="kw">역선택</span>, 정보 우위자의 <span class="kw">신호 발송</span>과 열위자의 <span class="kw">선별</span>, 자율 차등 보험료 등 해소 기제.</div></div>
-        <div class="col exam"><div class="ttl">2027 6월 모평</div><div class="txt">정보 비대칭·역선택에서 출발해 <span class="kw">온라인 플랫폼·생성형 AI 표시 의무</span>, ‘<span class="kw">사상의 자유 시장</span>’ 이론(㉠)과 비판론(㉡), 헌재 실명확인제 판단, <span class="kw">표현의 자유</span> 규제 논쟁으로 확장.</div></div>
+      <p class="cardlead">EBS는 <b>시장에서 정보 비대칭을 어떻게 해결하는가(신호 발송·선별·평판)</b>를 설명한 경제 지문이고, 평가원은 정보 비대칭·역선택 개념만 도입부로 빌려 와 <b>온라인·생성형 AI 정보 환경에서 정부가 어디까지 개입해야 하는가</b>를 따지는 법·사회 쟁점 지문으로 바꿨다.</p>
+
+      <div class="blk"><div class="lbl">전체 구조 비교</div>
+        <table class="ctbl">
+          <thead><tr><th>구분</th><th>EBS 수능특강</th><th>6월 평가원</th></tr></thead>
+          <tbody>
+            <tr><td class="rk">중심 질문</td><td>정보 비대칭이 시장에서 낳는 문제와 해결</td><td><span class="lk">온라인 정보 비대칭에 대한 정부 개입의 정당성</span></td></tr>
+            <tr><td class="rk">전개</td><td>신호 발송·선별·평판 구축(시장 내부 메커니즘)</td><td>표시 의무·플랫폼 규제·표현의 자유 논쟁</td></tr>
+            <tr><td class="rk">온라인의 위상</td><td>리뷰·평점 = 정보 비대칭을 <span class="lk">줄이는</span> 장치</td><td>생성형 AI 광고 = 정보 비대칭을 <span class="lk">심화하는</span> 문제</td></tr>
+            <tr><td class="rk">소재 영역</td><td>경제학</td><td>경제 개념 → 법·정치·헌법</td></tr>
+            <tr><td class="rk">핵심 장치</td><td>보험 시장 사례</td><td>사상의 자유 시장 이론·비판론·헌재 실명확인</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="blk"><div class="lbl">공통 토대</div><p>‘정보 비대칭 → 역선택’이라는 핵심 개념과 ‘정부의 시장 개입’이라는 틀을 그대로 공유한다.</p></div>
-      <div class="blk deep"><div class="lbl">심화 · 변형</div><p>보험 시장의 정태적 역선택 사례를 <b>온라인 플랫폼·생성형 AI</b>라는 디지털 맥락으로 옮기고, 한 걸음 더 나아가 ‘정보 규제 ↔ 표현의 자유’라는 <span class="kw-a">헌법적 가치 충돌</span>까지 결합. 경제 지문이 법·언론 지문과 융합됐다.</p></div>
-      <div class="blk"><div class="lbl">학습 포인트</div><ul><li>역선택의 발생 메커니즘과 신호 발송·선별의 차이 구분</li><li>‘사상의 자유 시장’ 이론(㉠)과 비판론(㉡)의 대립 구도 정리</li><li>실명확인제 헌재 다수·소수 의견 논거를 〈보기〉에 적용</li></ul></div>
+
+      <div class="blk"><div class="lbl">공통 토대 — EBS에서 직접 가져온 부분</div><p>‘완전 정보 가정 → 정보 취득 비용 차이 → 정보 비대칭 → 역선택’ 흐름이 평가원 1문단에 거의 그대로 들어갔다(보험 사례는 빼고 ‘낮은 품질 상품을 비싼 값에 선택’으로 일반화). 온라인 거래에서 정보 비대칭이 발생한다는 관점도 공유한다 — 단, 방향은 정반대다.</p></div>
+
+      <div class="blk deep"><div class="lbl">심화 · 변형 — 평가원이 새로 붙인 / 덜어낸 부분</div>
+        <p><b>추가 ①</b> 생성형 AI 허위·과장 광고 — 경제 개념을 AI 기반 온라인 상거래로 이전.</p>
+        <p><b>추가 ②</b> AI 생성물 표시 의무 — <span class="kw-a">정부가 법으로 표시를 강제</span>(EBS ‘신호 발송’과 원리는 통하나 자발적 신호가 아님).</p>
+        <p><b>추가 ③</b> 플랫폼 사업자 규제 — 정보 제공자·플랫폼에도 의무를 지울지 쟁점화.</p>
+        <p><b>추가 ④~⑥</b> ‘사상의 자유 시장’ 이론(㉠, 개입 반대) ↔ 비판론(㉡, 허위·왜곡 정보 → 플랫폼 사전 규제 + 정부 사후 규제), 그리고 이를 현실로 보여 주는 헌재 실명확인 사건(다수=자유 시장, 소수=비판론).</p>
+        <p><b>삭제·약화</b> 보험 시장 역선택 사례, 신호 발송 균형·비용, 선별, 평판 구축·리뷰·평점.</p>
+      </div>
+
+      <div class="blk"><div class="lbl">선지 포인트</div><ul>
+        <li><b>방향 뒤집힘</b> — ‘온라인 거래=정보 비대칭 감소’는 EBS 관점, 평가원은 ‘심화’로 뒤집음</li>
+        <li><b>표시 의무 ≠ 자발적 신호 발송</b> — 평가원의 표시 의무는 정부가 법으로 강제한 것. ‘정보 우위자의 자발적 신호’로 보면 오답</li>
+        <li><b>대립축</b> — 사상의 자유 시장(자율 경쟁·개입 반대) ↔ 비판론(공동 규제·민주적 의사결정 보호). 헌재 다수=전자, 소수=후자</li>
+      </ul></div>
+
+      <div class="blk"><div class="lbl">문단 대응</div>
+        <table class="ctbl">
+          <thead><tr><th>EBS 원문</th><th>6월 평가원</th><th>반영 방식</th></tr></thead>
+          <tbody>
+            <tr><td>1 · 완전 정보·취득 비용·정보 비대칭</td><td>1문단</td><td><span class="lk">거의 직접 반영</span></td></tr>
+            <tr><td>2 · 역선택·보험 사례</td><td>1문단</td><td>역선택 개념만, 보험 삭제</td></tr>
+            <tr><td>3 · 신호 발송</td><td class="nlk">미반영</td><td>정부 표시 의무로 전환</td></tr>
+            <tr><td>4 · 선별</td><td class="nlk">미반영</td><td>—</td></tr>
+            <tr><td>5 · 평판·리뷰·평점</td><td>2문단 배경만</td><td>AI 광고·플랫폼 규제로 전환</td></tr>
+            <tr><td class="nlk">(없음)</td><td>3~5문단</td><td>자유 시장 이론·비판론·헌재 추가</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blk"><div class="lbl">학습 포인트</div><ul>
+        <li>EBS는 1문단 이해를 빠르게 해 주지만, 변별은 3~5문단(법·헌법 논쟁) — ‘정보 비대칭=역선택=신호 발송’만 외우면 중반부터 흔들림</li>
+        <li>경제 개념을 표현 영역으로 ‘전이’하는 독해(완전경쟁시장 → 사상의 자유 시장)가 핵심</li>
+        <li>13번 — 정부 개입 이론을 사례에 적용 / 표시 의무의 성격(정부 강제 vs 자발적 신호) 구분</li>
+      </ul></div>
     </div>
 
     <div class="setcard">
       <div class="set-head"><span class="set-num">④</span><span class="set-title">폐포 · 표면 장력 · 라플라스 식 · 과학</span><span class="set-q">모평 14~17번</span></div>
-      <div class="cmp">
-        <div class="col gold"><div class="ttl">2027 수능특강</div><div class="txt">폐포의 표면 장력과 계면활성제, <span class="kw-a">라플라스 식 P = 2T/r</span>. 작은 폐포일수록 내부 압력이 커 허탈이 쉬우나 계면활성제가 표면 장력을 낮춰 막음.</div></div>
-        <div class="col gold"><div class="ttl">2027 6월 모평</div><div class="txt">물방울·비눗방울·기포의 표면 장력과 라플라스 식. <b>폐포·계면활성제 사례를 그대로 포함</b>하고, 작은 기포→큰 기포 공기 이동, 여기에 <span class="kw-a">잉크젯 잉크 방울</span> 사례를 덧붙여 일반화.</div></div>
+      <p class="cardlead">EBS는 ‘폐포가 허탈되지 않는 이유’를 설명한 생명과학 지문이고, 평가원은 폐포의 생물학적 세부는 줄이고 <b>라플라스 식·표면 장력의 일반 원리</b>를 앞세워 물방울·폐포·기포 결합·잉크젯 프린터에 차례로 적용한 융합 지문으로 재구성했다. EBS는 라플라스 법칙을 ‘폐포 이해의 도구’로, 평가원은 폐포를 ‘<span class="kw-a">라플라스 식의 한 적용 사례</span>’로 배치했다.</p>
+
+      <div class="blk"><div class="lbl">전체 구조 비교</div>
+        <table class="ctbl">
+          <thead><tr><th>구분</th><th>EBS 수능특강</th><th>6월 평가원</th></tr></thead>
+          <tbody>
+            <tr><td class="rk">중심</td><td>폐포</td><td><span class="lk">라플라스 식</span></td></tr>
+            <tr><td class="rk">전개</td><td>폐포 구조·신전성 → 표면 장력 → 라플라스 법칙 → 계면 활성제</td><td>구형 방울·압력 균형 → 라플라스 식 → 폐포 → 두 기포 결합 → 잉크젯·오네소르게 수</td></tr>
+            <tr><td class="rk">적용 범위</td><td>폐포 한정</td><td><span class="lk">구형 방울 일반 → 폐포·기포·잉크 방울</span></td></tr>
+            <tr><td class="rk">강조점</td><td>생리학적 메커니즘(허탈 방지)</td><td>물리적 압력 관계·공학적 적용</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="blk"><div class="lbl">공통 토대</div><p>라플라스 식·표면 장력·계면활성제·폐포라는 개념과 소재를 거의 그대로 공유한다 — <b>이번 독서 연계 중 일치도가 가장 높다.</b></p></div>
-      <div class="blk deep"><div class="lbl">심화 · 변형</div><p>수능특강이 폐포 하나에 초점을 맞췄다면, 모평은 같은 원리를 물방울·기포·잉크 방울로 일반화. 16번 〈보기〉는 잉크 점도·표면 장력으로 잉크 방울 형성을 따지는 <span class="kw-a">적용형</span>이다.</p></div>
-      <div class="blk"><div class="lbl">학습 포인트</div><ul><li>라플라스 식 P=2T/r의 의미(r↓ → 내부 압력↑) 설명</li><li>계면활성제가 폐포 허탈을 막는 원리 이해</li><li>작은 기포→큰 기포 공기 이동을 라플라스 식으로 설명, 잉크 방울에 적용</li></ul></div>
+
+      <div class="blk"><div class="lbl">공통 토대 — EBS에서 직접 가져온 부분</div><p>폐포 표면 액체층의 표면 장력(EBS ‘물 분자 간 인력’ → 평가원 ‘액체 분자 간 인력’으로 일반화), 표면 장력이 폐포를 수축시킴, 라플라스 관계(<b>표면 장력 정비례·반지름 반비례</b>), 계면 활성제가 표면 장력을 낮춰 확장을 쉽게 함. EBS 2~4문단 원리가 평가원 1~2문단에 강하게 반영됐다 — 독서 연계 중 개념 일치도가 가장 높다.</p></div>
+
+      <div class="blk deep"><div class="lbl">심화 · 변형 — 평가원이 새로 붙인 / 덜어낸 부분</div>
+        <p><b>추가 ①</b> 물방울·비눗방울·기포가 구형인 이유(표면적 최소) — 라플라스 식의 배경.</p>
+        <p><b>추가 ②</b> 내부 압력·외부 압력·표면 장력 압력의 균형을 일반화해 체계화.</p>
+        <p><b>추가 ③</b> 두 기포의 결합 — 작은 기포일수록 내부 압력이 커 <span class="kw">작은 기포 → 큰 기포로 공기 이동</span>, 큰 기포 하나가 됨(EBS ‘작은 폐포 허탈’과 원리는 통하나 적용 대상이 다름).</p>
+        <p><b>추가 ④~⑤</b> 잉크젯 프린터(노즐 분사 잉크가 구형 방울, 내부 압력 &gt; 외부 압력)와 <span class="kw-a">오네소르게 수</span>(점도 ∝, 표면 장력·밀도·노즐 지름 반비례 / 0.1~1.0이면 안정, 너무 크면 미분사, 너무 작으면 위성 방울 오염).</p>
+        <p><b>삭제·약화</b> 폐포 구조(I형·II형 세포·세포층), 신전성, ‘허탈’ 용어, ‘작은 폐포일수록 계면 활성제 농도 증가’.</p>
+      </div>
+
+      <div class="blk"><div class="lbl">선지 포인트</div><ul>
+        <li><b>라플라스 관계</b> — 표면 장력↑ 또는 반지름↓ → 내·외부 압력차↑. 작은 방울·기포·폐포 = 큰 압력차</li>
+        <li><b>계면 활성제의 역할</b> — 내부 압력을 직접 높이는 게 아니라 표면 장력을 낮춰 수축 압력을 줄임. ‘내부 압력을 직접 높인다’류는 오답</li>
+        <li>15번 — 라플라스 식으로 기포 변화 이해 / 16번 — 오네소르게 수 인자(점도·표면 장력·밀도·노즐 지름) 적용</li>
+      </ul></div>
+
+      <div class="blk"><div class="lbl">문단 대응</div>
+        <table class="ctbl">
+          <thead><tr><th>EBS 원문</th><th>6월 평가원</th><th>반영 방식</th></tr></thead>
+          <tbody>
+            <tr><td>1 · 폐포 구조·신전성</td><td>(2문단 일부)</td><td><span class="nlk">대부분 삭제</span>, 공기 출입만</td></tr>
+            <tr><td>2 · 액체층·표면 장력·평형</td><td>1~2문단</td><td><span class="lk">직접 반영</span>, 압력 균형으로 일반화</td></tr>
+            <tr><td>3 · 라플라스 법칙</td><td>1~2문단</td><td><span class="lk">직접 반영</span>(정비례·반비례 유지)</td></tr>
+            <tr><td>4 · 계면 활성제·허탈 방지</td><td>2문단</td><td>압축 반영</td></tr>
+            <tr><td class="nlk">(없음)</td><td>3문단</td><td>두 기포 결합 추가</td></tr>
+            <tr><td class="nlk">(없음)</td><td>4~6문단</td><td>잉크젯·오네소르게 수 추가</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blk"><div class="lbl">학습 포인트</div><ul>
+        <li>라플라스 식의 정비례·반비례 관계를 표·수식으로 고정</li>
+        <li>계면 활성제 = 표면 장력 감소(→ 수축 압력 감소 → 확장 용이), 내부 압력 직접 상승 아님</li>
+        <li>변별은 후반부(기포 결합·오네소르게 수) — EBS에 없어 현장 독해가 필요</li>
+      </ul></div>
     </div>
   </div>
 
@@ -229,20 +409,63 @@ footer .brand{color:var(--mint);font-weight:600}
 
     <div class="setcard">
       <div class="set-head"><span class="set-num">⑤</span><span class="set-title">하근찬 「나룻배 이야기」 · 현대소설</span><span class="set-q">모평 18~21번</span></div>
-      <div class="cmp">
-        <div class="col src"><div class="ttl">2027 수능특강</div><div class="txt">뱃사공 <span class="kw">삼바우</span>를 중심으로, 마을과 <span class="kw">양복쟁이</span>(폭력적 외부 세력)를 둘러싼 한 대목을 수록.</div></div>
-        <div class="col exam"><div class="ttl">2027 6월 모평</div><div class="txt">같은 작품의 <b>다른(이웃한) 대목</b> — 삼바우가 천달이·동식·수만이가 양복쟁이에게 끌려간 정황을 알고, 끝내 <span class="kw">강 길(나루)을 끊어 버리기로 결심</span>하는 장면.</div></div>
+      <p class="cardlead">EBS와 같은 작품·같은 핵심 장면을 평가원이 거의 그대로 가져온 사례다. <b>후반부(삼바우가 순경·양복쟁이를 보고 나룻배로 강 길을 끊는 장면)는 거의 직접 일치</b>하되, 앞부분 구성이 다르다 — EBS는 ‘천달이의 전사·유골 귀환’이라는 가족의 비극을 길게 보여 준 뒤 저항으로 잇고, 평가원은 ‘마을 청년들이 계속 끌려가는 반복 구조’를 앞세워 삼바우의 행동을 <span class="kw">공동체적 저항</span>으로 더 선명하게 만들었다.</p>
+
+      <div class="blk"><div class="lbl">전체 구조 비교</div>
+        <table class="ctbl">
+          <thead><tr><th>구분</th><th>EBS 수능특강</th><th>6월 평가원</th></tr></thead>
+          <tbody>
+            <tr><td class="rk">후반 핵심 장면</td><td colspan="2"><span class="lk">두 그림자 기대 → 순경·양복쟁이에 분노 → 나룻배로 ‘강 길 끊기’ → 통쾌함 뒤 두려움  (거의 직접 일치)</span></td></tr>
+            <tr><td class="rk">앞부분 초점</td><td>천달이 전사·유골 귀환의 가족 비극</td><td>마을 청년들의 반복된 징발</td></tr>
+            <tr><td class="rk">천달이 죽음</td><td>장면으로 길게(읍내행·유골 상자·순녀·대열이)</td><td>중략 줄거리로 요약(유해만 귀환)</td></tr>
+            <tr><td class="rk">추가 사건</td><td class="nlk">—</td><td>모량댁의 죽음, 동식·수만 징발, 두칠이 불구 귀환</td></tr>
+            <tr><td class="rk">정서·분위기</td><td>붉은 황혼·애도·비극</td><td>겨울·눈·공포·반복</td></tr>
+            <tr><td class="rk">저항의 동기</td><td>천달이 죽음에 대한 분노</td><td>누적된 피해(용팔·두칠·천달·동식·수만)에 대한 공동체적 분노</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="blk"><div class="lbl">공통 토대</div><p>동일 작품이며, 인물(삼바우·양복쟁이)과 강·나루라는 공간, ‘양복쟁이의 연행’이라는 폭력 모티프를 공유한다.</p></div>
-      <div class="blk deep"><div class="lbl">심화 · 변형</div><p>수능특강과 본문이 거의 겹치지 않는 다른 대목을 잘라 출제 — 줄거리 전체 흐름을 모르면 인물 관계 파악이 어렵다. 삼바우가 ‘강 길을 끊는’ 결심에 이르는 심리 변화(체념→분노→결단)가 초점이다.</p></div>
-      <div class="blk"><div class="lbl">학습 포인트</div><ul><li>삼바우의 심리 변화와 ‘강 길을 끊는’ 행위의 저항·단절 의미</li><li>양복쟁이 = 폭력적 외부 세력 구도와 인물 관계 정리</li><li>같은 작품도 다른 대목으로 나올 수 있음을 전제로 줄거리 정리</li></ul></div>
+
+      <div class="blk"><div class="lbl">공통 토대 — 거의 직접 일치하는 후반부</div><p>후반부 핵심 장면이 EBS와 거의 그대로 겹친다. ① 멀리 오는 두 그림자를 용팔이·동식이·수만이로 <b>기대</b> → ② 순경과 양복쟁이임을 알고 <b>분노</b>(‘또 누굴 데려갈라고…’) → ③ 나룻배를 몰고 나가 <span class="kw">‘강 길을 끊어 버림’</span> → ④ 통쾌함 뒤에 곧 두려움. ‘강 길을 끊어 버렸다’는 한 문장이 두 지문을 잇는 핵심 고리다.</p></div>
+
+      <div class="blk deep"><div class="lbl">심화 · 변형 — 앞부분 재구성</div>
+        <p><b>추가 ①</b> 모량댁의 죽음 — 두칠이를 부르며 죽고 어린 동생들이 남겨진다. 전쟁이 전사자뿐 아니라 남은 가족까지 파괴함을 보여 줌.</p>
+        <p><b>추가 ②</b> 순경·면 서기의 반복 등장 — 앞부분에 한 번 더 나와 동식이·수만이 징발로 이어지며, 후반 분노의 개연성을 높임.</p>
+        <p><b>추가 ③</b> 피해 목록 독백 — “두칠이는 불구, 천달이는 뼈다귀뿐, 용팔이는 소식도 없지, 동식이·수만이도…” 누적된 분노의 근거.</p>
+        <p><b>약화</b> 천달이 유골 귀환의 가족 비극(읍내행·하얀 보 유골 상자·양 생원의 침묵), 순녀·대열이 장면(어린아이의 질문으로 비극 심화), 붉은 황혼의 서정적 묘사 — 가족 서사보다 <span class="kw-a">공동체 서사</span>로 이동.</p>
+      </div>
+
+      <div class="blk"><div class="lbl">선지 포인트</div><ul>
+        <li><b>‘강 길을 끊어 버렸다’</b> = 나룻배의 기능 전복(연결·이동의 수단 → 차단·방어의 수단). 징병 권력의 마을 진입을 막는 저항</li>
+        <li><b>삼바우의 감정 변화</b> — 기대(용팔이?) → 두려움 → 분노 → 결심 → 통쾌 → 두려움. 완전한 영웅이 아니라 무섭지만 저항한 평범한 민중</li>
+        <li>6평은 앞부분의 누적된 피해 때문에 저항이 ‘공동체를 지키려는 행동’으로 더 설득력 있게 읽힘</li>
+      </ul></div>
+
+      <div class="blk"><div class="lbl">장면 대응</div>
+        <table class="ctbl">
+          <thead><tr><th>EBS 수능특강</th><th>6월 평가원</th><th>변형 방식</th></tr></thead>
+          <tbody>
+            <tr><td>청년들을 배에 태워 보냄</td><td>‘지난봄의 일’ 회상 단서</td><td>직접 서술→회상으로 압축</td></tr>
+            <tr><td>군수 편지·양 생원네 울음</td><td>천달이 안부 모르는 한숨</td><td>죽음 전 불안으로 재배치</td></tr>
+            <tr><td>읍내행·유골 상자</td><td>중략 줄거리(유해만 귀환)</td><td>장면 삭제·요약</td></tr>
+            <tr><td>대열이 질문·순녀 침묵</td><td class="nlk">(없음)</td><td>가족 비극 약화</td></tr>
+            <tr><td>두 그림자 기대 → 분노 → 강 길 끊기 → 두려움</td><td><span class="lk">거의 동일</span></td><td>직접 반영</td></tr>
+            <tr><td class="nlk">(없음)</td><td>모량댁 죽음·동식·수만 징발</td><td>평가원 추가</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blk"><div class="lbl">학습 포인트</div><ul>
+        <li>후반 핵심 장면(나룻배로 강 길 끊기 → 통쾌함 뒤 두려움)은 EBS와 거의 동일 — 그대로 익히기</li>
+        <li>‘강 길을 끊다’의 상징(연결 수단의 전복·공동체 방어)과 삼바우의 감정 변화 정리</li>
+        <li>가족 비극(EBS) vs 공동체 피해(6평)의 초점 차이 인지 / 20번 — 인물 심리를 신체 반응·행동으로 추론</li>
+      </ul></div>
     </div>
 
     <div class="setcard">
       <div class="set-head"><span class="set-num">⑥</span><span class="set-title">김명인 「그 나무」 · 현대시 (갈래 복합)</span><span class="set-q">모평 22~27번</span></div>
       <div class="cmp">
         <div class="col src"><div class="ttl">2027 수능특강</div><div class="txt">현대시 <span class="kw">김명인 「그 나무」</span> 수록 — 봄꽃 가로 곁의 ‘늦된 나무’가 더디지만 제 나름으로 뒤늦게 <span class="kw">꽃불</span>을 밝히는 모습을 그린 작품.</div></div>
-        <div class="col exam"><div class="ttl">2027 6월 모평</div><div class="txt"><b>(가)</b> 김명인 「그 나무」 + <b>(나)</b> 김기택 「나무」 + <b>(다)</b> 고전 수필을 묶은 ‘나무’ 주제 <span class="kw">갈래 복합</span>. 김명인 「그 나무」가 연계작.</div></div>
+        <div class="col exam"><div class="ttl">2027 6월 모평</div><div class="txt"><b>(가)</b> <span class="lk">김명인 「그 나무」</span> + <b>(나)</b> <span class="nlk">김기택 「나무」</span> + <b>(다)</b> <span class="nlk">고전 수필</span>을 묶은 ‘나무’ 주제 <span class="kw">갈래 복합</span>. 셋 중 <span class="lk">김명인 「그 나무」만 연계작</span>이고, 김기택 「나무」·수필은 비연계다.</div></div>
       </div>
       <div class="blk"><div class="lbl">공통 토대</div><p>동일 작품 김명인 「그 나무」를 그대로 가져왔다. ‘늦된 나무 / 더디게 밝히는 꽃불’이라는 핵심 이미지와, 뒤늦게 제 생명을 피워 내는 존재에 대한 시선이 공유된다.</p></div>
       <div class="blk deep"><div class="lbl">심화 · 변형</div><p>김명인 「그 나무」를 김기택 「나무」(나이테·결의 흔적)와 고전 수필(회화나무)과 함께 묶어 <span class="kw-a">(가)(나)(다) 3편 갈래 복합</span>으로 확장했다. ‘나무’라는 제재를 여러 각도로 비교하게 하고, 〈보기〉 감상 관점도 새로 부여했다.</p></div>
@@ -253,7 +476,7 @@ footer .brand{color:var(--mint);font-weight:600}
       <div class="set-head"><span class="set-num">⑦</span><span class="set-title">만전춘별사 · 이정보 시조 · 고전시가 묶음 재구성</span><span class="set-q">모평 32~34번</span></div>
       <div class="cmp">
         <div class="col gold"><div class="ttl">2027 수능특강 (두 세트)</div><div class="txt"><b>① 세트:</b> (가) 「만전춘별사」, (나) 김상헌, (다) 사설시조(장맛비).<br><b>② 세트:</b> (가) 원천석, (나) 작자 미상, (다) <span class="kw-a">이정보</span> 시조(칡넝쿨).</div></div>
-        <div class="col gold"><div class="ttl">2027 6월 모평 (32~34)</div><div class="txt"><b>(가)</b> 「만전춘별사」 ← ①세트 차출 · <b>(다)</b> 이정보 시조(칡넝쿨) ← ②세트 차출 · <b>(나)</b> 김수장 시조(시름을 강물에 띄움)는 신작 보충.</div></div>
+        <div class="col gold"><div class="ttl">2027 6월 모평 (32~34)</div><div class="txt"><b>(가)</b> <span class="lk">「만전춘별사」</span> ← ①세트 차출 · <b>(다)</b> <span class="lk">이정보 시조</span>(칡넝쿨) ← ②세트 차출 · <b>(나)</b> <span class="nlk">김수장 시조</span>(시름을 강물에 띄움)는 비연계 신작. 셋 중 만전춘별사·이정보만 연계작이다.</div></div>
       </div>
       <div class="blk"><div class="lbl">공통 토대</div><p>만전춘별사·이정보 시조 모두 수능특강 수록 작품이다. 만전춘별사 본문은 거의 동일(연 선택 차이), 이정보 시조는 ‘엊으면/엊으란’, ‘벗어날/떨어질’ 수준의 표기 차이만 보인다.</p></div>
       <div class="blk deep"><div class="lbl">심화 · 변형</div><p>평가원이 <b>서로 다른 두 고전시가 세트에서 작품을 각각 뽑아 새 묶음으로 재구성</b>한 전형적 ‘작품 그대로 + 묶음 교체’ 연계. 32번은 [A][B][C] 동일 구절 반복의 효과를 묻는 관점을 신설해, ‘사랑·이별(만전춘)·시름 떨치기(김수장)·변치 않는 결속(이정보)’을 한 틀로 비교한다.</p></div>
@@ -261,8 +484,8 @@ footer .brand{color:var(--mint);font-weight:600}
     </div>
 
     <div class="setcard new">
-      <div class="set-head"><span class="set-num" style="color:var(--coral)">!</span><span class="set-title">신규 출제 (연계 아님)</span><span class="set-q">28~31번</span></div>
-      <div class="newbox"><b>[28~31]</b> 작자 미상 「홍길동전」은 제공된 수능특강 문학 원본에 없는 신규 출제다. 다만 「홍길동전」의 신분제(적서 차별) 모티프는 ‘전략’ 탭의 영역 교차와 맞닿는다.</div>
+      <div class="set-head"><span class="set-num" style="color:var(--coral)">!</span><span class="set-title">비연계 — 세트 전체</span><span class="set-q">28~31번</span></div>
+      <div class="newbox"><b>[28~31]</b> 작자 미상 「홍길동전」은 수능특강에 수록되지 않은 비연계 지문이다. 다만 「홍길동전」의 신분제(적서 차별) 모티프는 ‘전략’ 탭의 영역 교차와 맞닿는다.</div>
     </div>
   </div>
 
@@ -277,7 +500,7 @@ footer .brand{color:var(--mint);font-weight:600}
 
     <div class="scard">
       <h3><span class="dot" style="background:var(--blue)"></span>문학형 — 작품 그대로 + 묶음·보기·대목 교체</h3>
-      <p>작품 자체는 그대로 나오므로 <b>작품별 핵심 해석을 고정</b>해 두는 것이 가장 효율적이다. 단, 같은 작품이 다른 묶음(만전춘·이정보의 재조합, 김명인 「그 나무」의 갈래 복합화)·다른 〈보기〉·다른 대목(하근찬 소설)으로 재출제될 수 있으므로 비교 기준은 유동적으로 다룬다.</p>
+      <p>작품 자체는 그대로 나오므로 <b>작품별 핵심 해석을 고정</b>해 두는 것이 가장 효율적이다. 단, 같은 작품이 다른 묶음(만전춘·이정보의 재조합, 김명인 「그 나무」의 갈래 복합화)이나 다른 〈보기〉로 재출제되기도 하고, 하근찬 소설처럼 같은 장면이 거의 그대로 다시 나오기도 하므로 비교 기준은 유동적으로 다룬다.</p>
     </div>
 
     <div class="scard">
