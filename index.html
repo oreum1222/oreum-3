@@ -111,6 +111,24 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
 .li:hover .ar{color:var(--g5);transform:translateX(2px)}
 .foot{background:var(--g8);color:rgba(255,255,255,.35);padding:32px;text-align:center;font-size:13px}
 .foot strong{color:rgba(255,255,255,.7)}
+.tp-banner{max-width:1100px;margin:22px auto 0;padding:0 32px}
+.tp-card{background:linear-gradient(135deg,var(--g7),var(--g6) 70%,var(--g5));border:1px solid var(--a4);border-radius:14px;overflow:hidden;box-shadow:var(--s3);position:relative}
+.tp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--a3),transparent)}
+.tp-head{display:flex;align-items:center;gap:14px;padding:18px 24px;cursor:pointer;user-select:none;transition:background .2s}
+.tp-head:hover{background:rgba(184,151,63,.06)}
+.tp-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--g8);background:linear-gradient(135deg,var(--a3),var(--a4));padding:6px 13px;border-radius:999px;box-shadow:0 2px 10px rgba(184,151,63,.25)}
+.tp-ttl{font-family:var(--fs);font-size:clamp(16px,2.6vw,21px);font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.3}
+.tp-ttl small{display:block;font-family:var(--fb);font-size:12px;font-weight:500;color:var(--a2);margin-top:3px;letter-spacing:0}
+.tp-chev{margin-left:auto;flex-shrink:0;color:var(--a3);font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.tp-chev .ar{display:inline-block;transition:transform .35s var(--eo);font-size:12px}
+.tp-card.open .tp-chev .ar{transform:rotate(180deg)}
+.tp-body{max-height:0;overflow:hidden;transition:max-height .45s var(--eo)}
+.tp-card.open .tp-body{max-height:760px}
+.tp-frame{border-top:1px solid rgba(184,151,63,.3);background:#0a0c10}
+.tp-frame iframe{width:100%;height:640px;border:0;display:block}
+.tp-full{display:block;text-align:center;padding:13px;font-size:12.5px;font-weight:600;color:var(--a3);text-decoration:none;background:var(--g8);border-top:1px solid rgba(184,151,63,.2);letter-spacing:.02em}
+.tp-full:hover{color:var(--a1);background:#0c1a12}
+@media(max-width:768px){.tp-banner{padding:0 16px;margin-top:14px}.tp-head{padding:14px 16px;gap:10px}.tp-ttl{font-size:16px}.tp-card.open .tp-body{max-height:720px}.tp-frame iframe{height:600px}.tp-chev .tx{display:none}}
 @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fd{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 .fi{opacity:0;transform:translateY(16px);transition:all .5s var(--eo)}.fi.v{opacity:1;transform:translateY(0)}
@@ -160,6 +178,20 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
     <a href="#resources">자료</a>
   </div>
 </div></nav>
+
+<div class="tp-banner">
+  <div class="tp-card" id="tpCard">
+    <div class="tp-head" onclick="this.parentNode.classList.toggle('open')">
+      <span class="tp-badge">NEW · 평가원</span>
+      <div class="tp-ttl">2027학년도 6월 평가원 총평<small>6월 모평 × 수능특강 연계 분석 · 눌러서 펼치기</small></div>
+      <span class="tp-chev"><span class="tx">분석 보기</span><span class="ar">▾</span></span>
+    </div>
+    <div class="tp-body">
+      <div class="tp-frame"><iframe src="yeongye-2027-06.html" title="2027학년도 6월 평가원 총평 · 수능특강 연계 분석" loading="lazy"></iframe></div>
+      <a href="yeongye-2027-06.html" target="_blank" class="tp-full">전체 화면으로 보기 ↗</a>
+    </div>
+  </div>
+</div>
 
 <section class="hero"><div class="hero-in">
   <div>
