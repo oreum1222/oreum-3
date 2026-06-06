@@ -127,23 +127,23 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
 .ib a{color:var(--mint);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 
 .lg{margin-bottom:42px}
-.lg-t{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);margin-bottom:16px;padding-bottom:11px;border-bottom:1px solid var(--bdr)}
+.lg-t{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--bdr)}
 .lg-t::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px rgba(74,227,192,.7);flex-shrink:0}
-.ll{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.li{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:68px;padding:16px 18px 16px 22px;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--bdr);border-radius:13px;text-decoration:none;color:var(--t1);overflow:hidden;transition:transform .25s var(--eo),border-color .25s var(--eo),box-shadow .25s var(--eo),background .25s var(--eo)}
-.li::before{content:'';position:absolute;top:0;left:14px;right:14px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent)}
-.li::after{content:'';position:absolute;left:0;top:50%;width:3px;height:0;transform:translateY(-50%);background:var(--mint);border-radius:0 4px 4px 0;box-shadow:0 0 14px rgba(74,227,192,.55);transition:height .28s var(--eo)}
-.li:hover{transform:translateY(-3px);border-color:rgba(74,227,192,.4);background:linear-gradient(180deg,#1b2230,var(--card2));box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 0 1px rgba(74,227,192,.1)}
-.li:hover::after{height:58%}
-.li h4{font-size:15px;font-weight:600;color:var(--t1);transition:color .2s}
+.ll{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:13px}
+.li{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:136px;padding:20px 18px 18px;background:linear-gradient(165deg,var(--card2),var(--card));border:1px solid var(--bdr);border-radius:16px;text-decoration:none;color:var(--t1);overflow:hidden;transition:transform .25s var(--eo),border-color .25s var(--eo),box-shadow .25s var(--eo),background .25s var(--eo)}
+.li::before{content:'';position:absolute;top:0;left:16px;right:16px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.li::after{content:'';position:absolute;top:-26px;left:-12px;width:120px;height:120px;background:radial-gradient(circle,var(--mintG),transparent 66%);opacity:0;transition:opacity .3s var(--eo);pointer-events:none}
+.li:hover{transform:translateY(-4px);border-color:rgba(74,227,192,.38);background:linear-gradient(165deg,#1b2230,var(--card2));box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 0 1px rgba(74,227,192,.1)}
+.li:hover::after{opacity:1}
+.li>div{position:relative;z-index:1;display:flex;flex-direction:column;flex:1 1 auto;min-width:0}
+.li h4{font-size:14.5px;font-weight:600;color:var(--t1);line-height:1.35;transition:color .2s}
 .li:hover h4{color:#fff}
-.li .ls{font-size:12px;color:var(--t3);margin-top:4px;letter-spacing:.01em}
-.li .ar{font-size:14px;line-height:1;color:var(--t2);flex-shrink:0;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bdr2);background:rgba(255,255,255,.02);transition:all .25s var(--eo)}
+.li .ls{font-size:11.5px;color:var(--t3);margin-top:5px;line-height:1.5;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.li .ar{position:absolute;top:16px;right:16px;z-index:1;font-size:13px;line-height:1;color:var(--t2);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bdr2);background:rgba(255,255,255,.02);transition:all .25s var(--eo)}
 .li:hover .ar{color:#0a0c10;background:var(--mint);border-color:var(--mint);transform:translate(2px,-2px);box-shadow:0 6px 18px rgba(74,227,192,.4)}
-.li>div{flex:1 1 auto;min-width:0}
-.li-ic{flex-shrink:0;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--mintG);border:1px solid rgba(74,227,192,.18);color:var(--mint);transition:all .25s var(--eo)}
-.li-ic svg{width:19px;height:19px;display:block}
-.li:hover .li-ic{background:rgba(74,227,192,.2);border-color:rgba(74,227,192,.4);box-shadow:0 0 16px rgba(74,227,192,.18);transform:scale(1.05)}
+.li-ic{position:relative;z-index:1;flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--mintG);border:1px solid rgba(74,227,192,.18);color:var(--mint);margin-bottom:14px;transition:all .25s var(--eo)}
+.li-ic svg{width:21px;height:21px;display:block}
+.li:hover .li-ic{background:rgba(74,227,192,.2);border-color:rgba(74,227,192,.42);box-shadow:0 0 18px rgba(74,227,192,.22);transform:scale(1.06)}
 
 .foot{background:#08090c;color:var(--t3);padding:34px;text-align:center;font-size:13px;border-top:1px solid var(--bdr)}
 .foot strong{color:var(--t2)}
@@ -193,7 +193,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
 .dt{font-size:7.5px;padding:1px 3px}
 .wk{font-size:10px;padding:3px 12px}
 .li h4{font-size:14px}
-.ll{grid-template-columns:1fr}
+.ll{grid-template-columns:repeat(2,1fr);gap:10px}
+.li{min-height:120px;padding:16px 14px 14px}
 .nav-in{padding:0 16px}
 .nav-links{gap:2px}
 .nav-links a{padding:6px 6px;font-size:11px}
@@ -318,7 +319,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
       <div class="dy"><span class="dn">9</span></div>
       <div class="dy"><span class="dn">10</span></div>
       <div class="dy"><span class="dn">11</span></div>
-      <div class="dy cls"><span class="dn">12</span><span class="dt tc">수업</span></div>
+      <div class="dy cls"><span class="dn">12</span><span class="dt tm">상상1회</span></div>
       <div class="dy cls"><span class="dn">13</span><span class="dt tm">상상1회</span><span class="dt td">N제1</span></div>
       <div class="wk">3주 · 금/토 수업 · 상상 실모 2회</div>
       <div class="dy"><span class="dn">14</span><span class="dt td">N제2</span></div>
@@ -326,7 +327,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
       <div class="dy"><span class="dn">16</span><span class="dt td">N제4</span></div>
       <div class="dy"><span class="dn">17</span><span class="dt td">N제5</span></div>
       <div class="dy"><span class="dn">18</span><span class="dt td">N제6</span></div>
-      <div class="dy cls"><span class="dn">19</span><span class="dt tc">수업</span><span class="dt td">N제7</span></div>
+      <div class="dy cls"><span class="dn">19</span><span class="dt tm">상상2회</span><span class="dt td">N제7</span></div>
       <div class="dy cls"><span class="dn">20</span><span class="dt tm">상상2회</span><span class="dt td">N제8</span></div>
       <div class="wk">4주 · 금/토 수업 · 상상 실모 3회</div>
       <div class="dy"><span class="dn">21</span><span class="dt td">N제9</span></div>
@@ -334,7 +335,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
       <div class="dy"><span class="dn">23</span><span class="dt td">N제11</span></div>
       <div class="dy"><span class="dn">24</span><span class="dt td">N제12</span></div>
       <div class="dy"><span class="dn">25</span><span class="dt td">N제13</span></div>
-      <div class="dy cls"><span class="dn">26</span><span class="dt tc">수업</span><span class="dt td">N제14</span></div>
+      <div class="dy cls"><span class="dn">26</span><span class="dt tm">상상3회</span><span class="dt td">N제14</span></div>
       <div class="dy cls"><span class="dn">27</span><span class="dt tm">상상3회</span><span class="dt td">N제15</span></div>
       <div class="wk">5주 · 선택과목 N제 계속</div>
       <div class="dy"><span class="dn">28</span><span class="dt td">N제16</span></div>
