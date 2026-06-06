@@ -7,128 +7,166 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#163022">
+<meta name="theme-color" content="#0a0c10">
 <title>[오름] 국어 · 2027 고3 정규반</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
 <style>
-:root{--g5:#2d4f3c;--g6:#1f3d2c;--g7:#163022;--g8:#0f2218;--g3:#7d9a87;--g1:#d9e2dc;--g0:#f1f4f1;--a4:#b8973f;--a3:#d1b766;--a2:#e3d29a;--a1:#f1e8cc;--a0:#faf6ec;--a5:#8f7028;--i0:#fafaf6;--i1:#f4f3ec;--i2:#e8e6db;--i3:#cfccbe;--i5:#6f6c60;--i6:#4a4840;--i7:#2a2925;--i8:#1a1a17;--fs:'Noto Serif KR',serif;--fb:'Pretendard',-apple-system,sans-serif;--s1:0 1px 2px rgba(15,34,24,.06);--s2:0 2px 6px rgba(15,34,24,.06),0 1px 2px rgba(15,34,24,.04);--s3:0 8px 20px rgba(15,34,24,.08),0 2px 4px rgba(15,34,24,.04);--s4:0 16px 40px rgba(15,34,24,.12),0 4px 8px rgba(15,34,24,.06);--eo:cubic-bezier(.22,1,.36,1)}
+:root{
+/* dark research palette */
+--bg:#0a0c10;--bg2:#0c0f15;--card:#12151c;--card2:#181c26;--accent:#1a1f2e;--bdr:#1e2536;--bdr2:#2a3350;
+--t1:#e8ecf4;--t2:#8b95ad;--t3:#5a6380;
+--mint:#4ae3c0;--mintD:#2a8b74;--mintG:rgba(74,227,192,.12);
+--coral:#ff6b8a;--coralG:rgba(255,107,138,.1);
+--amber:#f5c842;--amberG:rgba(245,200,66,.1);
+--blue:#5b9cf5;--blueG:rgba(91,156,245,.1);
+--purple:#a78bfa;--purpleG:rgba(167,139,250,.1);
+/* legacy aliases (inline styles) remapped to dark */
+--g5:#4ae3c0;--a5:#f5c842;--a4:#f5c842;--a3:#f5d77a;--a1:#e8ecf4;--a2:#e3d29a;--g8:#0a0c10;
+--fs:'Noto Serif KR',serif;--fb:'Pretendard',-apple-system,sans-serif;
+--s2:0 2px 8px rgba(0,0,0,.4);--s3:0 8px 24px rgba(0,0,0,.45);--s4:0 20px 50px rgba(0,0,0,.55);
+--eo:cubic-bezier(.22,1,.36,1)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all}
-.nav{position:sticky;top:0;z-index:100;background:rgba(15,34,24,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,151,63,.08)}
-.nav-in{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:52px}
-.nav-brand{font-family:var(--fs);font-weight:900;font-size:15px;color:#fff;letter-spacing:-.01em}
-.nav-brand em{font-style:normal;color:var(--a3)}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,12,16,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr)}
+.nav-in{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:54px}
+.nav-brand{font-family:var(--fs);font-weight:900;font-size:15px;color:var(--t1);letter-spacing:-.01em}
+.nav-brand em{font-style:normal;color:var(--mint)}
 .nav-links{display:flex;gap:4px}
-.nav-links a{text-decoration:none;color:rgba(255,255,255,.45);font-size:13px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all .2s}
-.nav-links a:hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.06)}
-.hero{background:linear-gradient(170deg,var(--g8),var(--g7) 40%,var(--g6) 80%,var(--g5));color:#fff;padding:72px 32px 56px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-30%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(184,151,63,.06),transparent 70%);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--a4),transparent)}
+.nav-links a{text-decoration:none;color:var(--t3);font-size:13px;font-weight:500;padding:7px 11px;border-radius:7px;transition:all .2s}
+.nav-links a:hover{color:var(--t1);background:rgba(255,255,255,.05)}
+
+.hero{background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--t1);padding:76px 32px 56px;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}
+.hero::before{content:'';position:absolute;top:-45%;right:-8%;width:620px;height:620px;background:radial-gradient(circle,var(--mintG),transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--mint),transparent);opacity:.5}
 .hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 200px;gap:48px;align-items:center;position:relative;z-index:1}
-.hero-ey{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,var(--a4),var(--a5));color:var(--g8);padding:6px 20px;border-radius:999px;margin-bottom:24px;box-shadow:0 2px 12px rgba(184,151,63,.25)}
-.hero h1{font-family:var(--fs);font-size:clamp(28px,4.5vw,42px);font-weight:900;line-height:1.15;letter-spacing:-.025em;margin-bottom:28px}
-.hero h1 span{color:var(--a3)}
-.hero-meta{display:grid;grid-template-columns:repeat(2,auto);gap:8px 40px;margin-bottom:28px}
-.hero-meta dt{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)}
-.hero-meta dd{font-family:var(--fs);font-size:18px;font-weight:700;color:#fff}
-.hero-meta dd .cl{display:inline-block;background:#a4392e;color:#fff;font-family:var(--fb);font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:4px}
-.hero-contact{padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.hero-tel{font-size:15px;color:rgba(255,255,255,.8)}
-.hero-tel b{color:#fff;font-weight:700}
+.hero-ey{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);background:var(--mintG);border:1px solid rgba(74,227,192,.2);padding:6px 16px;border-radius:999px;margin-bottom:24px}
+.hero h1{font-family:var(--fs);font-size:clamp(28px,4.6vw,44px);font-weight:700;line-height:1.18;letter-spacing:-.02em;margin-bottom:28px}
+.hero h1 span{color:var(--mint)}
+.hero-meta{display:grid;grid-template-columns:repeat(2,auto);gap:10px 40px;margin-bottom:28px}
+.hero-meta dt{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.hero-meta dd{font-family:var(--fs);font-size:18px;font-weight:600;color:var(--t1)}
+.hero-meta dd .cl{display:inline-block;background:var(--coral);color:#0a0c10;font-family:var(--fb);font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;vertical-align:middle;margin-left:5px}
+.hero-contact{padding-top:20px;border-top:1px solid var(--bdr);display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.hero-tel{font-size:15px;color:var(--t2)}
+.hero-tel b{color:var(--t1);font-weight:700}
 .hero-btns{display:flex;gap:8px}
-.hero-btn{padding:8px 20px;border-radius:6px;border:1px solid var(--a4);background:rgba(184,151,63,.08);color:var(--a3);font-size:14px;font-weight:600;text-decoration:none;letter-spacing:.04em;transition:all .25s var(--eo);backdrop-filter:blur(4px)}
-.hero-btn:hover{background:rgba(184,151,63,.18);box-shadow:0 4px 20px rgba(184,151,63,.15);transform:translateY(-1px)}
+.hero-btn{padding:9px 20px;border-radius:8px;border:1px solid rgba(74,227,192,.3);background:var(--mintG);color:var(--mint);font-size:14px;font-weight:600;text-decoration:none;letter-spacing:.02em;transition:all .25s var(--eo)}
+.hero-btn:hover{background:rgba(74,227,192,.18);box-shadow:0 4px 20px rgba(74,227,192,.15);transform:translateY(-1px)}
 .hero-aside{text-align:center;align-self:center}
-.hero-frame{width:180px;height:220px;border:2px solid var(--a4);border-radius:10px;overflow:hidden;box-shadow:var(--s4);margin:0 auto 10px}
+.hero-frame{width:182px;height:222px;border:1px solid var(--bdr2);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(74,227,192,.12),var(--s4);margin:0 auto 12px}
 .hero-frame img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.hero-name{font-size:11px;color:var(--a4);font-weight:600;letter-spacing:.06em}
-.hero-name b{display:block;font-family:var(--fs);font-size:16px;font-weight:700;color:#fff;margin-top:2px}
+.hero-name{font-size:11px;color:var(--mint);font-weight:600;letter-spacing:.06em}
+.hero-name b{display:block;font-family:var(--fs);font-size:16px;font-weight:600;color:var(--t1);margin-top:3px}
+
 .sec{max-width:1100px;margin:0 auto;padding:64px 32px}
-.sec-alt{background:var(--i1)}
-.sec-ey{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--a5);margin-bottom:8px}
-.sec-t{font-family:var(--fs);font-size:26px;font-weight:700;line-height:1.3;color:var(--i8);margin-bottom:8px}
-.sec-d{font-size:15px;color:var(--i5);line-height:1.7;max-width:600px;margin-bottom:40px}
-.anc{border-bottom:1px solid var(--i2);background:var(--i0)}
-.anc-in{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.anc a{display:block;padding:14px 18px;font-size:13px;font-weight:500;color:var(--i5);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
-.anc a:hover{color:var(--g5);border-color:var(--g5)}
-.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--i2);border:1px solid var(--i2);border-radius:8px;overflow:hidden}
-.ci{background:#fff;padding:32px 28px}
-.ci-n{font-family:var(--fs);font-size:36px;font-weight:300;color:var(--i3);line-height:1;margin-bottom:16px}
-.ci h3{font-family:var(--fs);font-size:18px;font-weight:600;color:var(--i8);margin-bottom:8px}
-.ci p{font-size:14px;color:var(--i6);line-height:1.7}
-.etbl{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--i2);border-radius:8px;overflow:hidden}
-.etbl th{background:var(--g7);color:#fff;padding:12px 16px;font-size:12px;font-weight:600;letter-spacing:.06em;text-align:left}
-.etbl td{padding:12px 16px;border-bottom:1px solid var(--i2);color:var(--i7)}
+.sec-alt{background:var(--bg2)}
+.sec-ey{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mint);margin-bottom:9px}
+.sec-t{font-family:var(--fs);font-size:26px;font-weight:700;line-height:1.32;color:var(--t1);margin-bottom:9px}
+.sec-d{font-size:15px;color:var(--t2);line-height:1.7;max-width:620px;margin-bottom:40px}
+
+.anc{border-bottom:1px solid var(--bdr);background:rgba(10,12,16,.7);position:sticky;top:54px;z-index:90;backdrop-filter:blur(12px)}
+.anc-in{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.anc-in::-webkit-scrollbar{display:none}
+.anc a{display:block;padding:14px 18px;font-size:13px;font-weight:500;color:var(--t3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
+.anc a:hover{color:var(--mint);border-color:var(--mint)}
+
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:14px;overflow:hidden}
+.ci{background:var(--card);padding:32px 28px;transition:background .2s}
+.ci:hover{background:var(--card2)}
+.ci-n{font-family:var(--fs);font-size:34px;font-weight:300;color:var(--mintD);line-height:1;margin-bottom:16px}
+.ci h3{font-family:var(--fs);font-size:18px;font-weight:600;color:var(--t1);margin-bottom:9px}
+.ci p{font-size:14px;color:var(--t2);line-height:1.7}
+
+.etbl{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.etbl th{background:var(--card2);color:var(--mint);padding:12px 16px;font-size:12px;font-weight:600;letter-spacing:.05em;text-align:left;border-bottom:1px solid var(--bdr2)}
+.etbl td{padding:12px 16px;border-bottom:1px solid var(--bdr);color:var(--t1)}
 .etbl tr:last-child td{border-bottom:none}
-.re{background:#fef9f0}.rm{background:#f0f3f8}.rs{background:#f5f0fa}
-.ed{color:#a4392e;font-weight:700}.ei{color:#2c4a6b;font-weight:700}.ef{color:#6a1b9a;font-weight:900}
-.wc{border:1px solid var(--i2);border-radius:8px;overflow:hidden;background:#fff}
-.wc-h{background:var(--g7);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:600}
-.wc-lg{display:flex;gap:12px;font-size:11px;font-weight:500;color:rgba(255,255,255,.6)}
+.re{background:var(--coralG)}.rm{background:var(--blueG)}.rs{background:var(--purpleG)}
+.ed{color:var(--coral);font-weight:700}.ei{color:var(--blue);font-weight:700}.ef{color:var(--purple);font-weight:900}
+
+.wc{border:1px solid var(--bdr);border-radius:12px;overflow:hidden;background:var(--card)}
+.wc-h{background:var(--card2);color:var(--t1);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:600;border-bottom:1px solid var(--bdr)}
+.wc-lg{display:flex;gap:12px;font-size:11px;font-weight:500;color:var(--t2)}
 .wc-lg span::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle}
-.l1::before{background:var(--a4)}.l2::before{background:#a4392e}.l3::before{background:#ef6c00}.l4::before{background:#3949ab}.l5::before{background:#e65100}
+.l1::before{background:var(--mint)}.l2::before{background:var(--coral)}.l3::before{background:var(--amber)}.l4::before{background:var(--blue)}.l5::before{background:#e89a3c}
 .wg{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}
-.wd{padding:8px 0;font-size:11px;font-weight:600;color:var(--i5);border-bottom:1px solid var(--i2);background:var(--i1)}
-.wd:first-child{color:#a4392e}.wd:last-child{color:#2c4a6b}
-.dy{padding:6px 3px 10px;border-bottom:1px solid var(--i2);font-size:14px;font-weight:500;color:var(--i7)}
-.dy.emp{visibility:hidden}.dy.cls{background:var(--g0)}.dy.exd{background:#fef0f0}
-.dn{display:block;font-size:14px;font-weight:600;margin-bottom:2px}
-.dt{display:inline-block;font-size:9px;font-weight:700;padding:1px 4px;border-radius:4px;line-height:1.3;margin:1px 0}
-.tc{background:var(--a1);color:var(--a5)}.td{background:#e8eaf6;color:#283593}.tm{background:#fff3e0;color:#e65100}.te{background:#a4392e;color:#fff}.tp{background:#fff3e0;color:#bf360c}.t6{background:#fce4ec;color:#880e4f}
-.wk{grid-column:1/-1;padding:4px 16px;font-size:11px;font-weight:600;color:var(--g5);background:var(--g0);text-align:left;letter-spacing:.02em;border-bottom:1px solid var(--i2)}
-.wc-f{padding:12px 24px;background:var(--i1);font-size:12px;color:var(--i5);line-height:1.6;border-top:1px solid var(--i2)}
-.mr{border:1px solid var(--i2);border-radius:8px;overflow:hidden}
-.mr-r{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--i2);background:#fff}
+.wd{padding:9px 0;font-size:11px;font-weight:600;color:var(--t2);border-bottom:1px solid var(--bdr);background:var(--card2)}
+.wd:first-child{color:var(--coral)}.wd:last-child{color:var(--blue)}
+.dy{padding:6px 3px 10px;border-bottom:1px solid var(--bdr);font-size:14px;font-weight:500;color:var(--t1)}
+.dy.emp{visibility:hidden}.dy.cls{background:var(--mintG)}.dy.exd{background:var(--coralG)}.dy.sup{background:var(--amberG)}
+.dn{display:block;font-size:14px;font-weight:600;margin-bottom:2px;color:var(--t1)}
+.dt{display:inline-block;font-size:9px;font-weight:700;padding:2px 5px;border-radius:5px;line-height:1.3;margin:1px 0}
+.tc{background:var(--mintG);color:var(--mint)}.td{background:var(--blueG);color:var(--blue)}.tm{background:var(--amberG);color:var(--amber)}.te{background:var(--coral);color:#0a0c10}.tp{background:var(--amber);color:#0a0c10;font-weight:800}.t6{background:var(--purpleG);color:var(--purple)}
+.wk{grid-column:1/-1;padding:5px 16px;font-size:11px;font-weight:600;color:var(--mint);background:rgba(74,227,192,.05);text-align:left;letter-spacing:.02em;border-bottom:1px solid var(--bdr)}
+.wc-f{padding:13px 24px;background:var(--card2);font-size:12px;color:var(--t2);line-height:1.7;border-top:1px solid var(--bdr)}
+
+.mr{border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.mr-r{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--bdr);background:var(--card)}
 .mr-r:last-child{border-bottom:none}
-.mr-l{padding:20px;background:var(--i1);font-size:12px;font-weight:600;color:var(--g5);letter-spacing:.04em;display:flex;align-items:center}
+.mr-l{padding:20px;background:var(--card2);font-size:12px;font-weight:600;color:var(--mint);letter-spacing:.04em;display:flex;align-items:center}
 .mr-b{padding:20px}
-.mr-b h4{font-size:16px;font-weight:600;color:var(--i8);margin-bottom:4px}
-.mr-b p{font-size:13px;color:var(--i5);line-height:1.6}
-.at{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border:1px solid var(--i2);border-radius:8px;overflow:hidden}
-.at th{background:var(--g7);color:#fff;padding:10px 14px;font-size:11px;font-weight:600;letter-spacing:.04em;text-align:left}
-.at td{padding:10px 14px;border-bottom:1px solid var(--i2);color:var(--i7)}
+.mr-b h4{font-size:16px;font-weight:600;color:var(--t1);margin-bottom:5px}
+.mr-b p{font-size:13px;color:var(--t2);line-height:1.6}
+
+.at{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.at th{background:var(--card2);color:var(--mint);padding:11px 14px;font-size:11px;font-weight:600;letter-spacing:.04em;text-align:left}
+.at td{padding:11px 14px;border-bottom:1px solid var(--bdr);color:var(--t1)}
 .at tr:last-child td{border-bottom:none}
-.wb{background:var(--i1);font-weight:700;color:var(--g5);text-align:center;font-size:12px;letter-spacing:.02em}
-.wb.dg{color:#a4392e}
-.ch{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
-.cd{background:#e8eaf6;color:#283593}.cm{background:#fff3e0;color:#e65100}.cp{background:#fff3e0;color:#bf360c}.c6{background:#fce4ec;color:#880e4f}
-.ib{background:#fff;border:1px solid var(--i2);border-left:3px solid var(--g5);border-radius:0 8px 8px 0;padding:24px 28px;margin-bottom:16px}
-.ib h3{font-size:16px;font-weight:600;color:var(--i8);margin-bottom:12px}
-.ib li{font-size:14px;color:var(--i6);line-height:1.8;padding:3px 0 3px 18px;position:relative;list-style:none}
-.ib li::before{content:'→';position:absolute;left:0;color:var(--g5);font-weight:600;font-size:13px}
-.ib a{color:var(--g5);font-weight:600;text-decoration:underline;text-underline-offset:3px}
-.lg{margin-bottom:40px}
-.lg-t{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--a5);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--i2)}
-.ll{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.li{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#fff;border:1px solid var(--i2);border-radius:8px;text-decoration:none;color:var(--i7);transition:all .2s var(--eo);cursor:pointer}
-.li:hover{border-color:var(--g3);background:var(--g0);box-shadow:var(--s2);transform:translateX(4px)}
-.li h4{font-size:15px;font-weight:600}
-.li .ls{font-size:12px;color:var(--i5);margin-top:2px}
-.li .ar{font-size:18px;color:var(--i3);transition:all .2s;flex-shrink:0;margin-left:16px}
-.li:hover .ar{color:var(--g5);transform:translateX(2px)}
-.foot{background:var(--g8);color:rgba(255,255,255,.35);padding:32px;text-align:center;font-size:13px}
-.foot strong{color:rgba(255,255,255,.7)}
+.wb{background:var(--card2);font-weight:700;color:var(--mint);text-align:center;font-size:12px;letter-spacing:.02em}
+.wb.dg{color:var(--coral)}
+.ch{display:inline-block;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:600}
+.cd{background:var(--blueG);color:var(--blue)}.cm{background:var(--amberG);color:var(--amber)}.cp{background:var(--coralG);color:var(--coral)}.c6{background:var(--purpleG);color:var(--purple)}
+
+.ib{background:var(--card);border:1px solid var(--bdr);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;padding:22px 26px;margin-bottom:16px}
+.ib h3{font-size:16px;font-weight:600;color:var(--t1);margin-bottom:12px}
+.ib li{font-size:14px;color:var(--t2);line-height:1.8;padding:3px 0 3px 20px;position:relative;list-style:none}
+.ib li::before{content:'→';position:absolute;left:0;color:var(--mint);font-weight:600;font-size:13px}
+.ib a{color:var(--mint);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+.lg{margin-bottom:42px}
+.lg-t{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid var(--bdr)}
+.lg-t::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px rgba(74,227,192,.7);flex-shrink:0}
+.ll{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:13px}
+.li{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:136px;padding:20px 18px 18px;background:linear-gradient(165deg,var(--card2),var(--card));border:1px solid var(--bdr);border-radius:16px;text-decoration:none;color:var(--t1);overflow:hidden;transition:transform .25s var(--eo),border-color .25s var(--eo),box-shadow .25s var(--eo),background .25s var(--eo)}
+.li::before{content:'';position:absolute;top:0;left:16px;right:16px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.li::after{content:'';position:absolute;top:-26px;left:-12px;width:120px;height:120px;background:radial-gradient(circle,var(--mintG),transparent 66%);opacity:0;transition:opacity .3s var(--eo);pointer-events:none}
+.li:hover{transform:translateY(-4px);border-color:rgba(74,227,192,.38);background:linear-gradient(165deg,#1b2230,var(--card2));box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 0 1px rgba(74,227,192,.1)}
+.li:hover::after{opacity:1}
+.li>div{position:relative;z-index:1;display:flex;flex-direction:column;flex:1 1 auto;min-width:0}
+.li h4{font-size:14.5px;font-weight:600;color:var(--t1);line-height:1.35;transition:color .2s}
+.li:hover h4{color:#fff}
+.li .ls{font-size:11.5px;color:var(--t3);margin-top:5px;line-height:1.5;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.li .ar{position:absolute;top:16px;right:16px;z-index:1;font-size:13px;line-height:1;color:var(--t2);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bdr2);background:rgba(255,255,255,.02);transition:all .25s var(--eo)}
+.li:hover .ar{color:#0a0c10;background:var(--mint);border-color:var(--mint);transform:translate(2px,-2px);box-shadow:0 6px 18px rgba(74,227,192,.4)}
+.li-ic{position:relative;z-index:1;flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--mintG);border:1px solid rgba(74,227,192,.18);color:var(--mint);margin-bottom:14px;transition:all .25s var(--eo)}
+.li-ic svg{width:21px;height:21px;display:block}
+.li:hover .li-ic{background:rgba(74,227,192,.2);border-color:rgba(74,227,192,.42);box-shadow:0 0 18px rgba(74,227,192,.22);transform:scale(1.06)}
+
+.foot{background:#08090c;color:var(--t3);padding:34px;text-align:center;font-size:13px;border-top:1px solid var(--bdr)}
+.foot strong{color:var(--t2)}
+
 .tp-banner{max-width:1100px;margin:22px auto 0;padding:0 32px}
-.tp-card{background:linear-gradient(135deg,var(--g7),var(--g6) 70%,var(--g5));border:1px solid var(--a4);border-radius:14px;overflow:hidden;box-shadow:var(--s3);position:relative}
-.tp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--a3),transparent)}
+.tp-card{background:linear-gradient(135deg,var(--card2),var(--card) 80%);border:1px solid var(--bdr2);border-radius:14px;overflow:hidden;box-shadow:var(--s3);position:relative}
+.tp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--mint),transparent)}
 .tp-head{display:flex;align-items:center;gap:14px;padding:18px 24px;cursor:pointer;user-select:none;transition:background .2s}
-.tp-head:hover{background:rgba(184,151,63,.06)}
-.tp-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--g8);background:linear-gradient(135deg,var(--a3),var(--a4));padding:6px 13px;border-radius:999px;box-shadow:0 2px 10px rgba(184,151,63,.25)}
-.tp-ttl{font-family:var(--fs);font-size:clamp(16px,2.6vw,21px);font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.3}
-.tp-ttl small{display:block;font-family:var(--fb);font-size:12px;font-weight:500;color:var(--a2);margin-top:3px;letter-spacing:0}
-.tp-chev{margin-left:auto;flex-shrink:0;color:var(--a3);font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.tp-head:hover{background:rgba(74,227,192,.05)}
+.tp-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.04em;color:#0a0c10;background:linear-gradient(135deg,var(--mint),var(--mintD));padding:6px 13px;border-radius:999px;box-shadow:0 2px 12px rgba(74,227,192,.25)}
+.tp-ttl{font-family:var(--fs);font-size:clamp(16px,2.6vw,21px);font-weight:700;color:var(--t1);letter-spacing:-.01em;line-height:1.3}
+.tp-ttl small{display:block;font-family:var(--fb);font-size:12px;font-weight:500;color:var(--t2);margin-top:3px;letter-spacing:0}
+.tp-chev{margin-left:auto;flex-shrink:0;color:var(--mint);font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}
 .tp-chev .ar{display:inline-block;transition:transform .35s var(--eo);font-size:12px}
 .tp-card.open .tp-chev .ar{transform:rotate(180deg)}
 .tp-body{max-height:0;overflow:hidden;transition:max-height .45s var(--eo)}
 .tp-card.open .tp-body{max-height:760px}
-.tp-frame{border-top:1px solid rgba(184,151,63,.3);background:#0a0c10}
+.tp-frame{border-top:1px solid var(--bdr2);background:#0a0c10}
 .tp-frame iframe{width:100%;height:640px;border:0;display:block}
-.tp-full{display:block;text-align:center;padding:13px;font-size:12.5px;font-weight:600;color:var(--a3);text-decoration:none;background:var(--g8);border-top:1px solid rgba(184,151,63,.2);letter-spacing:.02em}
-.tp-full:hover{color:var(--a1);background:#0c1a12}
+.tp-full{display:block;text-align:center;padding:13px;font-size:12.5px;font-weight:600;color:var(--mint);text-decoration:none;background:var(--card2);border-top:1px solid var(--bdr);letter-spacing:.02em}
+.tp-full:hover{color:#fff;background:var(--accent)}
 @media(max-width:768px){.tp-banner{padding:0 16px;margin-top:14px}.tp-head{padding:14px 16px;gap:10px}.tp-ttl{font-size:16px}.tp-card.open .tp-body{max-height:720px}.tp-frame iframe{height:600px}.tp-chev .tx{display:none}}
+
 @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fd{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 .fi{opacity:0;transform:translateY(16px);transition:all .5s var(--eo)}.fi.v{opacity:1;transform:translateY(0)}
@@ -140,6 +178,7 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
 .hero-meta{justify-content:center}
 .hero-contact{justify-content:center;flex-direction:column;align-items:center;gap:12px}
 .hero-btns{justify-content:center}
+.anc{top:54px}
 .anc-in{padding:0 16px}
 .anc a{padding:12px 14px;font-size:12px}
 .sec{padding:48px 20px}
@@ -154,7 +193,8 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
 .dt{font-size:7.5px;padding:1px 3px}
 .wk{font-size:10px;padding:3px 12px}
 .li h4{font-size:14px}
-.ll{grid-template-columns:1fr}
+.ll{grid-template-columns:repeat(2,1fr);gap:10px}
+.li{min-height:120px;padding:16px 14px 14px}
 .nav-in{padding:0 16px}
 .nav-links{gap:2px}
 .nav-links a{padding:6px 6px;font-size:11px}
@@ -248,7 +288,7 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
       <tr class="re"><td class="ed">5월</td><td class="ed">5/7 (목)</td><td class="ed">전국연합학력평가</td><td>경기도교육청</td></tr>
       <tr class="rm"><td class="ei">6월</td><td class="ei">6/4 (목)</td><td class="ei">대수능 모의평가</td><td>한국교육과정평가원</td></tr>
       <tr><td><b>7월</b></td><td>7/8 (수)</td><td>전국연합학력평가</td><td>인천광역시교육청</td></tr>
-      <tr class="rm"><td class="ei">9월</td><td class="ei">9/2 (수) <small style="color:#a4392e">예정</small></td><td class="ei">대수능 모의평가</td><td>한국교육과정평가원</td></tr>
+      <tr class="rm"><td class="ei">9월</td><td class="ei">9/2 (수) <small style="color:var(--coral)">예정</small></td><td class="ei">대수능 모의평가</td><td>한국교육과정평가원</td></tr>
       <tr><td><b>10월</b></td><td>10/20 (화)</td><td>전국연합학력평가</td><td>서울특별시교육청</td></tr>
       <tr class="rs"><td class="ef">11월</td><td class="ef">11/19 (목)</td><td class="ef">대학수학능력시험</td><td>한국교육과정평가원</td></tr>
     </tbody>
@@ -258,10 +298,10 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
 <div id="schedule"><div class="sec fi">
   <div class="sec-ey">6월 일정</div>
   <h2 class="sec-t">6월 과제 및 수업</h2>
-  <p class="sec-d">6월 모의평가 이후, 금/토 실전 모의고사로 실전력을 이어 갑니다. <b style="color:var(--g5)">간쓸개 숙제 일정은 확정되는 대로 업데이트됩니다.</b></p>
+  <p class="sec-d">6월 모의평가 이후, 매일 <b style="color:var(--blue)">이감 선택과목 N제</b> 1회와 주 1회 <b style="color:var(--amber)">상상 실전 모의고사</b>로 실전력을 이어 갑니다.</p>
   <div class="wc">
     <div class="wc-h"><span>2026년 6월</span>
-      <div class="wc-lg"><span class="l1">수업</span><span class="l2">시험</span></div>
+      <div class="wc-lg"><span class="l1">수업</span><span class="l4">N제</span><span class="l3">실모</span><span class="l2">시험</span></div>
     </div>
     <div class="wg">
       <div class="wd">일</div><div class="wd">월</div><div class="wd">화</div><div class="wd">수</div><div class="wd">목</div><div class="wd">금</div><div class="wd">토</div>
@@ -270,42 +310,43 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
       <div class="dy"><span class="dn">1</span></div>
       <div class="dy"><span class="dn">2</span></div>
       <div class="dy"><span class="dn">3</span></div>
-      <div class="dy exd"><span class="dn" style="color:#a4392e;font-weight:900">4</span><span class="dt te">6월 모평</span></div>
+      <div class="dy exd"><span class="dn" style="color:var(--coral);font-weight:900">4</span><span class="dt te">6월 모평</span></div>
       <div class="dy cls"><span class="dn">5</span><span class="dt tc">수업</span></div>
       <div class="dy cls"><span class="dn">6</span><span class="dt tc">수업</span></div>
-      <div class="wk">2주 · 금/토 수업</div>
-      <div class="dy"><span class="dn">7</span></div>
-      <div class="dy"><span class="dn">8</span></div>
-      <div class="dy"><span class="dn">9</span></div>
-      <div class="dy"><span class="dn">10</span></div>
-      <div class="dy"><span class="dn">11</span></div>
-      <div class="dy cls"><span class="dn">12</span><span class="dt tc">수업</span></div>
-      <div class="dy cls"><span class="dn">13</span><span class="dt tc">수업</span></div>
-      <div class="wk">3주 · 금/토 수업</div>
-      <div class="dy"><span class="dn">14</span></div>
-      <div class="dy"><span class="dn">15</span></div>
-      <div class="dy"><span class="dn">16</span></div>
-      <div class="dy"><span class="dn">17</span></div>
-      <div class="dy"><span class="dn">18</span></div>
-      <div class="dy cls"><span class="dn">19</span><span class="dt tc">수업</span></div>
-      <div class="dy cls"><span class="dn">20</span><span class="dt tc">수업</span></div>
-      <div class="wk">4주 · 금/토 수업</div>
-      <div class="dy"><span class="dn">21</span></div>
-      <div class="dy"><span class="dn">22</span></div>
-      <div class="dy"><span class="dn">23</span></div>
-      <div class="dy"><span class="dn">24</span></div>
-      <div class="dy"><span class="dn">25</span></div>
-      <div class="dy cls"><span class="dn">26</span><span class="dt tc">수업</span></div>
-      <div class="dy cls"><span class="dn">27</span><span class="dt tc">수업</span></div>
-      <div class="wk">5주</div>
-      <div class="dy"><span class="dn">28</span></div>
-      <div class="dy"><span class="dn">29</span></div>
-      <div class="dy"><span class="dn">30</span></div>
+      <div class="wk">2주 · 7~11일 수수활 보충(~6/12) · 상상 실모 1회 · N제 시작(6/13)</div>
+      <div class="dy sup"><span class="dn">7</span><span class="dt tp">수수활</span></div>
+      <div class="dy sup"><span class="dn">8</span><span class="dt tp">수수활</span></div>
+      <div class="dy sup"><span class="dn">9</span><span class="dt tp">수수활</span></div>
+      <div class="dy sup"><span class="dn">10</span><span class="dt tp">수수활</span></div>
+      <div class="dy sup"><span class="dn">11</span><span class="dt tp">수수활</span></div>
+      <div class="dy cls"><span class="dn">12</span><span class="dt tm">상상1회</span></div>
+      <div class="dy cls"><span class="dn">13</span><span class="dt tm">상상1회</span><span class="dt td">N제1</span></div>
+      <div class="wk">3주 · 금/토 수업 · 상상 실모 2회</div>
+      <div class="dy"><span class="dn">14</span><span class="dt td">N제2</span></div>
+      <div class="dy"><span class="dn">15</span><span class="dt td">N제3</span></div>
+      <div class="dy"><span class="dn">16</span><span class="dt td">N제4</span></div>
+      <div class="dy"><span class="dn">17</span><span class="dt td">N제5</span></div>
+      <div class="dy"><span class="dn">18</span><span class="dt td">N제6</span></div>
+      <div class="dy cls"><span class="dn">19</span><span class="dt tm">상상2회</span><span class="dt td">N제7</span></div>
+      <div class="dy cls"><span class="dn">20</span><span class="dt tm">상상2회</span><span class="dt td">N제8</span></div>
+      <div class="wk">4주 · 금/토 수업 · 상상 실모 3회</div>
+      <div class="dy"><span class="dn">21</span><span class="dt td">N제9</span></div>
+      <div class="dy"><span class="dn">22</span><span class="dt td">N제10</span></div>
+      <div class="dy"><span class="dn">23</span><span class="dt td">N제11</span></div>
+      <div class="dy"><span class="dn">24</span><span class="dt td">N제12</span></div>
+      <div class="dy"><span class="dn">25</span><span class="dt td">N제13</span></div>
+      <div class="dy cls"><span class="dn">26</span><span class="dt tm">상상3회</span><span class="dt td">N제14</span></div>
+      <div class="dy cls"><span class="dn">27</span><span class="dt tm">상상3회</span><span class="dt td">N제15</span></div>
+      <div class="wk">5주 · 선택과목 N제 계속</div>
+      <div class="dy"><span class="dn">28</span><span class="dt td">N제16</span></div>
+      <div class="dy"><span class="dn">29</span><span class="dt td">N제17</span></div>
+      <div class="dy"><span class="dn">30</span><span class="dt td">N제18</span></div>
       <div class="dy emp">.</div><div class="dy emp">.</div><div class="dy emp">.</div><div class="dy emp">.</div>
     </div>
     <div class="wc-f">
-      <b style="color:var(--a5)">수업</b> 금/토 실전 모의고사 · <b style="color:#a4392e">6/4 (목)</b> 평가원 6월 모의평가<br>
-      <b style="color:#283593">간쓸개 숙제</b> 일정은 확정 후 업데이트 예정
+      <b style="color:var(--amber)">수수활</b> 빠진 부분 모두 풀어오기 — <b>6/12 (금)</b>까지 · 신규생 제외<br>
+      <b style="color:var(--mint)">수업</b> 금/토 · <b style="color:var(--amber)">상상 실모</b> 주 1회 등원(3-1 → 3-2 → 3-3) · <b style="color:var(--blue)">N제</b> 이감 선택과목(화작·언매 각 25회) 6/13부터 매일 1회<br>
+      <b style="color:var(--coral)">6/4 (목)</b> 평가원 6월 모의평가 · 선택과목 N제는 7월 초 25회 완료 예정
     </div>
   </div>
 </div></div>
@@ -323,27 +364,32 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
 
 <div id="assignments"><div class="sec fi">
   <div class="sec-ey">과제 안내</div>
-  <h2 class="sec-t">과제 일정</h2>
-  <p class="sec-d">매주 금·토 수업과 함께 주간 숙제로 실전력을 이어 갑니다. <b style="color:var(--g5)">6월 세부 숙제(회차·지문)는 확정되는 대로 업데이트됩니다.</b></p>
-  <div class="ib fi"><h3>매주 기본 과제</h3><ul>
-    <li>주간지 독서 1~5일차 (매일 1일차씩)</li>
-    <li>주간지 문학 1~5일차 (매일 1일차씩)</li>
+  <h2 class="sec-t">6월 과제 일정</h2>
+  <p class="sec-d">이감 선택과목 N제(매일 1회)와 상상 시즌3 실전 모의고사(주 1회 등원)로 6월 과제를 구성합니다.</p>
+  <div class="ib fi" style="border-left-color:var(--amber);background:linear-gradient(90deg,var(--amberG),var(--card))"><h3 style="color:var(--amber)">6/12 (금)까지 · 보충 과제</h3><ul>
+    <li>「수능특강의 수능적 활용」(수수활) — <b style="color:var(--t1)">빠진 부분 모두 풀어오기</b></li>
+    <li>신규생은 제외</li>
+  </ul></div>
+  <div class="ib fi"><h3>6월 기본 과제</h3><ul>
+    <li>이감 선택과목 N제 — 6/13부터 <b>매일 1회씩</b> (화작·언매 각 25회 · 본인 선택과목)</li>
+    <li>상상 시즌3 실전 모의고사 — 주 1회 학원 등원 실모 (3-1 → 3-2 → 3-3)</li>
   </ul></div>
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
   <table class="at fi">
-    <thead><tr><th style="width:120px">주차</th><th>수업 (금·토)</th><th>숙제</th></tr></thead>
+    <thead><tr><th style="width:88px">주차</th><th>수업 · 실모 (금·토)</th><th>선택과목 N제 (매일 1회)</th></tr></thead>
     <tbody>
       <tr><td colspan="3" class="wb dg">6월 모의평가 주간 (6/4 목 · 6모)</td></tr>
-      <tr><td><b>1주차</b></td><td>6/5 · 6</td><td><span class="ch cp">6월 모평 이후 — 추후 공지</span></td></tr>
-      <tr><td colspan="3" class="wb">2주차 수업</td></tr>
-      <tr><td><b>2주차</b></td><td>6/12 · 13</td><td><span class="ch cd">주간 숙제 — 확정 후 공지</span></td></tr>
-      <tr><td colspan="3" class="wb">3주차 수업</td></tr>
-      <tr><td><b>3주차</b></td><td>6/19 · 20</td><td><span class="ch cd">주간 숙제 — 확정 후 공지</span></td></tr>
-      <tr><td colspan="3" class="wb">4주차 수업</td></tr>
-      <tr><td><b>4주차</b></td><td>6/26 · 27</td><td><span class="ch cd">주간 숙제 — 확정 후 공지</span></td></tr>
+      <tr><td><b>1주차</b></td><td>6/5 · 6 수업</td><td><span class="ch cp">6모 이후 정리 · N제 배부 전</span></td></tr>
+      <tr><td colspan="3" class="wb">2주차 (6/12 · 13)</td></tr>
+      <tr><td><b>2주차</b></td><td>수업 + <span class="ch cm">상상 1회 (3-1)</span></td><td><span class="ch cd">[이감] 언매/화작 N제 1~6회 (6/13~18)</span></td></tr>
+      <tr><td colspan="3" class="wb">3주차 (6/19 · 20)</td></tr>
+      <tr><td><b>3주차</b></td><td>수업 + <span class="ch cm">상상 2회 (3-2)</span></td><td><span class="ch cd">[이감] 언매/화작 N제 7~13회 (6/19~25)</span></td></tr>
+      <tr><td colspan="3" class="wb">4주차 (6/26 · 27)</td></tr>
+      <tr><td><b>4주차</b></td><td>수업 + <span class="ch cm">상상 3회 (3-3)</span></td><td><span class="ch cd">[이감] 언매/화작 N제 14~20회 (6/26~7월초)</span></td></tr>
     </tbody>
   </table>
   </div>
+  <p style="font-size:12px;color:var(--t3);margin-top:14px;line-height:1.7">※ 이감 선택과목 N제는 화작·언매 각 25회 — 본인 선택과목을 매일 1회씩 풀어 7월 초 25회 완료. 상상 ‘이매진 3·4호’ 숙제는 책 구성 확인 후 추가 예정.</p>
 </div></div>
 
 <div class="sec-alt"><div class="sec fi">
@@ -363,31 +409,31 @@ body{font-family:var(--fb);background:var(--i0);color:var(--i8);font-size:16px;l
   <div class="lg">
     <div class="lg-t">보강 영상 · 유튜브</div>
     <div class="ll">
-      <a href="https://www.notion.so/26f63b05ee6c80e0aee7d3e6064e243b" target="_blank" class="li"><div><h4>보강 영상 / 참고 자료 / 과제</h4><div class="ls">노션 페이지</div></div><span class="ar">↗</span></a>
-      <a href="https://youtube.com/playlist?list=PLtWT0L-4ydjR0Wo7UBrAtxsWJe0xaiS2z" target="_blank" class="li"><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록</div></div><span class="ar">↗</span></a>
-      <a href="https://www.youtube.com/playlist?list=PLtWT0L-4ydjT_7tuhGYcEtj9OkkynKGw9" target="_blank" class="li"><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록 2</div></div><span class="ar">↗</span></a>
-      <a href="https://youtube.com/channel/UCrEYhXaFqlcnxn1wpsiUKEg" target="_blank" class="li"><div><h4>김가경 국어 연구소</h4><div class="ls">유튜브 채널</div></div><span class="ar">↗</span></a>
+      <a href="https://www.notion.so/26f63b05ee6c80e0aee7d3e6064e243b" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 13h6M9 17h4"/></svg></span><div><h4>보강 영상 / 참고 자료 / 과제</h4><div class="ls">노션 페이지</div></div><span class="ar">↗</span></a>
+      <a href="https://youtube.com/playlist?list=PLtWT0L-4ydjR0Wo7UBrAtxsWJe0xaiS2z" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M4 12h11M4 17h6"/><path d="M16 13.5v5l4-2.5z" fill="currentColor" stroke="none"/></svg></span><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록</div></div><span class="ar">↗</span></a>
+      <a href="https://www.youtube.com/playlist?list=PLtWT0L-4ydjT_7tuhGYcEtj9OkkynKGw9" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M4 12h11M4 17h6"/><path d="M16 13.5v5l4-2.5z" fill="currentColor" stroke="none"/></svg></span><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록 2</div></div><span class="ar">↗</span></a>
+      <a href="https://youtube.com/channel/UCrEYhXaFqlcnxn1wpsiUKEg" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z" fill="currentColor" stroke="none"/></svg></span><div><h4>김가경 국어 연구소</h4><div class="ls">유튜브 채널</div></div><span class="ar">↗</span></a>
     </div>
   </div>
   <div class="lg">
     <div class="lg-t">설문 및 신청</div>
     <div class="ll">
-      <a href="https://forms.gle/9c5ByS3mRJWa7b869" target="_blank" class="li"><div><h4>선택 과목 조사</h4></div><span class="ar">↗</span></a>
-      <a href="https://forms.gle/sgRaW4xuoGcx7RgM7" target="_blank" class="li"><div><h4>내신 클리닉 참여</h4></div><span class="ar">↗</span></a>
+      <a href="https://forms.gle/9c5ByS3mRJWa7b869" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"/><path d="M9 11h6M9 15h4"/></svg></span><div><h4>선택 과목 조사</h4></div><span class="ar">↗</span></a>
+      <a href="https://forms.gle/sgRaW4xuoGcx7RgM7" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"/><path d="M9 13.5l2 2 4-4.5"/></svg></span><div><h4>내신 클리닉 참여</h4></div><span class="ar">↗</span></a>
     </div>
   </div>
   <div id="studyref" class="lg">
     <div class="lg-t">수업 참고 자료</div>
     <div class="ll">
-      <a href="gosi-summary.html" target="_blank" class="li"><div><h4>고전시가 구절 총정리</h4><div class="ls">주요 구절 · 고사 정리</div></div><span class="ar">↗</span></a>
-      <a href="novel-characters.html" target="_blank" class="li"><div><h4>고전소설 인물관계도</h4><div class="ls">수능특강 작품 정리</div></div><span class="ar">↗</span></a>
+      <a href="gosi-summary.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 13h6M9 17h4"/></svg></span><div><h4>고전시가 구절 총정리</h4><div class="ls">주요 구절 · 고사 정리</div></div><span class="ar">↗</span></a>
+      <a href="novel-characters.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.3"/><circle cx="6" cy="18" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M11 7L7 15.8M13 7l4 8.8M8.3 18h7.4"/></svg></span><div><h4>고전소설 인물관계도</h4><div class="ls">수능특강 작품 정리</div></div><span class="ar">↗</span></a>
     </div>
   </div>
   <div id="naeshin" class="lg">
     <div class="lg-t">내신 대비 자료</div>
     <div class="ll">
-      <a href="bonmun.html" target="_blank" class="li"><div><h4>본문해석 (문학 복습 자료)</h4><div class="ls">고전시가 · 현대시 · 고전산문 · 현대소설 · 갈래복합 · 교과서</div></div><span class="ar">↗</span></a>
-      <a href="suri-go3-reading.html" target="_blank" class="li"><div><h4>수리고3 독서 지문 분석</h4><div class="ls">1차고사 대비</div></div><span class="ar">↗</span></a>
+      <a href="bonmun.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8.5 4.5 4 4.5V19c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2V4.5c-4.5 0-6.5.5-8 2z"/><path d="M12 6.5V21"/></svg></span><div><h4>본문해석 (문학 복습 자료)</h4><div class="ls">고전시가 · 현대시 · 고전산문 · 현대소설 · 갈래복합 · 교과서</div></div><span class="ar">↗</span></a>
+      <a href="suri-go3-reading.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 16v-3M12 16V9M16 16v-5"/></svg></span><div><h4>수리고3 독서 지문 분석</h4><div class="ls">1차고사 대비</div></div><span class="ar">↗</span></a>
     </div>
   </div>
 </div></div>
