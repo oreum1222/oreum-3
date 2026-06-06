@@ -140,6 +140,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
 .li .ls{font-size:12px;color:var(--t3);margin-top:4px;letter-spacing:.01em}
 .li .ar{font-size:14px;line-height:1;color:var(--t2);flex-shrink:0;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bdr2);background:rgba(255,255,255,.02);transition:all .25s var(--eo)}
 .li:hover .ar{color:#0a0c10;background:var(--mint);border-color:var(--mint);transform:translate(2px,-2px);box-shadow:0 6px 18px rgba(74,227,192,.4)}
+.li>div{flex:1 1 auto;min-width:0}
+.li-ic{flex-shrink:0;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--mintG);border:1px solid rgba(74,227,192,.18);color:var(--mint);transition:all .25s var(--eo)}
+.li-ic svg{width:19px;height:19px;display:block}
+.li:hover .li-ic{background:rgba(74,227,192,.2);border-color:rgba(74,227,192,.4);box-shadow:0 0 16px rgba(74,227,192,.18);transform:scale(1.05)}
 
 .foot{background:#08090c;color:var(--t3);padding:34px;text-align:center;font-size:13px;border-top:1px solid var(--bdr)}
 .foot strong{color:var(--t2)}
@@ -399,31 +403,31 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
   <div class="lg">
     <div class="lg-t">보강 영상 · 유튜브</div>
     <div class="ll">
-      <a href="https://www.notion.so/26f63b05ee6c80e0aee7d3e6064e243b" target="_blank" class="li"><div><h4>보강 영상 / 참고 자료 / 과제</h4><div class="ls">노션 페이지</div></div><span class="ar">↗</span></a>
-      <a href="https://youtube.com/playlist?list=PLtWT0L-4ydjR0Wo7UBrAtxsWJe0xaiS2z" target="_blank" class="li"><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록</div></div><span class="ar">↗</span></a>
-      <a href="https://www.youtube.com/playlist?list=PLtWT0L-4ydjT_7tuhGYcEtj9OkkynKGw9" target="_blank" class="li"><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록 2</div></div><span class="ar">↗</span></a>
-      <a href="https://youtube.com/channel/UCrEYhXaFqlcnxn1wpsiUKEg" target="_blank" class="li"><div><h4>김가경 국어 연구소</h4><div class="ls">유튜브 채널</div></div><span class="ar">↗</span></a>
+      <a href="https://www.notion.so/26f63b05ee6c80e0aee7d3e6064e243b" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 13h6M9 17h4"/></svg></span><div><h4>보강 영상 / 참고 자료 / 과제</h4><div class="ls">노션 페이지</div></div><span class="ar">↗</span></a>
+      <a href="https://youtube.com/playlist?list=PLtWT0L-4ydjR0Wo7UBrAtxsWJe0xaiS2z" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M4 12h11M4 17h6"/><path d="M16 13.5v5l4-2.5z" fill="currentColor" stroke="none"/></svg></span><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록</div></div><span class="ar">↗</span></a>
+      <a href="https://www.youtube.com/playlist?list=PLtWT0L-4ydjT_7tuhGYcEtj9OkkynKGw9" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M4 12h11M4 17h6"/><path d="M16 13.5v5l4-2.5z" fill="currentColor" stroke="none"/></svg></span><div><h4>내신 대비 수능특강 영상</h4><div class="ls">유튜브 재생목록 2</div></div><span class="ar">↗</span></a>
+      <a href="https://youtube.com/channel/UCrEYhXaFqlcnxn1wpsiUKEg" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z" fill="currentColor" stroke="none"/></svg></span><div><h4>김가경 국어 연구소</h4><div class="ls">유튜브 채널</div></div><span class="ar">↗</span></a>
     </div>
   </div>
   <div class="lg">
     <div class="lg-t">설문 및 신청</div>
     <div class="ll">
-      <a href="https://forms.gle/9c5ByS3mRJWa7b869" target="_blank" class="li"><div><h4>선택 과목 조사</h4></div><span class="ar">↗</span></a>
-      <a href="https://forms.gle/sgRaW4xuoGcx7RgM7" target="_blank" class="li"><div><h4>내신 클리닉 참여</h4></div><span class="ar">↗</span></a>
+      <a href="https://forms.gle/9c5ByS3mRJWa7b869" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"/><path d="M9 11h6M9 15h4"/></svg></span><div><h4>선택 과목 조사</h4></div><span class="ar">↗</span></a>
+      <a href="https://forms.gle/sgRaW4xuoGcx7RgM7" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"/><path d="M9 13.5l2 2 4-4.5"/></svg></span><div><h4>내신 클리닉 참여</h4></div><span class="ar">↗</span></a>
     </div>
   </div>
   <div id="studyref" class="lg">
     <div class="lg-t">수업 참고 자료</div>
     <div class="ll">
-      <a href="gosi-summary.html" target="_blank" class="li"><div><h4>고전시가 구절 총정리</h4><div class="ls">주요 구절 · 고사 정리</div></div><span class="ar">↗</span></a>
-      <a href="novel-characters.html" target="_blank" class="li"><div><h4>고전소설 인물관계도</h4><div class="ls">수능특강 작품 정리</div></div><span class="ar">↗</span></a>
+      <a href="gosi-summary.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 13h6M9 17h4"/></svg></span><div><h4>고전시가 구절 총정리</h4><div class="ls">주요 구절 · 고사 정리</div></div><span class="ar">↗</span></a>
+      <a href="novel-characters.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.3"/><circle cx="6" cy="18" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M11 7L7 15.8M13 7l4 8.8M8.3 18h7.4"/></svg></span><div><h4>고전소설 인물관계도</h4><div class="ls">수능특강 작품 정리</div></div><span class="ar">↗</span></a>
     </div>
   </div>
   <div id="naeshin" class="lg">
     <div class="lg-t">내신 대비 자료</div>
     <div class="ll">
-      <a href="bonmun.html" target="_blank" class="li"><div><h4>본문해석 (문학 복습 자료)</h4><div class="ls">고전시가 · 현대시 · 고전산문 · 현대소설 · 갈래복합 · 교과서</div></div><span class="ar">↗</span></a>
-      <a href="suri-go3-reading.html" target="_blank" class="li"><div><h4>수리고3 독서 지문 분석</h4><div class="ls">1차고사 대비</div></div><span class="ar">↗</span></a>
+      <a href="bonmun.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8.5 4.5 4 4.5V19c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2V4.5c-4.5 0-6.5.5-8 2z"/><path d="M12 6.5V21"/></svg></span><div><h4>본문해석 (문학 복습 자료)</h4><div class="ls">고전시가 · 현대시 · 고전산문 · 현대소설 · 갈래복합 · 교과서</div></div><span class="ar">↗</span></a>
+      <a href="suri-go3-reading.html" target="_blank" class="li"><span class="li-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 16v-3M12 16V9M16 16v-5"/></svg></span><div><h4>수리고3 독서 지문 분석</h4><div class="ls">1차고사 대비</div></div><span class="ar">↗</span></a>
     </div>
   </div>
 </div></div>
