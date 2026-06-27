@@ -166,6 +166,31 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
 .tp-full{display:block;text-align:center;padding:13px;font-size:12.5px;font-weight:600;color:var(--mint);text-decoration:none;background:var(--card2);border-top:1px solid var(--bdr);letter-spacing:.02em}
 .tp-full:hover{color:#fff;background:var(--accent)}
 @media(max-width:768px){.tp-banner{padding:0 16px;margin-top:14px}.tp-head{padding:14px 16px;gap:10px}.tp-ttl{font-size:16px}.tp-card.open .tp-body{max-height:720px}.tp-frame iframe{height:600px}.tp-chev .tx{display:none}}
+.nt-banner{max-width:1100px;margin:22px auto 0;padding:0 32px}
+.nt-card{background:linear-gradient(135deg,var(--card2),var(--card) 80%);border:1px solid rgba(245,200,66,.35);border-radius:14px;overflow:hidden;box-shadow:var(--s3);position:relative}
+.nt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--amber),transparent)}
+.nt-head{display:flex;align-items:center;gap:14px;padding:18px 24px;cursor:pointer;user-select:none;transition:background .2s}
+.nt-head:hover{background:rgba(245,200,66,.06)}
+.nt-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.04em;color:#0a0c10;background:linear-gradient(135deg,#f5d77a,var(--amber));padding:6px 13px;border-radius:999px;box-shadow:0 2px 12px rgba(245,200,66,.25)}
+.nt-ttl{font-family:var(--fs);font-size:clamp(16px,2.6vw,21px);font-weight:700;color:var(--t1);letter-spacing:-.01em;line-height:1.3}
+.nt-ttl small{display:block;font-family:var(--fb);font-size:12px;font-weight:500;color:var(--t2);margin-top:3px;letter-spacing:0}
+.nt-chev{margin-left:auto;flex-shrink:0;color:var(--amber);font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.nt-chev .ar{display:inline-block;transition:transform .35s var(--eo);font-size:12px}
+.nt-card.open .nt-chev .ar{transform:rotate(180deg)}
+.nt-body{max-height:0;overflow:hidden;transition:max-height .55s var(--eo)}
+.nt-card.open .nt-body{max-height:3200px}
+.nt-inner{padding:8px 28px 30px;border-top:1px solid var(--bdr)}
+.nt-books{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:20px 30px;padding:28px 10px;margin:8px 0 24px;background:radial-gradient(120% 90% at 50% 0%,rgba(245,200,66,.06),transparent 70%);border-radius:12px}
+.nt-book{text-align:center}
+.nt-book img{height:152px;width:auto;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.55));transition:transform .25s var(--eo)}
+.nt-book:hover img{transform:translateY(-5px)}
+.nt-book span{display:block;margin-top:11px;font-size:12px;font-weight:600;color:var(--t2)}
+.nt-text p{font-size:14px;color:var(--t2);line-height:1.85;margin-bottom:14px}
+.nt-text p b{color:var(--t1);font-weight:600}
+.nt-text .nt-lead{font-size:15.5px;color:var(--t1);font-weight:600;line-height:1.6;margin-bottom:20px}
+.nt-text .nt-foot{margin-top:18px;padding:16px 18px;background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.22);border-radius:10px;font-size:13.5px;color:var(--t1);line-height:1.85;margin-bottom:0}
+.nt-text .nt-foot b{color:var(--amber)}
+@media(max-width:768px){.nt-banner{padding:0 16px;margin-top:14px}.nt-head{padding:14px 16px;gap:10px}.nt-ttl{font-size:16px}.nt-inner{padding:6px 16px 22px}.nt-card.open .nt-body{max-height:5200px}.nt-book img{height:118px}.nt-books{gap:16px 18px;padding:20px 6px}.nt-chev .tx{display:none}}
 
 @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fd{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
@@ -251,6 +276,34 @@ body{font-family:var(--fb);background:var(--bg);color:var(--t1);font-size:16px;l
   <a href="#studyref">수업 참고 자료</a>
   <a href="#naeshin">내신 자료</a>
 </div></div>
+
+<div class="nt-banner">
+  <div class="nt-card" id="ntCard">
+    <div class="nt-head" onclick="this.parentNode.classList.toggle('open')">
+      <span class="nt-badge">학부모 안내</span>
+      <div class="nt-ttl">6월 콘텐츠 · 교재 사용 안내<small>구매한 교재·모의고사를 6월 과정에서 어떻게 활용했는지 · 눌러서 펼치기</small></div>
+      <span class="nt-chev"><span class="tx">안내 보기</span><span class="ar">▾</span></span>
+    </div>
+    <div class="nt-body">
+      <div class="nt-inner">
+        <div class="nt-books">
+          <div class="nt-book"><img src="book-imagine.png" alt="상상 이매진 월간 교재"><span>상상 이매진 (월간)</span></div>
+          <div class="nt-book"><img src="book-igam.png" alt="이감 선택과목 N제"><span>이감 선택과목 N제</span></div>
+          <div class="nt-book"><img src="book-sangsang.png" alt="상상 시즌3 실전 모의고사"><span>상상 시즌3 실모</span></div>
+          <div class="nt-book"><img src="book-batang.png" alt="바탕 모의고사"><span>바탕 모의고사</span></div>
+        </div>
+        <div class="nt-text">
+          <p class="nt-lead">학부모님께<br>6월에 구매한 콘텐츠 및 교재 사용에 대해 안내드립니다.</p>
+          <p><b>상상 이매진 교재</b>는 월간 교재로, 6월 13일부터 한 달 동안 숙제로 풀게되는 교재입니다. 매일매일 해야 할 양을 정해서 배부하고 있으며, 매주 등원 시 엄격히 관리하고 있습니다.</p>
+          <p><b>이감 선택과목 N제</b>는 선택 과목(언어와 매체, 화법과 작문)의 시간 관리를 연습할 수 있는 미니 모의고사 교재입니다. 매일 한 회씩 주 6회 풀게돼 있으며, 매주 등원 시 엄격히 관리하고 있습니다.</p>
+          <p>6월은 평가원 모의고사를 응시한 달로, 해당 주 제외 총 3개의 사설 모의고사를 구매하였습니다. <b>6-2주차 상상 시즌3-1회</b> 응시, <b>6-3주차 바탕 4회</b> 응시, <b>6-4주차 상상 시즌3-2회</b> 응시로, 학생들은 학원에 등원하여 실전 모의고사를 응시하고 가경T가 수업 시간에 이 모의고사에서 중요한 부분을 짚어서 해설해주었습니다. 또한 매주 모의고사를 풀 때마다 점수와 오답을 기록하여 학생들의 데이터는 누적되고 있으며, 이를 통해 가경T가 학생들과 이야기를 나누기도 합니다.</p>
+          <p>매주 과제는 학생이 직접 오답을 기록하는 <b>"과제 검사 시스템"</b>으로 1차, 쉬는 시간에 조교 선생님들이 직접 한 명 한 명 교재를 꺼내어 검사하는 방식으로 2차 조사를 합니다. 이때 과제를 하지 않았다고 판정되면 다음 수행 날짜를 약속하고 귀가합니다. 이에 숙제를 하지 않은 학생은 다음 주에 누적으로 또 검사를 하는 등 여러 번 숙제에 대해 주의를 줍니다.</p>
+          <p class="nt-foot">* 숙제를 안 한 학생들은 타학원 일정으로 학원에 남기거나, 다른 요일에 추가 등원하기 어렵습니다. 이에 지속적으로 다시 해올 것을 이야기하나 잘 지켜지지 않으면 학부모님께도 연락을 드립니다. <b>댁에서 따뜻한 격려와 응원 부탁드립니다.</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="tp-banner">
   <div class="tp-card" id="tpCard">
