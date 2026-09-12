@@ -1,7 +1,7 @@
 /* 수시 원서 접수 현황 조사 — 설정 */
 window.SUSI_CONFIG = {
   // Apps Script 웹앱 배포 URL을 여기에 붙여넣으세요 (설정 전까지는 미리보기 모드)
-  SCRIPT_URL: '',
+  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbz5PsqlEPFm6teim8EtzHuywkPuXnOIzmxd0C0xLOblI-T30uPIdiknOK06jHX-VpJbGg/exec',
   BRAND: '[오름] 국어학원',
   TITLE: '2027학년도 수시 원서 접수 현황 조사',
   DESC: '지원한 수시 6장과 특별전형(사관, 경찰대, 과기원 등) 현황을 조사합니다. 원서 접수한 그대로 정확히 입력해 주세요.'
