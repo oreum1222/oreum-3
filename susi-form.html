@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>수시 원서 접수 현황 조사</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1F3A5F; --navy2:#2C4A6E; --navyL:#4a6a92; --navyBg:#eef3f9;
+    --ink:#1b2431; --sub:#5b6774; --line:#dde3ea; --bg:#f4f7fb; --card:#fff;
+    --hak:#1F3A5F; --gyo:#2f7d5b; --non:#9a5b1e; --special:#6b3fa0;
+    --ok:#2f7d5b; --warn:#c0392b;
+    --r:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Pretendard','Malgun Gothic',system-ui,sans-serif;line-height:1.55;-webkit-text-size-adjust:100%}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 80px}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:30px 20px 26px;margin:0 -16px 22px;
+    border-radius:0 0 20px 20px;box-shadow:0 6px 20px rgba(31,58,95,.18)}
+  header .hbrand{font-size:12.5px;font-weight:700;letter-spacing:.02em;opacity:.85;margin-bottom:8px}
+  header h1{margin:0 0 8px;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
+  header p{margin:0;font-size:13px;opacity:.9;line-height:1.6}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 16px;margin-bottom:16px;
+    box-shadow:0 1px 3px rgba(27,36,49,.05)}
+  .sec-h{display:flex;align-items:center;gap:9px;font-size:15.5px;font-weight:800;color:var(--navy);margin:0 0 4px}
+  .sec-h .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;
+    background:var(--navy);color:#fff;font-size:12.5px;font-weight:800;flex-shrink:0}
+  .sec-d{font-size:12.5px;color:var(--sub);margin:0 0 14px}
+  label{display:block;font-size:13px;font-weight:700;color:var(--navy2);margin:0 0 6px}
+  .req{color:var(--warn);font-weight:800}
+  input[type=text], select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;font-size:15px;
+    font-family:inherit;color:var(--ink);background:#fff;-webkit-appearance:none;appearance:none;transition:border .15s}
+  input[type=text]:focus, select:focus{outline:none;border-color:var(--navyL);box-shadow:0 0 0 3px rgba(74,106,146,.12)}
+  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235b6774' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+  .frow{margin-bottom:13px}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  @media(max-width:480px){.fgrid{grid-template-columns:1fr}}
+  /* 수시 카드 */
+  .sc{border:1.5px solid var(--line);border-radius:11px;padding:14px;margin-bottom:12px;background:#fbfcfe;transition:border .15s,background .15s}
+  .sc.on{border-color:var(--navy);background:#fff;box-shadow:0 2px 10px rgba(31,58,95,.07)}
+  .sc-top{display:flex;align-items:center;gap:10px;margin-bottom:0}
+  .sc-badge{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:30px;padding:0 10px;border-radius:8px;
+    background:var(--navyBg);color:var(--navy);font-size:13px;font-weight:800;flex-shrink:0}
+  .sc-top select{flex:1}
+  .sc-body{margin-top:12px}
+  .sc-body[hidden]{display:none}
+  .tchip{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:20px;margin-left:auto;color:#fff}
+  .t-학종{background:var(--hak)} .t-교과{background:var(--gyo)} .t-논술{background:var(--non)}
+  /* 특별전형 */
+  .sp{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:10px;background:#fbfcfe}
+  .sp.on{border-color:var(--special);background:#fff}
+  .sp-check{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:14.5px;font-weight:700;color:var(--ink);flex:1;min-width:180px}
+  .sp-check input{width:20px;height:20px;accent-color:var(--special);flex-shrink:0}
+  .sp-check .hint{font-size:11.5px;font-weight:500;color:var(--sub);margin-left:4px}
+  .sp-detail{flex:1 1 100%}
+  .sp-detail[hidden]{display:none}
+  .hint-s{font-size:11.5px;color:var(--sub);margin-top:5px}
+  .submit{width:100%;padding:16px;border:none;border-radius:12px;background:var(--navy);color:#fff;font-size:16.5px;font-weight:800;
+    cursor:pointer;box-shadow:0 6px 18px rgba(31,58,95,.25);transition:transform .1s,background .15s}
+  .submit:hover{background:var(--navy2)} .submit:active{transform:translateY(1px)}
+  .submit:disabled{opacity:.6;cursor:default}
+  .note{font-size:12px;color:var(--sub);text-align:center;margin-top:14px;line-height:1.7}
+  /* 완료 화면 */
+  .done{text-align:center;padding:60px 20px}
+  .done .ic{width:76px;height:76px;border-radius:50%;background:var(--navyBg);color:var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:38px}
+  .done h2{color:var(--navy);font-size:22px;margin:0 0 10px}
+  .done p{color:var(--sub);font-size:14px}
+  .done .again{margin-top:24px;display:inline-block;padding:11px 22px;border:1.5px solid var(--navy);border-radius:9px;color:var(--navy);font-weight:700;text-decoration:none;cursor:pointer;font-size:14px}
+  .pv-tag{display:inline-block;background:#fff4e0;color:#9a5b1e;border:1px solid #f0d9a8;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:20px;margin-top:10px}
+  .err{color:var(--warn);font-size:12.5px;font-weight:700;margin-top:6px}
+  .err[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="hbrand" id="hbrand">[오름] 국어학원</div>
+    <h1 id="htitle">수시 원서 접수 현황 조사</h1>
+    <p id="hdesc"></p>
+  </header>
+
+  <main id="form">
+    <!-- 학생 정보 -->
+    <div class="card">
+      <div class="sec-h"><span class="num">1</span>학생 정보</div>
+      <p class="sec-d">본인 이름과 학교를 정확히 입력해 주세요.</p>
+      <div class="fgrid">
+        <div class="frow"><label>이름 <span class="req">*</span></label><input type="text" id="f_name" placeholder="예: 홍길동" autocomplete="name"></div>
+        <div class="frow"><label>학교 <span class="req">*</span></label><input type="text" id="f_school" placeholder="예: 산본고등학교"></div>
+      </div>
+      <div class="frow"><label>반 / 번호 <span style="font-weight:500;color:var(--sub)">(선택)</span></label><input type="text" id="f_class" placeholder="예: 3학년 5반 12번"></div>
+    </div>
+
+    <!-- 수시 6장 -->
+    <div class="card">
+      <div class="sec-h"><span class="num">2</span>수시 6장</div>
+      <p class="sec-d">수시는 최대 6장까지 지원할 수 있습니다. 지원한 카드마다 전형 유형을 고르면 대학과 학과 칸이 열립니다. 안 쓴 카드는 <b>미지원</b>으로 두세요. (사관, 경찰대, 과기원은 6장에 포함되지 않으니 아래 3번에 적어 주세요.)</p>
+      <div id="susiCards"></div>
+    </div>
+
+    <!-- 특별전형 -->
+    <div class="card">
+      <div class="sec-h"><span class="num">3</span>특별전형 (수시 6장 외)</div>
+      <p class="sec-d">사관학교, 경찰대학, 과학기술원(카이스트 등)은 수시 6회 제한과 별개입니다. 지원한 곳에 체크하고 전형 방식과 모집단위를 적어 주세요.</p>
+      <div id="specials"></div>
+      <div class="frow" style="margin-top:6px"><label>기타 특별전형 <span style="font-weight:500;color:var(--sub)">(선택)</span></label><input type="text" id="f_etc" placeholder="위에 없는 특별전형이 있으면 적어 주세요"></div>
+    </div>
+
+    <div class="err" id="errBox" hidden></div>
+    <button class="submit" id="submitBtn">제출하기</button>
+    <p class="note" id="pvNote"></p>
+  </main>
+
+  <div id="done" class="done" hidden>
+    <div class="ic">✓</div>
+    <h2>제출 완료</h2>
+    <p>수시 원서 현황이 정상적으로 접수되었습니다.<br>고생 많았어요.</p>
+    <span class="again" onclick="location.reload()">다시 작성하기</span>
+  </div>
+</div>
+
+<script src="config.js?v=1"></script>
+<script>
+const CFG = window.SUSI_CONFIG || {};
+document.getElementById('hbrand').textContent = CFG.BRAND || '[오름] 국어학원';
+document.getElementById('htitle').textContent = CFG.TITLE || '수시 원서 접수 현황 조사';
+document.getElementById('hdesc').textContent = CFG.DESC || '';
+document.title = CFG.TITLE || '수시 원서 접수 현황 조사';
+
+const TYPES = ['미지원','학생부종합 (학종)','학생부교과 (교과)','논술'];
+const TYPE_KEY = {'미지원':'미지원','학생부종합 (학종)':'학종','학생부교과 (교과)':'교과','논술':'논술'};
+const NONSUL = ['인문 논술','수리 논술','약술형 논술'];
+const SPECIALS = [
+  {key:'사관학교', label:'사관학교', hint:'육군, 해군, 공군, 국군간호'},
+  {key:'경찰대학', label:'경찰대학', hint:''},
+  {key:'KAIST', label:'카이스트 (KAIST)', hint:''},
+  {key:'UNIST', label:'유니스트 (UNIST)', hint:''},
+  {key:'GIST', label:'지스트 (GIST)', hint:''},
+  {key:'DGIST', label:'디지스트 (DGIST)', hint:''},
+  {key:'KENTECH', label:'켄텍 (KENTECH)', hint:'한국에너지공대'},
+];
+
+// ── 수시 6장 카드 생성 ──
+const susiWrap = document.getElementById('susiCards');
+for(let i=1;i<=6;i++){
+  const sc = document.createElement('div'); sc.className='sc'; sc.dataset.no=i;
+  const sel = document.createElement('select');
+  TYPES.forEach(t=>{ const o=document.createElement('option'); o.value=t; o.textContent=(t==='미지원'?'미지원 (안 씀)':t); sel.appendChild(o); });
+  const badge = document.createElement('span'); badge.className='sc-badge'; badge.textContent=i+'장';
+  const chip = document.createElement('span'); chip.className='tchip'; chip.hidden=true;
+  const top = document.createElement('div'); top.className='sc-top';
+  top.appendChild(badge); top.appendChild(sel); top.appendChild(chip);
+  const body = document.createElement('div'); body.className='sc-body'; body.hidden=true;
+  // 논술 세부
+  const nrow = document.createElement('div'); nrow.className='frow'; nrow.hidden=true;
+  const nlab = document.createElement('label'); nlab.innerHTML='논술 유형 <span class="req">*</span>'; nrow.appendChild(nlab);
+  const nsel = document.createElement('select');
+  NONSUL.forEach(n=>{ const o=document.createElement('option'); o.value=n; o.textContent=n; nsel.appendChild(o); });
+  const nph = document.createElement('option'); nph.value=''; nph.textContent='선택'; nph.selected=true; nsel.insertBefore(nph, nsel.firstChild);
+  nrow.appendChild(nsel);
+  // 대학 / 학과
+  const grid = document.createElement('div'); grid.className='fgrid';
+  const uwrap=document.createElement('div'); uwrap.className='frow'; uwrap.innerHTML='<label>대학명 <span class="req">*</span></label>';
+  const uinp=document.createElement('input'); uinp.type='text'; uinp.placeholder='예: 서울대학교'; uwrap.appendChild(uinp);
+  const dwrap=document.createElement('div'); dwrap.className='frow'; dwrap.innerHTML='<label>학과 / 모집단위 <span class="req">*</span></label>';
+  const dinp=document.createElement('input'); dinp.type='text'; dinp.placeholder='예: 컴퓨터공학부'; dwrap.appendChild(dinp);
+  grid.appendChild(uwrap); grid.appendChild(dwrap);
+  body.appendChild(nrow); body.appendChild(grid);
+  sc.appendChild(top); sc.appendChild(body);
+  susiWrap.appendChild(sc);
+
+  sel.addEventListener('change', ()=>{
+    const v = TYPE_KEY[sel.value];
+    const active = v!=='미지원';
+    body.hidden = !active; sc.classList.toggle('on', active);
+    nrow.hidden = (v!=='논술');
+    chip.hidden = !active || v==='미지원';
+    if(active){ chip.hidden=false; chip.textContent=v; chip.className='tchip t-'+v; }
+    else chip.hidden=true;
+  });
+  sc._get = ()=>{
+    const v = TYPE_KEY[sel.value];
+    if(v==='미지원') return {no:i, type:'미지원'};
+    return {no:i, type:v, nonsul:(v==='논술'?nsel.value:''), univ:uinp.value.trim(), dept:dinp.value.trim()};
+  };
+}
+
+// ── 특별전형 생성 ──
+const spWrap = document.getElementById('specials');
+SPECIALS.forEach(s=>{
+  const row=document.createElement('div'); row.className='sp';
+  const lab=document.createElement('label'); lab.className='sp-check';
+  const cb=document.createElement('input'); cb.type='checkbox';
+  lab.appendChild(cb);
+  const txt=document.createElement('span'); txt.innerHTML = s.label + (s.hint?(' <span class="hint">'+s.hint+'</span>'):'');
+  lab.appendChild(txt);
+  const det=document.createElement('div'); det.className='sp-detail'; det.hidden=true;
+  const dinp=document.createElement('input'); dinp.type='text'; dinp.placeholder='전형 방식 및 모집단위 (예: 학생부종합, 전기전자공학과)';
+  det.appendChild(dinp);
+  row.appendChild(lab); row.appendChild(det);
+  spWrap.appendChild(row);
+  cb.addEventListener('change', ()=>{ det.hidden=!cb.checked; row.classList.toggle('on', cb.checked); if(cb.checked) dinp.focus(); });
+  row._get = ()=> cb.checked ? {key:s.key, label:s.label, applied:true, detail:dinp.value.trim()} : {key:s.key, label:s.label, applied:false, detail:''};
+});
+
+// ── 미리보기 모드 표기 ──
+const pvNote = document.getElementById('pvNote');
+if(!CFG.SCRIPT_URL){ pvNote.innerHTML = '<span class="pv-tag">미리보기 모드 · 제출 URL 미설정</span>'; }
+
+// ── 제출 ──
+const errBox = document.getElementById('errBox');
+function showErr(m){ errBox.textContent=m; errBox.hidden=false; errBox.scrollIntoView({behavior:'smooth',block:'center'}); }
+function collect(){
+  const name=document.getElementById('f_name').value.trim();
+  const school=document.getElementById('f_school').value.trim();
+  if(!name) { showErr('이름을 입력해 주세요.'); return null; }
+  if(!school){ showErr('학교를 입력해 주세요.'); return null; }
+  const susi=[...susiWrap.querySelectorAll('.sc')].map(sc=>sc._get());
+  for(const c of susi){
+    if(c.type==='미지원') continue;
+    if(c.type==='논술' && !c.nonsul){ showErr(c.no+'장 논술 유형(인문/수리/약술)을 선택해 주세요.'); return null; }
+    if(!c.univ){ showErr(c.no+'장 대학명을 입력해 주세요.'); return null; }
+    if(!c.dept){ showErr(c.no+'장 학과/모집단위를 입력해 주세요.'); return null; }
+  }
+  const special=[...spWrap.querySelectorAll('.sp')].map(sp=>sp._get());
+  for(const s of special){ if(s.applied && !s.detail){ showErr(s.label+' 전형 방식을 입력해 주세요.'); return null; } }
+  errBox.hidden=true;
+  return {
+    name, school, class:document.getElementById('f_class').value.trim(),
+    susi, special, etc:document.getElementById('f_etc').value.trim(),
+    ts:new Date().toISOString()
+  };
+}
+const btn=document.getElementById('submitBtn');
+btn.addEventListener('click', async ()=>{
+  const data=collect(); if(!data) return;
+  btn.disabled=true; btn.textContent='제출 중...';
+  try{
+    if(CFG.SCRIPT_URL){
+      const body=new URLSearchParams(); body.set('data', JSON.stringify(data));
+      await fetch(CFG.SCRIPT_URL, {method:'POST', body});
+    } else {
+      console.log('[미리보기] 제출 데이터:', data);
+      await new Promise(r=>setTimeout(r,500));
+    }
+    document.getElementById('form').hidden=true;
+    document.getElementById('done').hidden=false;
+    window.scrollTo(0,0);
+  }catch(e){
+    showErr('제출 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.');
+    btn.disabled=false; btn.textContent='제출하기';
+  }
+});
+</script>
+</body>
+</html>

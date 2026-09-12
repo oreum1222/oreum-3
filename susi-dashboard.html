@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>수시 원서 현황 · 강사용</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{--navy:#1F3A5F;--navy2:#2C4A6E;--navyBg:#eef3f9;--ink:#1b2431;--sub:#5b6774;--line:#dde3ea;--bg:#f4f7fb;--card:#fff;
+    --hak:#1F3A5F;--gyo:#2f7d5b;--non:#9a5b1e;--special:#6b3fa0;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Malgun Gothic',system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:1160px;margin:0 auto;padding:22px 16px 70px}
+  h1{font-size:21px;color:var(--navy);margin:0 0 3px;font-weight:800}
+  .lead{color:var(--sub);font-size:13px;margin:0 0 20px}
+  .gate{max-width:340px;margin:80px auto;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:32px 26px}
+  .gate h2{color:var(--navy);margin:0 0 16px;font-size:19px}
+  .gate input{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:9px;font-size:15px;margin-bottom:12px;text-align:center}
+  .btn{padding:11px 18px;border:none;border-radius:9px;background:var(--navy);color:#fff;font-weight:700;font-size:14px;cursor:pointer}
+  .btn:hover{background:var(--navy2)} .btn.g{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:11px;margin-bottom:20px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px}
+  .stat .n{font-size:26px;font-weight:800;color:var(--navy);line-height:1}
+  .stat .l{font-size:12px;color:var(--sub);margin-top:6px;font-weight:600}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .panel h3{margin:0 0 12px;font-size:14px;color:var(--navy);font-weight:800}
+  .kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0f3f7;font-size:13.5px}
+  .kv:last-child{border:none} .kv b{color:var(--navy2)}
+  .kv .cnt{font-weight:800;color:var(--navy)}
+  .twrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap}
+  th,td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--navyBg);color:var(--navy2);font-weight:700;position:sticky;top:0}
+  td.susi{white-space:normal;min-width:150px;font-size:12px}
+  .chip{display:inline-block;font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:10px;color:#fff;margin-right:3px}
+  .c-학종{background:var(--hak)}.c-교과{background:var(--gyo)}.c-논술{background:var(--non)}.c-special{background:var(--special)}
+  .muted{color:#aab2bf}
+  .err{color:#c0392b;font-weight:700;font-size:13px;text-align:center;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate" class="gate">
+    <h2>강사용 현황</h2>
+    <input type="password" id="pw" placeholder="비밀번호" onkeydown="if(event.key==='Enter')enter()">
+    <button class="btn" onclick="enter()">확인</button>
+    <div class="err" id="gerr" style="display:none">비밀번호가 맞지 않거나 불러오지 못했습니다.</div>
+  </div>
+
+  <div id="app" style="display:none">
+    <h1>수시 원서 접수 현황</h1>
+    <p class="lead" id="lead"></p>
+    <div class="bar">
+      <button class="btn g" onclick="load()">새로고침</button>
+      <button class="btn g" onclick="downloadCsv()">CSV 내려받기</button>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="grid2">
+      <div class="panel"><h3>전형 유형별 지원 (건)</h3><div id="byType"></div></div>
+      <div class="panel"><h3>특별전형 지원 (명)</h3><div id="bySpecial"></div></div>
+    </div>
+    <div class="panel" style="margin-bottom:16px"><h3>대학별 지원 건수 (상위)</h3><div id="byUniv"></div></div>
+    <div class="twrap"><table id="tbl"></table></div>
+  </div>
+</div>
+
+<script src="config.js?v=1"></script>
+<script>
+const CFG=window.SUSI_CONFIG||{};
+const SPECIAL_KEYS=['사관학교','경찰대학','KAIST','UNIST','GIST','DGIST','KENTECH'];
+let ROWS=[]; let CURPW=sessionStorage.getItem('susi_pw')||'';
+
+function showApp(){ document.getElementById('gate').style.display='none'; document.getElementById('app').style.display='block'; }
+
+function enter(){
+  CURPW=document.getElementById('pw').value;
+  document.getElementById('gerr').style.display='none';
+  load(true);
+}
+window.addEventListener('load', ()=>{ if(CURPW) load(false); });  // 이번 세션에 인증됐으면 자동 로드
+
+async function load(fromGate){
+  if(!CFG.SCRIPT_URL){ showApp(); render([]); document.getElementById('lead').textContent='SCRIPT_URL 미설정 (config.js). 배포 후 표시됩니다.'; return; }
+  try{
+    const u=CFG.SCRIPT_URL+'?action=list&pw='+encodeURIComponent(CURPW)+'&v='+Date.now();
+    const res=await fetch(u); const j=await res.json();
+    if(!j.ok){
+      if(j.error==='auth'){ sessionStorage.removeItem('susi_pw'); if(fromGate) document.getElementById('gerr').style.display='block'; return; }
+      showApp(); document.getElementById('lead').textContent='불러오기 실패: '+(j.error||''); return;
+    }
+    sessionStorage.setItem('susi_pw', CURPW);
+    showApp(); ROWS=j.rows||[]; render(ROWS);
+  }catch(e){
+    if(fromGate){ document.getElementById('gerr').textContent='불러오지 못했습니다. 잠시 후 다시 시도해 주세요.'; document.getElementById('gerr').style.display='block'; }
+    else { showApp(); document.getElementById('lead').textContent='네트워크 오류: '+e; }
+  }
+}
+
+function render(rows){
+  document.getElementById('lead').textContent='총 '+rows.length+'명 제출';
+  // 통계
+  let jHak=0,jGyo=0,jNon=0, spCnt={}, univ={};
+  SPECIAL_KEYS.forEach(k=>spCnt[k]=0);
+  let spTotal=0;
+  rows.forEach(r=>{
+    const d=r._data||{};
+    (d.susi||[]).forEach(c=>{ if(c.type==='학종')jHak++; else if(c.type==='교과')jGyo++; else if(c.type==='논술')jNon++;
+      if(c.type&&c.type!=='미지원'&&c.univ){ univ[c.univ]=(univ[c.univ]||0)+1; } });
+    let anySp=false;
+    (d.special||[]).forEach(s=>{ if(s.applied){ spCnt[s.key]=(spCnt[s.key]||0)+1; anySp=true; } });
+    if(anySp) spTotal++;
+  });
+  document.getElementById('stats').innerHTML=
+    stat(rows.length,'제출 인원')+stat(jHak,'학종 지원(건)')+stat(jGyo,'교과 지원(건)')+stat(jNon,'논술 지원(건)')+stat(spTotal,'특별전형 지원(명)');
+  document.getElementById('byType').innerHTML=
+    kv('학생부종합 (학종)',jHak)+kv('학생부교과 (교과)',jGyo)+kv('논술',jNon);
+  document.getElementById('bySpecial').innerHTML=SPECIAL_KEYS.map(k=>kv(k,spCnt[k]||0)).join('');
+  const uarr=Object.entries(univ).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  document.getElementById('byUniv').innerHTML= uarr.length?uarr.map(([u,n])=>kv(u,n)).join(''):'<div class="muted" style="font-size:13px">아직 없음</div>';
+
+  // 테이블
+  let h='<thead><tr><th>제출시각</th><th>이름</th><th>학교</th><th>반</th><th>장수</th>';
+  for(let i=1;i<=6;i++) h+='<th>수시'+i+'</th>';
+  h+='<th>특별전형</th><th>기타</th></tr></thead><tbody>';
+  rows.forEach(r=>{
+    const d=r._data||{};
+    h+='<tr><td>'+fmtTime(r['제출시각'])+'</td><td><b>'+esc(d.name||r['이름'])+'</b></td><td>'+esc(d.school||r['학교'])+'</td><td>'+esc(d.class||r['반']||'')+'</td><td>'+(d.susi?d.susi.filter(c=>c.type!=='미지원').length:'')+'</td>';
+    for(let i=0;i<6;i++){ const c=(d.susi||[])[i];
+      if(!c||c.type==='미지원') h+='<td class="muted">—</td>';
+      else h+='<td class="susi"><span class="chip c-'+c.type+'">'+c.type+(c.nonsul?' '+c.nonsul.replace(' 논술',''):'')+'</span>'+esc(c.univ||'')+'<br><span class="muted">'+esc(c.dept||'')+'</span></td>';
+    }
+    const sp=(d.special||[]).filter(s=>s.applied).map(s=>'<span class="chip c-special">'+s.key+'</span>'+esc(s.detail||'')).join('<br>');
+    h+='<td class="susi">'+(sp||'<span class="muted">—</span>')+'</td><td class="susi">'+esc(d.etc||'')+'</td></tr>';
+  });
+  h+='</tbody>';
+  document.getElementById('tbl').innerHTML=h;
+}
+function stat(n,l){ return '<div class="stat"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>'; }
+function kv(k,n){ return '<div class="kv"><b>'+esc(k)+'</b><span class="cnt">'+n+'</span></div>'; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtTime(t){ if(!t) return ''; const d=new Date(t); if(isNaN(d)) return String(t).slice(0,16); return (d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+
+function downloadCsv(){
+  const head=['제출시각','이름','학교','반','장수','수시1','수시2','수시3','수시4','수시5','수시6'].concat(SPECIAL_KEYS).concat(['기타']);
+  const lines=[head.join(',')];
+  ROWS.forEach(r=>{ const d=r._data||{};
+    const cells=[fmtTime(r['제출시각']),d.name,d.school,d.class||'',(d.susi?d.susi.filter(c=>c.type!=='미지원').length:'')];
+    for(let i=0;i<6;i++){ const c=(d.susi||[])[i]; cells.push(!c||c.type==='미지원'?'미지원':(c.type+(c.nonsul?'('+c.nonsul+')':'')+' '+ (c.univ||'')+' '+(c.dept||''))); }
+    const spm={}; (d.special||[]).forEach(s=>spm[s.key]=s.applied?(s.detail||'지원'):'');
+    SPECIAL_KEYS.forEach(k=>cells.push(spm[k]||''));
+    cells.push(d.etc||'');
+    lines.push(cells.map(c=>'"'+String(c==null?'':c).replace(/"/g,'""')+'"').join(','));
+  });
+  const blob=new Blob(['﻿'+lines.join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='수시원서현황.csv'; a.click();
+}
+</script>
+</body>
+</html>
